@@ -5,6 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mark Lyda</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #fff;
+      color: #000;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile {
+      max-width: 250px;
+      border-radius: 12px;
+    }
+
+    .right {
+      flex: 1;
+      padding-left: 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.75rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .right {
+        padding-left: 0;
+        margin-top: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -17,7 +89,7 @@
         <li><a href="https://practist.io" target="_blank">Practist</a></li>
         <li><a href="https://lydagroup.com" target="_blank">Lyda Law Firm</a></li>
         <li><a href="https://youtube.com/@lydagroup" target="_blank">YouTube Legal Explainers</a></li>
-        <li><a href="https://lydagroup.thinkific.com" target="_blank">Course on Self-Representation</a></li>
+        <li><a href="https://lydagroup.thnkific.com" target="_blank">Course of Self-Representation</a></li>
       </ul>
     </div>
   </div>
