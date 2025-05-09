@@ -6,6 +6,8 @@
   <title>Mark Lyda</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
     body {
       margin: 0;
       padding: 0;
@@ -42,8 +44,15 @@
     }
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .bio {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 2rem;
     }
 
     ul {
@@ -59,14 +68,26 @@
       text-decoration: none;
       color: #000;
       font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    a::after {
+      content: '\2197'; /* North East Arrow */
+      font-size: 0.9rem;
+      color: #5271FF;
     }
 
     a:hover {
-      color: #5271FF; /* That Practist blue for a subtle hint */
+      color: #5271FF;
     }
 
-    a:hover {
-      text-decoration: underline;
+    small {
+      display: block;
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 0.25rem;
     }
 
     @media (max-width: 768px) {
@@ -89,6 +110,7 @@
     </div>
     <div class="right">
       <h1>Mark Lyda</h1>
+      <p class="bio">Attorney, founder, and Air Force JAG building tools for courageous lawyers and everyday clients.</p>
       <ul>
         <li><a href="https://practist.io" target="_blank">Practist</a></li>
         <small>Modern law firm software designed to do the grunt work for you.</small>
