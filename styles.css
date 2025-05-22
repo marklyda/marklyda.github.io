@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
+
+:root {
+  --primary-red: #E53935;
+  --primary-blue: #1E88E5;
+  --primary-yellow: #FFD600;
+  --black: #000000;
+  --white: #FFFFFF;
+  --gray: #E0E0E0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Jost', sans-serif;
+  background-color: var(--white);
+  color: var(--black);
+  line-height: 1.5;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  min-height: 100vh;
+}
+
+.left {
+  background-color: var(--primary-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.left::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-yellow);
+  border-radius: 50%;
+  bottom: 20px;
+  right: 40px;
+  z-index: 1;
+}
+
+.profile {
+  max-width: 280px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%);
+  z-index: 2;
+}
+
+.right {
+  padding: 3rem;
+  position: relative;
+}
+
+.right::before {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 8px;
+  background-color: var(--primary-red);
+  top: 80px;
+  left: 3rem;
+}
+
+h1 {
+  font-family: 'Jost', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 3rem;
+}
+
+.bio {
+  font-size: 1.1rem;
+  color: var(--black);
+  margin-bottom: 3rem;
+  max-width: 80%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+li {
+  background-color: var(--gray);
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+li:nth-child(odd) {
+  transform: translateY(1rem);
+}
+
+li:hover {
+  background-color: var(--primary-yellow);
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  display: block;
+}
+
+small {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .left {
+    padding: 2rem 1rem;
+  }
+
+  .right {
+    padding: 2rem 1.5rem;
+  }
+
+  .right::before {
+    width: 80px;
+    left: 1.5rem;
+  }
+
+  ul {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .bio {
+    max-width: 100%;
+  }
+}
