@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mark Lyda</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="destijl.css" id="theme-stylesheet" />
 </head>
 <body>
   <div class="container">
@@ -15,16 +16,76 @@
       <h1>Mark Lyda</h1>
       <p class="bio">Hello! I'm an attorney, founder, Air Force JAG reservist, and Notre Dame Law grad. Check out my projects below.</p>
       <ul>
-        <li><a href="https://practist.io" target="_blank">Practist</a></li>
-        <small>Modern law firm software designed to do the grunt work for you.</small>
-        <li><a href="https://lydagroup.com" target="_blank">Lyda Law Firm</a></li>
-        <small>National law firm serving startups, small businesses, nonprofits, and individuals.</small>
-        <li><a href="https://youtube.com/@lydagroup" target="_blank">YouTube Legal Explainers</a></li>
-        <small>Legal basics, business tips, and practical education without jargon.</small>
-        <li><a href="https://lydagroup.thinkific.com" target="_blank">Course</a></li>
-        <small>Online course for pro-se litigants: How to Represent Yourself in Court.</small>
+        <li>
+          <a href="https://practist.io" target="_blank" class="card-link">
+            <span class="link-title">Practist</span>
+            <small>Modern law firm software designed to do the grunt work for you.</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://lydagroup.com" target="_blank" class="card-link">
+            <span class="link-title">Lyda Law Firm</span>
+            <small>National law firm serving startups, small businesses, nonprofits, and individuals.</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://youtube.com/@lydagroup" target="_blank" class="card-link">
+            <span class="link-title">YouTube Legal Explainers</span>
+            <small>Legal basics, business tips, and practical education without jargon.</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://lydagroup.thinkific.com" target="_blank" class="card-link">
+            <span class="link-title">Course</span>
+            <small>Online course for pro-se litigants: How to Represent Yourself in Court.</small>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
+
+  <footer style="text-align: center; padding: 1rem; font-size: 0.9rem;">
+    Experience: 
+    <a href="#" data-style="editorial">Editorial</a> | 
+    <a href="#" data-style="vaporwave">Vaporwave</a> | 
+    <a href="#" data-style="8bit">8-bit</a> | 
+    <a href="#" data-style="memphis">Memphis</a> | 
+    <a href="#" class="active" data-style="destijl">De Stijl</a> | 
+    <a href="#" data-style="constructivist">Constructivist</a>
+  </footer>
+
+  <script>
+    // Wait for DOM to load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Style switcher functionality
+      const styleLinks = document.querySelectorAll('a[data-style]');
+      const stylesheet = document.getElementById('theme-stylesheet');
+      
+      // Load saved theme or default to destijl
+      const savedTheme = localStorage.getItem('selectedTheme') || 'destijl';
+      switchTheme(savedTheme);
+      
+      styleLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const selectedStyle = link.dataset.style;
+          switchTheme(selectedStyle);
+          localStorage.setItem('selectedTheme', selectedStyle);
+        });
+      });
+      
+      function switchTheme(themeName) {
+        // Update stylesheet
+        stylesheet.href = themeName + '.css';
+        
+        // Update active link - check if element exists first
+        const targetLink = document.querySelector(`a[data-style="${themeName}"]`);
+        if (targetLink) {
+          styleLinks.forEach(link => link.classList.remove('active'));
+          targetLink.classList.add('active');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
