@@ -1,0 +1,579 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=UnifrakturMaguntia&display=swap');
+
+:root {
+  --parchment: #f4f1e8;
+  --parchment-dark: #e8e3d6;
+  --ink-black: #2c1810;
+  --ink-brown: #4a3728;
+  --gold: #d4af37;
+  --gold-dark: #b8941f;
+  --burgundy: #8b1538;
+  --deep-brown: #3d2914;
+  --aged-white: #faf9f6;
+  --shadow: rgba(60, 41, 20, 0.3);
+  --spacing: 1.5rem;
+  --font-blackletter: 'UnifrakturMaguntia', 'Cinzel Decorative', serif;
+  --font-ornate: 'Cinzel', serif;
+  --font-body: 'Crimson Text', serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(139, 21, 56, 0.08) 0%, transparent 50%),
+    linear-gradient(45deg, var(--parchment) 0%, var(--aged-white) 50%, var(--parchment-dark) 100%);
+  color: var(--ink-black);
+  line-height: 1.7;
+  overflow-x: hidden;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: default;
+  background-attachment: fixed;
+}
+
+/* Manuscript texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(60, 41, 20, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(139, 21, 56, 0.02) 1px, transparent 1px);
+  background-size: 120px 120px, 80px 80px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Illuminated border */
+body::after {
+  content: "";
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 3px solid var(--gold);
+  border-image: linear-gradient(45deg, var(--gold), var(--gold-dark), var(--burgundy), var(--gold)) 1;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 
+    inset 0 0 20px rgba(212, 175, 55, 0.2),
+    0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  max-width: 1200px;
+  margin: 60px auto;
+  position: relative;
+  background: var(--aged-white);
+  border: 2px solid var(--gold);
+  padding: calc(var(--spacing) * 2);
+  box-shadow: 
+    0 10px 30px var(--shadow),
+    inset 0 0 30px rgba(212, 175, 55, 0.1);
+  z-index: 3;
+}
+
+/* Manuscript header */
+.container::before {
+  content: "⚜ CURRICULUM VITAE ET OPERA ⚜\A Anno Domini MMXXIV";
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ornate);
+  font-size: 14px;
+  color: var(--burgundy);
+  background: var(--aged-white);
+  padding: 8px 20px;
+  border: 2px solid var(--gold);
+  text-align: center;
+  white-space: pre;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 4;
+}
+
+/* Decorative footer */
+.container::after {
+  content: "❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦ ❦";
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: var(--gold);
+  background: var(--aged-white);
+  padding: 5px 15px;
+  letter-spacing: 8px;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  padding: var(--spacing);
+  background: var(--parchment);
+  border-right: 3px double var(--gold);
+  margin-right: calc(var(--spacing) * 1.5);
+  overflow: hidden;
+}
+
+/* Illuminated manuscript border around profile */
+.left::before {
+  content: "⊱ ────── {.⋅ ✯ ⋅.} ────── ⊰\A\A              MAGISTER\A           ADVOCATUS\A\A⊱ ────── {.⋅ ✯ ⋅.} ────── ⊰";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ornate);
+  font-size: 12px;
+  color: var(--burgundy);
+  text-align: center;
+  white-space: pre;
+  line-height: 1.4;
+  z-index: 1;
+}
+
+.left::after {
+  content: "Juris Doctor\AUniversitas Notre Dame\AAnno Domini MMX";
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ornate);
+  font-size: 11px;
+  color: var(--ink-brown);
+  text-align: center;
+  white-space: pre;
+  line-height: 1.3;
+  font-style: italic;
+  z-index: 1;
+}
+
+.profile-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--burgundy);
+  font-family: var(--font-ornate);
+  font-size: 10px;
+  background: var(--gold);
+  padding: 4px 8px;
+  border-radius: 0;
+  border: 1px solid var(--burgundy);
+  z-index: 5;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.profile {
+  max-width: 200px;
+  position: relative;
+  z-index: 3;
+  border: 4px solid var(--gold);
+  border-radius: 0;
+  box-shadow: 
+    0 8px 25px var(--shadow),
+    inset 0 0 20px rgba(0, 0, 0, 0.1);
+  margin-top: 80px;
+  margin-bottom: 60px;
+  filter: sepia(20%) contrast(1.1);
+}
+
+.right {
+  padding: calc(var(--spacing) * 1.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--aged-white);
+  overflow: hidden;
+}
+
+/* Manuscript decoration */
+.right::before {
+  content: "◈ SCHOLAE ET OPERAE ◈";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--font-ornate);
+  font-size: 11px;
+  color: var(--burgundy);
+  letter-spacing: 1px;
+  z-index: 5;
+}
+
+.right::after {
+  content: "═══════════════════════════════════════";
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  font-size: 12px;
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-family: var(--font-blackletter);
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 0 calc(var(--spacing) * 1.5) 0;
+  color: var(--ink-black);
+  line-height: 1.1;
+  position: relative;
+  text-align: center;
+  text-shadow: 2px 2px 4px var(--shadow);
+  z-index: 3;
+  letter-spacing: 2px;
+}
+
+h1::before {
+  content: "❦";
+  position: absolute;
+  top: -10px;
+  left: -30px;
+  font-size: 2rem;
+  color: var(--gold);
+  font-family: serif;
+}
+
+h1::after {
+  content: "❦";
+  position: absolute;
+  top: -10px;
+  right: -30px;
+  font-size: 2rem;
+  color: var(--gold);
+  font-family: serif;
+}
+
+.bio {
+  font-size: 17px;
+  color: var(--ink-black);
+  margin-bottom: calc(var(--spacing) * 2);
+  font-weight: 400;
+  line-height: 1.8;
+  position: relative;
+  padding: calc(var(--spacing) * 1.5);
+  background: var(--parchment);
+  border: 2px solid var(--gold);
+  border-left: 6px solid var(--burgundy);
+  z-index: 3;
+  font-family: var(--font-body);
+  text-align: justify;
+  text-indent: 3em;
+}
+
+/* Drop cap */
+.bio::first-letter {
+  font-family: var(--font-blackletter);
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  float: left;
+  color: var(--burgundy);
+  margin: 0.1em 0.1em 0 0;
+  text-shadow: 2px 2px 4px var(--shadow);
+  background: linear-gradient(45deg, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bio::before {
+  content: "§ PROFESSIO VITAE §";
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  font-family: var(--font-ornate);
+  font-size: 12px;
+  color: var(--burgundy);
+  background: var(--aged-white);
+  padding: 0 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.bio::after {
+  content: "⚜";
+  position: absolute;
+  bottom: 8px;
+  right: 15px;
+  font-size: 18px;
+  color: var(--gold);
+}
+
+.projects-container {
+  flex: 1;
+  margin-top: 20px;
+  position: relative;
+}
+
+.projects-container::before {
+  content: "⊰ OPERA ET NEGOTIA ⊱";
+  display: block;
+  font-family: var(--font-ornate);
+  font-size: 16px;
+  color: var(--burgundy);
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(var(--spacing) * 1.2);
+  flex: 1;
+  z-index: 10;
+  position: relative;
+}
+
+li {
+  background: var(--aged-white);
+  border: 2px solid var(--gold);
+  border-left: 6px solid var(--burgundy);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 4px 15px var(--shadow);
+}
+
+li::before {
+  content: "§";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-ornate);
+  font-size: 16px;
+  color: var(--burgundy);
+  z-index: 2;
+  font-weight: 600;
+}
+
+li:nth-child(1)::before { content: "Ⅰ"; }
+li:nth-child(2)::before { content: "Ⅱ"; }
+li:nth-child(3)::before { content: "Ⅲ"; }
+li:nth-child(4)::before { content: "Ⅳ"; }
+
+li::after {
+  content: "⚜";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 14px;
+  color: var(--gold);
+  z-index: 2;
+}
+
+li:hover {
+  background: var(--parchment);
+  border-color: var(--burgundy);
+  border-left-color: var(--gold);
+  box-shadow: 
+    0 8px 25px var(--shadow),
+    inset 0 0 20px rgba(212, 175, 55, 0.2);
+  transform: translateY(-2px);
+}
+
+li:hover::after {
+  color: var(--burgundy);
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--ink-black);
+  display: block;
+  padding: calc(var(--spacing) * 1.5);
+  padding-top: calc(var(--spacing) * 1.5 + 10px);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: var(--font-body);
+}
+
+.card-link:hover {
+  color: var(--burgundy);
+}
+
+.link-title {
+  font-family: var(--font-ornate);
+  font-weight: 600;
+  font-size: 18px;
+  display: block;
+  margin-bottom: calc(var(--spacing) / 2);
+  margin-left: 20px;
+  color: var(--ink-black);
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+small {
+  display: block;
+  color: var(--ink-brown);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  margin-left: 20px;
+  text-align: justify;
+  font-style: italic;
+}
+
+/* Manuscript footer */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  background: var(--parchment);
+  border-top: 3px double var(--gold);
+  color: var(--ink-black);
+  font-family: var(--font-ornate);
+  padding: calc(var(--spacing) * 1.5);
+  margin-top: 60px;
+}
+
+footer::before {
+  content: "⊰ SELECTIO STYLORUM ⊱";
+  position: absolute;
+  left: 20px;
+  color: var(--burgundy);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+footer::after {
+  content: "⚜ Finis Coronat Opus ⚜";
+  position: absolute;
+  right: 20px;
+  color: var(--ink-brown);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin: 0 180px;
+  flex-wrap: wrap;
+}
+
+footer a {
+  color: var(--ink-black);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: var(--font-ornate);
+  font-size: 12px;
+  background: var(--aged-white);
+  border: 2px solid var(--gold);
+  padding: 6px 12px;
+  cursor: pointer;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+footer a::before {
+  content: "§ ";
+  color: var(--burgundy);
+  font-size: 10px;
+}
+
+footer a:hover {
+  background: var(--gold);
+  color: var(--ink-black);
+  border-color: var(--burgundy);
+  box-shadow: 0 4px 12px var(--shadow);
+  transform: translateY(-1px);
+}
+
+footer a.active {
+  background: var(--burgundy);
+  color: var(--aged-white);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+footer a.active::before {
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  body::after {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin: 30px auto;
+    padding: var(--spacing);
+  }
+  
+  .left {
+    border-right: none;
+    border-bottom: 3px double var(--gold);
+    margin-right: 0;
+    margin-bottom: var(--spacing);
+    padding: var(--spacing);
+  }
+  
+  .right {
+    padding: var(--spacing);
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+  }
+
+  .taskbar-links {
+    margin: 0 20px;
+  }
+
+  footer a {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  footer::before,
+  footer::after {
+    display: none;
+  }
+} 

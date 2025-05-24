@@ -1,0 +1,541 @@
+/* INDIE PRINT ZINE AESTHETIC - DIY UNDERGROUND VIBES */
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Permanent+Marker&family=Creepster&family=Special+Elite&family=Rubik+Glitch&family=Bebas+Neue&display=swap');
+
+:root {
+  --zine-bg: #F8F5F0;
+  --zine-paper: #FFFFFF;
+  --zine-black: #1A1A1A;
+  --zine-red: #D32F2F;
+  --zine-yellow: #FFD54F;
+  --zine-blue: #1976D2;
+  --zine-green: #388E3C;
+  --zine-purple: #7B1FA2;
+  --zine-gray: #757575;
+  --newsprint: #F5F5DC;
+  --font-typewriter: 'Courier Prime', 'Special Elite', monospace;
+  --font-marker: 'Permanent Marker', cursive;
+  --font-glitch: 'Rubik Glitch', cursive;
+  --font-bebas: 'Bebas Neue', cursive;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: var(--font-typewriter);
+  background: 
+    linear-gradient(45deg, rgba(211, 47, 47, 0.03) 25%, transparent 25%), 
+    linear-gradient(-45deg, rgba(25, 118, 210, 0.02) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(139, 195, 74, 0.02) 75%), 
+    linear-gradient(-45deg, transparent 75%, rgba(255, 213, 79, 0.03) 75%),
+    radial-gradient(circle at 30% 40%, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-color: var(--zine-bg);
+  background-size: 60px 60px, 60px 60px, 60px 60px, 60px 60px, 25px 25px;
+  color: var(--zine-black);
+  line-height: 1.4;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Photocopied texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 15px 15px, 25px 25px, 35px 35px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* Zine masthead */
+body::after {
+  content: "★ UNDERGROUND ZINE ★\AISSUE #42 - WINTER 2024";
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-family: var(--font-bebas);
+  font-size: 12px;
+  color: var(--zine-red);
+  background: var(--zine-paper);
+  padding: 8px 12px;
+  border: 2px dashed var(--zine-black);
+  transform: rotate(3deg);
+  white-space: pre;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 1000;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  max-width: 1200px;
+  margin: 40px auto;
+  position: relative;
+  background: var(--zine-paper);
+  border: none;
+  padding: 0;
+  box-shadow: 
+    5px 5px 15px rgba(0, 0, 0, 0.2),
+    -2px -2px 10px rgba(0, 0, 0, 0.1);
+  transform: rotate(-0.5deg);
+  z-index: 2;
+}
+
+/* Tape effects */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 80px;
+  width: 60px;
+  height: 30px;
+  background: rgba(255, 213, 79, 0.7);
+  transform: rotate(-15deg);
+  z-index: 10;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: 100px;
+  width: 80px;
+  height: 25px;
+  background: rgba(211, 47, 47, 0.6);
+  transform: rotate(8deg);
+  z-index: 10;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.left {
+  background: var(--newsprint);
+  padding: 30px 25px;
+  position: relative;
+  border-right: 3px solid var(--zine-black);
+  overflow: hidden;
+}
+
+/* Torn paper edge */
+.left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  width: 10px;
+  background: 
+    linear-gradient(45deg, transparent 30%, var(--zine-black) 30%, var(--zine-black) 35%, transparent 35%),
+    linear-gradient(-45deg, transparent 30%, var(--zine-black) 30%, var(--zine-black) 35%, transparent 35%);
+  background-size: 8px 8px;
+  z-index: 1;
+}
+
+/* Collage elements */
+.left::after {
+  content: "PROFILE\A→\A★\A✂\A⚡";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: var(--font-marker);
+  font-size: 14px;
+  color: var(--zine-red);
+  white-space: pre;
+  line-height: 2;
+  transform: rotate(-8deg);
+  z-index: 5;
+}
+
+.profile {
+  max-width: 200px;
+  position: relative;
+  z-index: 3;
+  border: 4px solid var(--zine-black);
+  transform: rotate(2deg);
+  box-shadow: 
+    8px 8px 0px var(--zine-red),
+    12px 12px 15px rgba(0, 0, 0, 0.3);
+  margin: 80px 0 40px 20px;
+  filter: contrast(1.2) brightness(0.95);
+}
+
+.profile::before {
+  content: "MARK LYDA";
+  position: absolute;
+  bottom: -25px;
+  left: -10px;
+  font-family: var(--font-bebas);
+  font-size: 18px;
+  color: var(--zine-paper);
+  background: var(--zine-black);
+  padding: 2px 8px;
+  transform: rotate(-1deg);
+  letter-spacing: 1px;
+}
+
+.right {
+  padding: 40px 35px;
+  background: var(--zine-paper);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Collage background elements */
+.right::before {
+  content: "CUT\AOUT\A&\APASTE";
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  font-family: var(--font-glitch);
+  font-size: 40px;
+  color: rgba(25, 118, 210, 0.1);
+  white-space: pre;
+  line-height: 0.8;
+  transform: rotate(15deg);
+  z-index: 0;
+}
+
+.right::after {
+  content: "DIY ★ UNDERGROUND ★ INDIE";
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  font-family: var(--font-bebas);
+  font-size: 12px;
+  color: var(--zine-gray);
+  text-align: center;
+  letter-spacing: 3px;
+  border-top: 2px dashed var(--zine-gray);
+  padding-top: 10px;
+}
+
+h1 {
+  font-family: var(--font-bebas);
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0 0 20px -10px;
+  color: var(--zine-black);
+  line-height: 0.8;
+  position: relative;
+  z-index: 3;
+  text-shadow: 3px 3px 0px var(--zine-yellow);
+  transform: rotate(-2deg);
+  letter-spacing: -2px;
+}
+
+/* Cutout letter effect */
+h1::before {
+  content: "M";
+  position: absolute;
+  top: -10px;
+  left: -20px;
+  font-size: 6rem;
+  color: var(--zine-red);
+  z-index: -1;
+  transform: rotate(8deg);
+  opacity: 0.7;
+}
+
+h1::after {
+  content: "ATTORNEY & ENTREPRENEUR";
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  font-family: var(--font-typewriter);
+  font-size: 10px;
+  color: var(--zine-black);
+  background: var(--zine-yellow);
+  padding: 2px 6px;
+  transform: rotate(1deg);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.bio {
+  font-size: 14px;
+  color: var(--zine-black);
+  margin-bottom: 30px;
+  font-weight: 400;
+  line-height: 1.6;
+  position: relative;
+  padding: 20px;
+  background: var(--newsprint);
+  border: 2px solid var(--zine-black);
+  z-index: 3;
+  font-family: var(--font-typewriter);
+  transform: rotate(-0.5deg);
+  margin-left: -10px;
+  margin-right: 20px;
+}
+
+.bio::before {
+  content: "ARTIST STATEMENT";
+  position: absolute;
+  top: -12px;
+  left: 15px;
+  font-family: var(--font-bebas);
+  font-size: 12px;
+  color: var(--zine-paper);
+  background: var(--zine-black);
+  padding: 2px 8px;
+  letter-spacing: 1px;
+}
+
+/* Staple effect */
+.bio::after {
+  content: "✂";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+  color: var(--zine-red);
+  transform: rotate(45deg);
+}
+
+.projects-container {
+  flex: 1;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.projects-container::before {
+  content: "LATEST WORKS & COLLABORATIONS";
+  display: block;
+  font-family: var(--font-marker);
+  font-size: 18px;
+  color: var(--zine-red);
+  margin-bottom: 20px;
+  text-align: left;
+  transform: rotate(-1deg);
+  margin-left: -5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+li {
+  background: var(--zine-paper);
+  border: 2px solid var(--zine-black);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  transform: rotate(0deg);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+li:nth-child(1) {
+  transform: rotate(0.5deg);
+  border-color: var(--zine-red);
+}
+
+li:nth-child(2) {
+  transform: rotate(-0.8deg);
+  border-color: var(--zine-blue);
+}
+
+li:nth-child(3) {
+  transform: rotate(0.3deg);
+  border-color: var(--zine-green);
+}
+
+li:nth-child(4) {
+  transform: rotate(-0.4deg);
+  border-color: var(--zine-purple);
+}
+
+/* Paper clips */
+li::before {
+  content: "📎";
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  font-size: 20px;
+  z-index: 5;
+  transform: rotate(45deg);
+}
+
+li:nth-child(2)::before {
+  content: "✂";
+  color: var(--zine-red);
+  transform: rotate(-30deg);
+}
+
+li:nth-child(4)::before {
+  content: "★";
+  color: var(--zine-yellow);
+  transform: rotate(15deg);
+}
+
+li:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 
+    5px 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 0 3px var(--zine-yellow);
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--zine-black);
+  display: block;
+  padding: 20px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: var(--font-typewriter);
+}
+
+.card-link:hover {
+  color: var(--zine-red);
+}
+
+.link-title {
+  font-family: var(--font-bebas);
+  font-weight: 400;
+  font-size: 22px;
+  display: block;
+  margin-bottom: 8px;
+  color: var(--zine-black);
+  line-height: 1.1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+small {
+  display: block;
+  color: var(--zine-gray);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: var(--font-typewriter);
+  font-style: italic;
+}
+
+/* Zine style footer */
+footer {
+  background: var(--zine-black);
+  color: var(--zine-paper);
+  font-family: var(--font-bebas);
+  padding: 20px;
+  margin-top: 60px;
+  position: relative;
+  transform: rotate(-0.2deg);
+}
+
+footer::before {
+  content: "CHOOSE YOUR AESTHETIC:";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--zine-yellow);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+footer::after {
+  content: "XEROX GENERATION";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--zine-gray);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 200px;
+  flex-wrap: wrap;
+}
+
+footer a {
+  color: var(--zine-paper);
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  font-family: var(--font-typewriter);
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid var(--zine-paper);
+  padding: 4px 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+footer a:hover {
+  background: var(--zine-yellow);
+  color: var(--zine-black);
+  border-color: var(--zine-yellow);
+  transform: rotate(-1deg);
+}
+
+footer a.active {
+  background: var(--zine-red);
+  color: var(--zine-paper);
+  border-color: var(--zine-red);
+  font-weight: bold;
+  transform: rotate(1deg);
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    margin: 20px;
+    transform: rotate(0deg);
+  }
+  
+  .left {
+    border-right: none;
+    border-bottom: 3px solid var(--zine-black);
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-left: 0;
+  }
+  
+  ul {
+    gap: 10px;
+  }
+  
+  .taskbar-links {
+    margin: 0 20px;
+  }
+  
+  footer::before,
+  footer::after {
+    position: static;
+    display: block;
+    text-align: center;
+    margin: 5px 0;
+  }
+} 

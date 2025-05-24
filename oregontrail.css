@@ -1,0 +1,576 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime&display=swap');
+
+:root {
+  --terminal-black: #001100;
+  --phosphor-green: #00FF41;
+  --dim-green: #00AA2B;
+  --bright-green: #66FF66;
+  --amber: #FFBF00;
+  --white: #FFFFFF;
+  --gray: #808080;
+  --spacing: 1rem;
+  --font-terminal: 'VT323', 'Courier Prime', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-terminal);
+  background-color: var(--terminal-black);
+  color: var(--phosphor-green);
+  line-height: 1.4;
+  overflow-x: hidden;
+  font-size: 18px;
+  cursor: text;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 80px 80px;
+  animation: screenFlicker 4s ease-in-out infinite alternate;
+}
+
+@keyframes screenFlicker {
+  0% { opacity: 1; }
+  98% { opacity: 1; }
+  99% { opacity: 0.98; }
+  100% { opacity: 1; }
+}
+
+/* ASCII Art Header */
+body::before {
+  content: "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\A    OREGON TRAIL - COMPUTER EDITION 1985    \A~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  color: var(--dim-green);
+  white-space: pre;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+  animation: terminalBlink 2s ease-in-out infinite alternate;
+}
+
+@keyframes terminalBlink {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+/* Trail Status Bar */
+body::after {
+  content: "WEATHER: FAIR    PACE: STEADY    RATIONS: MEAGER    HEALTH: GOOD";
+  position: fixed;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  background: var(--terminal-black);
+  border-top: 2px solid var(--phosphor-green);
+  border-bottom: 2px solid var(--phosphor-green);
+  color: var(--amber);
+  font-family: var(--font-terminal);
+  font-size: 16px;
+  padding: 8px;
+  text-align: center;
+  z-index: 10;
+  animation: statusPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes statusPulse {
+  0% { background: var(--terminal-black); }
+  100% { background: rgba(0, 255, 65, 0.05); }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  margin: 80px auto 0;
+  position: relative;
+  background: var(--terminal-black);
+  border: 3px solid var(--phosphor-green);
+  border-style: double;
+  padding: var(--spacing);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 65, 0.3),
+    inset 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+/* ASCII art wagon train */
+.container::before {
+  content: "    ___________________________________________________________\A   |  MARK LYDA'S TRAVELING PARTY - INDEPENDENCE, MISSOURI  |\A   |_________________________________________________________|";
+  position: absolute;
+  top: -60px;
+  left: 0;
+  right: 0;
+  font-family: var(--font-terminal);
+  font-size: 12px;
+  color: var(--phosphor-green);
+  white-space: pre;
+  text-align: center;
+  z-index: 2;
+}
+
+.container::after {
+  content: "         ______________\A        |[]            |\A        |  o   o   o   |    O-O-O\A  ______|______________|_______()____()\A /                                         \\\A|    Press [ENTER] to continue journey     |\A \\________________________________________/";
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-terminal);
+  font-size: 11px;
+  color: var(--dim-green);
+  white-space: pre;
+  text-align: center;
+  z-index: 2;
+  animation: wagonMove 6s ease-in-out infinite alternate;
+}
+
+@keyframes wagonMove {
+  0% { transform: translateX(-50%) translateY(0); }
+  100% { transform: translateX(-50%) translateY(-5px); }
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: var(--spacing);
+  background: var(--terminal-black);
+  border-right: 2px solid var(--phosphor-green);
+  overflow: hidden;
+}
+
+/* ASCII art frame around profile */
+.left::before {
+  content: "+--------------------------+\A|                          |\A|                          |\A|       PARTY LEADER       |\A|                          |\A|                          |\A+--------------------------+";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-terminal);
+  font-size: 16px;
+  color: var(--dim-green);
+  white-space: pre;
+  text-align: center;
+  z-index: 1;
+}
+
+.left::after {
+  content: "★ PROFESSION: ATTORNEY ★";
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  color: var(--amber);
+  white-space: nowrap;
+  animation: professionGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes professionGlow {
+  0% { text-shadow: 0 0 5px var(--amber); }
+  100% { text-shadow: 0 0 15px var(--amber), 0 0 25px var(--amber); }
+}
+
+.profile {
+  max-width: 220px;
+  position: relative;
+  z-index: 3;
+  border: 4px solid var(--phosphor-green);
+  filter: contrast(1.3) brightness(0.8) sepia(100%) hue-rotate(90deg);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 65, 0.5),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: profileScan 5s ease-in-out infinite alternate;
+}
+
+@keyframes profileScan {
+  0% { filter: contrast(1.3) brightness(0.8) sepia(100%) hue-rotate(90deg); }
+  100% { filter: contrast(1.5) brightness(0.9) sepia(100%) hue-rotate(85deg); }
+}
+
+.right {
+  padding: calc(var(--spacing) * 1.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--terminal-black);
+  overflow: hidden;
+}
+
+/* Trail markers */
+.right::before {
+  content: ">>> TRAIL LOG ENTRY <<<";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--font-terminal);
+  font-size: 12px;
+  color: var(--amber);
+  animation: logBlink 1.5s ease-in-out infinite alternate;
+}
+
+.right::after {
+  content: "MILES TRAVELED: 1247 | NEXT LANDMARK: FORT LARAMIE";
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  right: 10px;
+  font-family: var(--font-terminal);
+  font-size: 12px;
+  color: var(--dim-green);
+  text-align: center;
+  background: var(--terminal-black);
+  border: 1px solid var(--dim-green);
+  padding: 8px;
+  animation: trailStatus 3s ease-in-out infinite alternate;
+}
+
+@keyframes logBlink {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes trailStatus {
+  0% { border-color: var(--dim-green); }
+  100% { border-color: var(--amber); }
+}
+
+h1 {
+  font-family: var(--font-terminal);
+  font-size: 2.5rem;
+  font-weight: normal;
+  margin: 0 0 var(--spacing) 0;
+  color: var(--bright-green);
+  line-height: 1;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--phosphor-green);
+  z-index: 3;
+  animation: nameFlicker 3s ease-in-out infinite alternate;
+}
+
+@keyframes nameFlicker {
+  0% { text-shadow: 0 0 10px var(--phosphor-green); }
+  100% { text-shadow: 0 0 20px var(--phosphor-green), 0 0 30px var(--bright-green); }
+}
+
+h1::before {
+  content: "+++++++++++++++++++++++++++++";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 16px;
+  color: var(--dim-green);
+}
+
+h1::after {
+  content: "+++++++++++++++++++++++++++++";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-size: 16px;
+  color: var(--dim-green);
+}
+
+.bio {
+  font-size: 1rem;
+  color: var(--phosphor-green);
+  margin-bottom: calc(var(--spacing) * 2);
+  font-weight: normal;
+  line-height: 1.5;
+  max-width: 90%;
+  position: relative;
+  padding: calc(var(--spacing) * 1.5);
+  background: rgba(0, 255, 65, 0.05);
+  border: 2px solid var(--phosphor-green);
+  z-index: 3;
+  font-family: var(--font-terminal);
+  animation: terminalType 4s ease-in-out infinite alternate;
+}
+
+@keyframes terminalType {
+  0% { background: rgba(0, 255, 65, 0.05); }
+  100% { background: rgba(0, 255, 65, 0.1); }
+}
+
+.bio::before {
+  content: "> PARTY MEMBER INFORMATION";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  color: var(--amber);
+  background: var(--terminal-black);
+  padding: 0 8px;
+}
+
+.bio::after {
+  content: "|";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-family: var(--font-terminal);
+  font-size: 18px;
+  color: var(--phosphor-green);
+  animation: cursor 1s ease-in-out infinite alternate;
+}
+
+@keyframes cursor {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing);
+  flex: 1;
+  z-index: 10;
+  position: relative;
+}
+
+li {
+  background: var(--terminal-black);
+  border: 2px solid var(--phosphor-green);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+li:nth-child(1)::after {
+  content: "[1]";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  color: var(--amber);
+  font-weight: bold;
+}
+
+li:nth-child(2)::after {
+  content: "[2]";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  color: var(--amber);
+  font-weight: bold;
+}
+
+li:nth-child(3)::after {
+  content: "[3]";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  color: var(--amber);
+  font-weight: bold;
+}
+
+li:nth-child(4)::after {
+  content: "[4]";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  color: var(--amber);
+  font-weight: bold;
+}
+
+li:hover {
+  background: rgba(0, 255, 65, 0.1);
+  border-color: var(--bright-green);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 65, 0.3),
+    inset 0 0 15px rgba(0, 255, 65, 0.05);
+}
+
+li:hover::before {
+  transform: scaleX(1);
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--phosphor-green);
+  display: block;
+  padding: calc(var(--spacing) * 1.5);
+  padding-left: calc(var(--spacing) * 3);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card-link:hover {
+  color: var(--bright-green);
+  text-shadow: 0 0 8px var(--phosphor-green);
+}
+
+.link-title {
+  font-family: var(--font-terminal);
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: calc(var(--spacing) / 2);
+  color: var(--phosphor-green);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+small {
+  display: block;
+  color: var(--dim-green);
+  font-size: 0.9rem;
+  font-weight: normal;
+  line-height: 1.4;
+  font-family: var(--font-terminal);
+}
+
+/* Oregon Trail style footer */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  background: var(--terminal-black);
+  border-top: 3px double var(--phosphor-green);
+  color: var(--phosphor-green);
+  font-family: var(--font-terminal);
+  padding: 1rem;
+  margin-top: 120px;
+}
+
+footer::before {
+  content: "CHOOSE YOUR TRAIL:";
+  position: absolute;
+  left: 20px;
+  color: var(--amber);
+  font-weight: bold;
+  animation: chooseTrail 2s ease-in-out infinite alternate;
+}
+
+@keyframes chooseTrail {
+  0% { color: var(--amber); }
+  100% { color: var(--bright-green); }
+}
+
+footer::after {
+  content: "";
+  display: none;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 200px;
+}
+
+footer a {
+  color: var(--phosphor-green);
+  text-decoration: none;
+  font-weight: normal;
+  transition: all 0.2s ease;
+  font-family: var(--font-terminal);
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid var(--phosphor-green);
+  padding: 4px 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  position: relative;
+}
+
+footer a:hover {
+  background: rgba(0, 255, 65, 0.2);
+  color: var(--bright-green);
+  text-shadow: 0 0 8px var(--phosphor-green);
+  border-color: var(--bright-green);
+}
+
+footer a.active {
+  background: var(--phosphor-green);
+  color: var(--terminal-black);
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  body::before,
+  body::after {
+    font-size: 10px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin: 40px auto 0;
+  }
+  
+  .left {
+    border-right: none;
+    border-bottom: 2px solid var(--phosphor-green);
+    padding: var(--spacing);
+  }
+  
+  .right {
+    padding: var(--spacing);
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing) / 2);
+  }
+
+  .taskbar-links {
+    margin: 0 20px;
+    flex-wrap: wrap;
+  }
+
+  footer a {
+    font-size: 12px;
+    padding: 2px 6px;
+  }
+
+  footer::before,
+  footer::after {
+    position: static;
+    display: none;
+  }
+} 

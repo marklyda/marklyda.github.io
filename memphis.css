@@ -38,7 +38,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-  min-height: 85vh;
+  height: 90vh;
   position: relative;
 }
 
@@ -61,7 +61,7 @@ body::before {
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 85vh;
+  height: calc(90vh - 60px);
   max-width: 1400px;
   margin: 0 auto;
   padding: 1.5rem;
@@ -297,6 +297,13 @@ footer a:hover {
 footer a.active {
   color: var(--primary);
   border-bottom: 2px solid var(--primary);
+}
+
+footer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {

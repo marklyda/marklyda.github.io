@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Mark Lyda</title>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="destijl.css" id="theme-stylesheet" />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="swiss.css" id="theme-stylesheet" />
 </head>
 <body>
   <div class="container">
@@ -15,43 +16,63 @@
     <div class="right">
       <h1>Mark Lyda</h1>
       <p class="bio">Hello! I'm an attorney, founder, Air Force JAG reservist, and Notre Dame Law grad. Check out my projects below.</p>
-      <ul>
-        <li>
-          <a href="https://practist.io" target="_blank" class="card-link">
-            <span class="link-title">Practist</span>
-            <small>Modern law firm software designed to do the grunt work for you.</small>
-          </a>
-        </li>
-        <li>
-          <a href="https://lydagroup.com" target="_blank" class="card-link">
-            <span class="link-title">Lyda Law Firm</span>
-            <small>National law firm serving startups, small businesses, nonprofits, and individuals.</small>
-          </a>
-        </li>
-        <li>
-          <a href="https://youtube.com/@lydagroup" target="_blank" class="card-link">
-            <span class="link-title">YouTube Legal Explainers</span>
-            <small>Legal basics, business tips, and practical education without jargon.</small>
-          </a>
-        </li>
-        <li>
-          <a href="https://lydagroup.thinkific.com" target="_blank" class="card-link">
-            <span class="link-title">Course</span>
-            <small>Online course for pro-se litigants: How to Represent Yourself in Court.</small>
-          </a>
-        </li>
-      </ul>
+      <div class="projects-container">
+        <ul>
+          <li>
+            <a href="https://practist.io" target="_blank" class="card-link">
+              <span class="link-title">Practist</span>
+              <small>Modern law firm software designed to do the grunt work for you.</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://lydagroup.com" target="_blank" class="card-link">
+              <span class="link-title">Lyda Law Firm</span>
+              <small>National law firm serving startups, small businesses, nonprofits, and individuals.</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://youtube.com/@lydagroup" target="_blank" class="card-link">
+              <span class="link-title">YouTube Legal Explainers</span>
+              <small>Legal basics, business tips, and practical education without jargon.</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://lydagroup.thinkific.com" target="_blank" class="card-link">
+              <span class="link-title">Course</span>
+              <small>Online course for pro-se litigants: How to Represent Yourself in Court.</small>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <footer style="text-align: center; padding: 1rem; font-size: 0.9rem;">
-    Experience: 
-    <a href="#" data-style="editorial">Editorial</a> | 
-    <a href="#" data-style="vaporwave">Vaporwave</a> | 
-    <a href="#" data-style="8bit">8-bit</a> | 
-    <a href="#" data-style="memphis">Memphis</a> | 
-    <a href="#" class="active" data-style="destijl">De Stijl</a> | 
-    <a href="#" data-style="constructivist">Constructivist</a>
+  <footer>
+    Choose Style:
+    <div class="taskbar-links">
+      <!-- <a href="#" data-style="editorial">Editorial</a> -->
+      <a href="#" data-style="8bit">8-bit</a>
+      <a href="#" data-style="vaporwave">Vaporwave</a>
+      <a href="#" data-style="memphis">Memphis</a>
+
+      <!-- <a href="#" data-style="constructivist">Constructivist</a> -->
+      <a href="#" data-style="artdeco">Art Deco</a>
+      <a href="#" data-style="brutalist">Brutalist</a>
+      <a href="#" class="active" data-style="swiss">Swiss</a>
+      <a href="#" data-style="googie">Googie</a>
+      <a href="#" data-style="windows95">Windows 3</a>
+      <a href="#" data-style="oregontrail">Oregon Trail</a>
+      <a href="#" data-style="chaos">Chaos</a>
+      <!-- <a href="#" data-style="terminal">Terminal</a> -->
+      <a href="#" data-style="vscode">VS Code</a>
+      <!-- <a href="#" data-style="manuscript">Manuscript</a> -->
+      <a href="#" data-style="geocities">GeoCities</a>
+      <a href="#" data-style="thefacebook">thefacebook</a>
+      <!-- <a href="#" data-style="zine">Zine</a> -->
+      <a href="#" data-style="cdrom">CD-ROM</a>
+      <!-- <a href="#" data-style="liminal">Liminal</a> -->
+      <a href="#" data-style="destijl">De Stijl</a>
+    </div>
   </footer>
 
   <script>
@@ -61,8 +82,8 @@
       const styleLinks = document.querySelectorAll('a[data-style]');
       const stylesheet = document.getElementById('theme-stylesheet');
       
-      // Load saved theme or default to destijl
-      const savedTheme = localStorage.getItem('selectedTheme') || 'destijl';
+      // Load saved theme or default to swiss
+      const savedTheme = localStorage.getItem('selectedTheme') || 'swiss';
       switchTheme(savedTheme);
       
       styleLinks.forEach(link => {

@@ -1,0 +1,630 @@
+/* LIMINAL SPACES - THE IN-BETWEEN REALMS */
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=IBM+Plex+Mono:wght@300;400&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --liminal-void: #0A0A0B;
+  --liminal-fluorescent: #F4F1E8;
+  --liminal-yellow: #E8E0A6;
+  --liminal-beige: #D4C5A9;
+  --liminal-mint: #B8C5A7;
+  --liminal-blue: #9BB5C7;
+  --liminal-gray: #7A7A7A;
+  --liminal-dark-gray: #3A3A3A;
+  --liminal-shadow: #1A1A1A;
+  --liminal-glow: rgba(244, 241, 232, 0.8);
+  --font-terminal: 'Share Tech Mono', 'IBM Plex Mono', monospace;
+  --font-system: 'Courier Prime', monospace;
+  --perspective-distance: 1000px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-terminal);
+  background: 
+    linear-gradient(180deg, 
+      var(--liminal-void) 0%, 
+      #1A1A1B 20%, 
+      #2A2A2B 50%, 
+      #1A1A1B 80%, 
+      var(--liminal-void) 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(244, 241, 232, 0.02) 2px,
+      rgba(244, 241, 232, 0.02) 4px
+    );
+  color: var(--liminal-fluorescent);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+  perspective: var(--perspective-distance);
+  animation: fluorescent-flicker 8s ease-in-out infinite;
+}
+
+/* Fluorescent buzz animation */
+@keyframes fluorescent-flicker {
+  0%, 96%, 100% { filter: brightness(1) contrast(1.1); }
+  1%, 3%, 97% { filter: brightness(1.1) contrast(1.2); }
+  2% { filter: brightness(0.9) contrast(1); }
+  98% { filter: brightness(1.05) contrast(1.15); }
+}
+
+/* Security camera timestamp */
+body::before {
+  content: "CAM_03 | REC ● | " attr(data-time) " | NO MOTION DETECTED";
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-family: var(--font-terminal);
+  font-size: 10px;
+  color: #FF4444;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 4px 8px;
+  border: 1px solid #333;
+  z-index: 1000;
+  opacity: 0.7;
+  animation: timestamp-blink 2s ease-in-out infinite;
+}
+
+@keyframes timestamp-blink {
+  0%, 95% { opacity: 0.7; }
+  96%, 100% { opacity: 1; }
+}
+
+/* Ambient hum indicator */
+body::after {
+  content: "🔊 AMBIENT: 42Hz | TEMP: 18°C | HUMIDITY: 67% | STATUS: LIMINAL";
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-family: var(--font-terminal);
+  font-size: 9px;
+  color: var(--liminal-mint);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 8px;
+  border: 1px solid var(--liminal-dark-gray);
+  z-index: 1000;
+  opacity: 0.5;
+}
+
+/* Infinite hallway perspective */
+.container {
+  max-width: 1200px;
+  margin: 80px auto;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: drift-forward 20s ease-in-out infinite alternate;
+}
+
+@keyframes drift-forward {
+  0% { transform: translateZ(0px) rotateX(0deg); }
+  100% { transform: translateZ(50px) rotateX(1deg); }
+}
+
+/* Corridor walls */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -200px;
+  right: -200px;
+  bottom: -100px;
+  background: 
+    linear-gradient(90deg, 
+      var(--liminal-shadow) 0%, 
+      transparent 20%, 
+      transparent 80%, 
+      var(--liminal-shadow) 100%),
+    repeating-linear-gradient(
+      90deg,
+      var(--liminal-beige) 0px,
+      var(--liminal-beige) 40px,
+      var(--liminal-dark-gray) 40px,
+      var(--liminal-dark-gray) 42px
+    );
+  opacity: 0.3;
+  z-index: -2;
+  transform: rotateX(60deg) translateZ(-200px);
+  perspective: var(--perspective-distance);
+}
+
+/* Fluorescent light strips */
+.container::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: 
+    linear-gradient(90deg,
+      transparent 0%,
+      var(--liminal-glow) 20%,
+      var(--liminal-fluorescent) 50%,
+      var(--liminal-glow) 80%,
+      transparent 100%
+    );
+  box-shadow: 
+    0 0 40px var(--liminal-glow),
+    0 0 80px rgba(244, 241, 232, 0.4);
+  z-index: -1;
+  animation: fluorescent-hum 3s ease-in-out infinite;
+}
+
+@keyframes fluorescent-hum {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Left panel - Security monitor */
+.left {
+  position: relative;
+  background: var(--liminal-shadow);
+  border: 2px solid var(--liminal-dark-gray);
+  padding: 20px;
+  margin-bottom: 40px;
+  transform: translateZ(20px);
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(244, 241, 232, 0.05);
+}
+
+/* Monitor scanlines */
+.left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 5;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(4px); }
+}
+
+/* Monitor label */
+.left::after {
+  content: "SUBJECT PROFILE | ID: M.LYDA | CLEARANCE: LEVEL-3";
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: var(--liminal-void);
+  color: var(--liminal-mint);
+  font-family: var(--font-terminal);
+  font-size: 10px;
+  padding: 2px 8px;
+  border: 1px solid var(--liminal-dark-gray);
+}
+
+.profile {
+  width: 100%;
+  max-width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border: 1px solid var(--liminal-gray);
+  filter: 
+    contrast(1.2) 
+    brightness(0.9) 
+    sepia(0.1)
+    saturate(0.8);
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 
+    0 0 10px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Static overlay on profile */
+.profile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 8px 8px, 12px 12px;
+  opacity: 0.6;
+  animation: static-noise 0.2s steps(8) infinite;
+}
+
+@keyframes static-noise {
+  0% { transform: translate(0px, 0px); }
+  10% { transform: translate(-1px, 1px); }
+  20% { transform: translate(1px, -1px); }
+  30% { transform: translate(-1px, -1px); }
+  40% { transform: translate(1px, 1px); }
+  50% { transform: translate(-1px, 0px); }
+  60% { transform: translate(1px, -1px); }
+  70% { transform: translate(0px, 1px); }
+  80% { transform: translate(-1px, -1px); }
+  90% { transform: translate(1px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+/* Content area - Endless office space */
+.right {
+  background: 
+    linear-gradient(135deg, 
+      var(--liminal-fluorescent) 0%, 
+      var(--liminal-yellow) 30%, 
+      var(--liminal-beige) 100%);
+  padding: 40px;
+  position: relative;
+  transform: translateZ(0px);
+  box-shadow: 
+    inset 0 0 40px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(244, 241, 232, 0.1);
+  border: 1px solid var(--liminal-gray);
+}
+
+/* Grid ceiling tiles */
+.right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 39px,
+      rgba(0, 0, 0, 0.1) 39px,
+      rgba(0, 0, 0, 0.1) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 39px,
+      rgba(0, 0, 0, 0.1) 39px,
+      rgba(0, 0, 0, 0.1) 40px
+    );
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Exit sign */
+.right::after {
+  content: "⮕ EXIT";
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: var(--liminal-mint);
+  color: var(--liminal-void);
+  font-family: var(--font-terminal);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--liminal-mint);
+  animation: exit-glow 4s ease-in-out infinite;
+}
+
+@keyframes exit-glow {
+  0%, 100% { opacity: 0.8; box-shadow: 0 0 10px var(--liminal-mint); }
+  50% { opacity: 1; box-shadow: 0 0 20px var(--liminal-mint); }
+}
+
+h1 {
+  font-family: var(--font-system);
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: var(--liminal-void);
+  position: relative;
+  z-index: 3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: text-drift 15s ease-in-out infinite alternate;
+}
+
+@keyframes text-drift {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(10px); }
+}
+
+.bio {
+  font-size: 14px;
+  color: var(--liminal-dark-gray);
+  margin-bottom: 40px;
+  font-weight: 400;
+  line-height: 1.8;
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-system);
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.5),
+    inset 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Intercom crackle */
+.bio::before {
+  content: "📢 ANNOUNCEMENT: Subject exhibits standard professional behaviors. No anomalies detected. Continue observation.";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  background: var(--liminal-void);
+  color: var(--liminal-fluorescent);
+  font-family: var(--font-terminal);
+  font-size: 10px;
+  padding: 6px 12px;
+  border: 1px solid var(--liminal-dark-gray);
+  opacity: 0.8;
+  animation: intercom-fade 12s ease-in-out infinite;
+}
+
+@keyframes intercom-fade {
+  0%, 85% { opacity: 0; }
+  90%, 95% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+.projects-container {
+  position: relative;
+  z-index: 3;
+  margin-top: 40px;
+}
+
+.projects-container::before {
+  content: "DIRECTORY LISTING | LAST MODIFIED: UNKNOWN | STATUS: ARCHIVED";
+  display: block;
+  font-family: var(--font-terminal);
+  font-size: 12px;
+  color: var(--liminal-dark-gray);
+  margin-bottom: 20px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  position: relative;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+  padding: 0;
+  transform: translateZ(0px);
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+li:hover {
+  transform: translateZ(10px) scale(1.02);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px var(--liminal-glow);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* File folder tabs */
+li::before {
+  content: "FILE_" counter(folder-counter, decimal-leading-zero);
+  counter-increment: folder-counter;
+  position: absolute;
+  top: -1px;
+  left: 20px;
+  background: var(--liminal-beige);
+  color: var(--liminal-dark-gray);
+  font-family: var(--font-terminal);
+  font-size: 9px;
+  padding: 2px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+}
+
+ul {
+  counter-reset: folder-counter;
+}
+
+/* Status indicators */
+li::after {
+  content: "●";
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 12px;
+  color: var(--liminal-mint);
+  animation: status-pulse 3s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--liminal-dark-gray);
+  display: block;
+  padding: 20px;
+  transition: color 0.3s ease;
+  cursor: crosshair;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: var(--font-system);
+}
+
+.card-link:hover {
+  color: var(--liminal-void);
+}
+
+.link-title {
+  font-family: var(--font-terminal);
+  font-weight: 700;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--liminal-void);
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+small {
+  display: block;
+  color: var(--liminal-gray);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: var(--font-system);
+}
+
+/* Liminal footer - Emergency lighting */
+footer {
+  background: var(--liminal-void);
+  border-top: 1px solid var(--liminal-dark-gray);
+  padding: 20px;
+  margin-top: 80px;
+  position: relative;
+  box-shadow: 
+    0 -10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(244, 241, 232, 0.05);
+}
+
+footer::before {
+  content: "NAVIGATION MATRIX";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--liminal-mint);
+  font-family: var(--font-terminal);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+footer::after {
+  content: "SYSTEM STATUS: OPERATIONAL | USERS ONLINE: 1 | TIME: ∞";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--liminal-gray);
+  font-family: var(--font-terminal);
+  font-size: 9px;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  margin: 0 200px;
+  flex-wrap: wrap;
+}
+
+footer a {
+  color: var(--liminal-fluorescent);
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.5s ease;
+  font-family: var(--font-terminal);
+  font-size: 10px;
+  background: rgba(244, 241, 232, 0.1);
+  border: 1px solid var(--liminal-dark-gray);
+  padding: 6px 12px;
+  cursor: crosshair;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+footer a:hover {
+  background: var(--liminal-glow);
+  color: var(--liminal-void);
+  box-shadow: 0 0 15px var(--liminal-glow);
+  border-color: var(--liminal-fluorescent);
+}
+
+footer a.active {
+  background: var(--liminal-mint);
+  color: var(--liminal-void);
+  border-color: var(--liminal-mint);
+  box-shadow: 0 0 20px var(--liminal-mint);
+}
+
+/* Floating dust particles */
+@keyframes float-dust {
+  0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-20px) translateX(20px); opacity: 0; }
+}
+
+body::before {
+  animation: float-dust 15s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 40px 20px;
+  }
+  
+  .left {
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .taskbar-links {
+    margin: 0 20px;
+  }
+  
+  footer::before,
+  footer::after {
+    position: static;
+    display: block;
+    text-align: center;
+    margin: 5px 0;
+  }
+}
+
+/* Ambient cursor trail */
+body {
+  cursor: none;
+}
+
+/* Custom cursor */
+*:hover {
+  cursor: none;
+} 

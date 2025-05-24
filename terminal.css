@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap');
+
+:root {
+  --terminal-black: #000000;
+  --terminal-green: #00FF00;
+  --terminal-amber: #FFB000;
+  --terminal-dim: #00AA00;
+  --terminal-bright: #66FF66;
+  --terminal-gray: #808080;
+  --terminal-white: #FFFFFF;
+  --terminal-red: #FF4444;
+  --spacing: 1rem;
+  --font-mono: 'Fira Code', 'Source Code Pro', 'Courier New', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  background-color: var(--terminal-black);
+  color: var(--terminal-green);
+  line-height: 1.4;
+  overflow-x: hidden;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: text;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 0, 0.03) 2px,
+      rgba(0, 255, 0, 0.03) 4px
+    );
+  animation: terminalScan 0.1s linear infinite;
+}
+
+@keyframes terminalScan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+
+/* Terminal header */
+body::before {
+  content: "mark@lyda-portfolio:~$ ls -la\Atotal 13\Adrwxr-xr-x  3 mark mark 4096 Dec 2024 .\Adrwxr-xr-x  3 mark mark 4096 Dec 2024 ..\A-rw-r--r--  1 mark mark  220 Dec 2024 .profile\A-rw-r--r--  1 mark mark 3771 Dec 2024 portfolio.html\Amark@lyda-portfolio:~$ cat portfolio.html";
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-dim);
+  white-space: pre;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+
+/* Status line */
+body::after {
+  content: "Connection established | Session: ACTIVE | Buffer: 80x24 | Encoding: UTF-8";
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  background: var(--terminal-black);
+  border-top: 1px solid var(--terminal-green);
+  color: var(--terminal-amber);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  text-align: center;
+  z-index: 10;
+  opacity: 0.8;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  margin: 100px auto 0;
+  position: relative;
+  background: var(--terminal-black);
+  border: 2px solid var(--terminal-green);
+  padding: var(--spacing);
+  box-shadow: 
+    0 0 10px rgba(0, 255, 0, 0.3),
+    inset 0 0 10px rgba(0, 255, 0, 0.1);
+}
+
+/* Terminal window header */
+.container::before {
+  content: "┌─ Mark Lyda Portfolio Terminal ─ [●][●][●] ────────────────────┐";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-green);
+  background: var(--terminal-black);
+  padding: 2px 0;
+  text-align: center;
+  border: 2px solid var(--terminal-green);
+  border-bottom: none;
+}
+
+.container::after {
+  content: "└──────────────────────────────────────────────────────────────┘";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-green);
+  background: var(--terminal-black);
+  text-align: center;
+  border: 2px solid var(--terminal-green);
+  border-top: none;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: var(--spacing);
+  background: var(--terminal-black);
+  border-right: 1px solid var(--terminal-green);
+  overflow: hidden;
+}
+
+/* Terminal prompt around profile */
+.left::before {
+  content: "# USER_PROFILE_LOADED\A# PROFESSION: ATTORNEY\A# STATUS: ONLINE\A# ACCESS_LEVEL: ADMIN";
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--terminal-amber);
+  white-space: pre;
+  z-index: 1;
+  line-height: 1.3;
+}
+
+.left::after {
+  content: "root@legal-system:~# whoami\Amark_lyda\Aroot@legal-system:~# ";
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--terminal-dim);
+  white-space: pre;
+  z-index: 1;
+  line-height: 1.2;
+}
+
+.profile-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--terminal-amber);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: var(--terminal-black);
+  padding: 2px 6px;
+  border: 1px solid var(--terminal-amber);
+  z-index: 5;
+}
+
+.profile-label::after {
+  content: " ◉";
+  color: var(--terminal-green);
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.profile {
+  max-width: 200px;
+  position: relative;
+  z-index: 3;
+  border: 2px solid var(--terminal-green);
+  filter: contrast(1.2) brightness(0.9) grayscale(0.8);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 0, 0.4),
+    inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.right {
+  padding: calc(var(--spacing) * 1.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--terminal-black);
+  overflow: hidden;
+}
+
+/* Command prompt header */
+.right::before {
+  content: "mark@portfolio:~$ ./run_profile.sh";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-amber);
+  z-index: 5;
+}
+
+.right::after {
+  content: "◉ SYSTEM READY | CONNECTION: ACTIVE | BUFFER: 80x24";
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  right: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--terminal-green);
+  background: var(--terminal-black);
+  border: 1px solid var(--terminal-green);
+  padding: 8px;
+  text-align: center;
+  animation: statusBlink 2s ease-in-out infinite;
+  z-index: 5;
+}
+
+@keyframes statusBlink {
+  0%, 70% { opacity: 1; }
+  71%, 100% { opacity: 0.3; }
+}
+
+h1 {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 30px 0 var(--spacing) 0;
+  color: var(--terminal-bright);
+  line-height: 1.1;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  z-index: 3;
+}
+
+h1::before {
+  content: ">>> INITIALIZING USER: ";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: var(--terminal-amber);
+  font-weight: 400;
+}
+
+h1::after {
+  content: " ◼";
+  color: var(--terminal-green);
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+.bio {
+  font-size: 14px;
+  color: var(--terminal-green);
+  margin-bottom: calc(var(--spacing) * 2);
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 90%;
+  position: relative;
+  padding: var(--spacing);
+  background: rgba(0, 255, 0, 0.05);
+  border: 1px solid var(--terminal-dim);
+  z-index: 3;
+  font-family: var(--font-mono);
+}
+
+.bio::before {
+  content: "# PROFILE_DATA.txt";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--terminal-amber);
+  background: var(--terminal-black);
+  padding: 0 6px;
+}
+
+.bio::after {
+  content: "█";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--terminal-green);
+  animation: cursorBlink 1s ease-in-out infinite;
+}
+
+.projects-container {
+  flex: 1;
+  margin-top: 20px;
+}
+
+.projects-container::before {
+  content: "mark@portfolio:~$ ls projects/\Atotal 4";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-amber);
+  margin-bottom: 10px;
+  white-space: pre;
+  line-height: 1.2;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing);
+  flex: 1;
+  z-index: 10;
+  position: relative;
+}
+
+li {
+  background: var(--terminal-black);
+  border: 1px solid var(--terminal-green);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
+
+li::before {
+  content: "drwxr-xr-x";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--terminal-gray);
+  z-index: 2;
+}
+
+li:nth-child(1)::before { content: "-rwxr-xr-x"; }
+li:nth-child(2)::before { content: "-rw-r--r--"; }
+li:nth-child(3)::before { content: "-rwxrwxrwx"; }
+li:nth-child(4)::before { content: "-rw-rw-r--"; }
+
+li::after {
+  content: "●";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 12px;
+  color: var(--terminal-green);
+  animation: statusBlink 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+li:hover {
+  background: rgba(0, 255, 0, 0.1);
+  border-color: var(--terminal-bright);
+  box-shadow: 
+    0 0 10px rgba(0, 255, 0, 0.3),
+    inset 0 0 10px rgba(0, 255, 0, 0.05);
+}
+
+li:hover::after {
+  color: var(--terminal-amber);
+  animation: none;
+  opacity: 1;
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--terminal-green);
+  display: block;
+  padding: calc(var(--spacing) * 1.5);
+  padding-top: calc(var(--spacing) * 1.5 + 15px);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: var(--font-mono);
+}
+
+.card-link:hover {
+  color: var(--terminal-bright);
+}
+
+.card-link::before {
+  content: "$ ./";
+  position: absolute;
+  top: calc(var(--spacing) * 1.5 + 15px);
+  left: calc(var(--spacing) * 1.5);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-amber);
+}
+
+.link-title {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 16px;
+  display: block;
+  margin-bottom: calc(var(--spacing) / 2);
+  margin-left: 25px;
+  color: var(--terminal-green);
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.link-title::after {
+  content: ".exe";
+  color: var(--terminal-gray);
+  font-size: 12px;
+}
+
+small {
+  display: block;
+  color: var(--terminal-dim);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: var(--font-mono);
+  margin-left: 25px;
+}
+
+small::before {
+  content: "# ";
+  color: var(--terminal-gray);
+}
+
+/* Terminal footer */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  background: var(--terminal-black);
+  border-top: 2px solid var(--terminal-green);
+  color: var(--terminal-green);
+  font-family: var(--font-mono);
+  padding: 1rem;
+  margin-top: 80px;
+}
+
+footer::before {
+  content: "mark@portfolio:~$ ";
+  position: absolute;
+  left: 20px;
+  color: var(--terminal-amber);
+  font-size: 12px;
+}
+
+footer::after {
+  content: "";
+  display: none;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 100px;
+  flex-wrap: wrap;
+}
+
+footer a {
+  color: var(--terminal-green);
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--terminal-black);
+  border: 1px solid var(--terminal-green);
+  padding: 4px 8px;
+  cursor: pointer;
+  text-transform: lowercase;
+  position: relative;
+}
+
+footer a::before {
+  content: "./";
+  color: var(--terminal-gray);
+}
+
+footer a:hover {
+  background: rgba(0, 255, 0, 0.1);
+  color: var(--terminal-bright);
+  border-color: var(--terminal-bright);
+}
+
+footer a.active {
+  background: var(--terminal-green);
+  color: var(--terminal-black);
+  font-weight: 500;
+}
+
+footer a.active::before {
+  color: var(--terminal-black);
+}
+
+@media (max-width: 768px) {
+  body::before {
+    font-size: 10px;
+    top: 5px;
+    left: 5px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin: 60px auto 0;
+  }
+  
+  .left {
+    border-right: none;
+    border-bottom: 1px solid var(--terminal-green);
+    padding: var(--spacing);
+  }
+  
+  .right {
+    padding: var(--spacing);
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin: 20px 0 var(--spacing) 0;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing) / 2);
+  }
+
+  .taskbar-links {
+    margin: 0 20px;
+    flex-wrap: wrap;
+  }
+
+  footer a {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  footer::before,
+  footer::after {
+    display: none;
+  }
+}
+
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Add command prompt below status */
+.projects-container::after {
+  content: "mark@portfolio:~$ _";
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-green);
+  animation: cursorBlink 1s ease-in-out infinite;
+} 

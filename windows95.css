@@ -1,0 +1,464 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+:root {
+  --win95-gray: #C0C0C0;
+  --win95-dark-gray: #808080;
+  --win95-light-gray: #DFDFDF;
+  --win95-white: #FFFFFF;
+  --win95-black: #000000;
+  --win95-blue: #0000FF;
+  --win95-teal: #008080;
+  --win95-green: #00FF00;
+  --win95-yellow: #FFFF00;
+  --win95-red: #FF0000;
+  --spacing: 8px;
+  --font-system: 'VT323', 'Courier New', monospace;
+  --font-title: 'Press Start 2P', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-system);
+  background: var(--win95-teal);
+  background-image: 
+    repeating-linear-gradient(45deg, 
+      var(--win95-teal) 0px, 
+      var(--win95-teal) 2px, 
+      #007070 2px, 
+      #007070 4px
+    );
+  color: var(--win95-black);
+  line-height: 1.2;
+  overflow-x: hidden;
+  font-size: 16px;
+  cursor: default;
+}
+
+/* Windows 95 desktop icons floating around */
+body::before {
+  content: "🖥️ 💾 📁 🖨️ 📠 💿";
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 2rem;
+  opacity: 0.7;
+  z-index: 1;
+  pointer-events: none;
+  line-height: 3;
+  letter-spacing: 2rem;
+  animation: desktopIcons 15s ease-in-out infinite alternate;
+}
+
+@keyframes desktopIcons {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(20px); }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(90vh - 60px);
+  max-width: 1400px;
+  margin: var(--spacing) auto;
+  position: relative;
+  z-index: 5;
+  background: var(--win95-gray);
+  border: 4px outset var(--win95-gray);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+/* Classic Windows 95 title bar */
+.container::before {
+  content: "Mark Lyda - Personal Website";
+  position: absolute;
+  top: -28px;
+  left: -4px;
+  right: -4px;
+  height: 24px;
+  background: linear-gradient(90deg, var(--win95-blue) 0%, #000080 100%);
+  color: var(--win95-white);
+  font-family: var(--font-system);
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  border: 2px outset var(--win95-gray);
+  border-bottom: none;
+}
+
+/* Window controls (close button) */
+.container::after {
+  content: "✕";
+  position: absolute;
+  top: -26px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--win95-gray);
+  border: 2px outset var(--win95-gray);
+  color: var(--win95-black);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: calc(var(--spacing) * 3);
+  background: var(--win95-gray);
+  border-right: 2px inset var(--win95-gray);
+  overflow: hidden;
+}
+
+/* Classic Windows 95 panel behind profile */
+.left::before {
+  content: "";
+  position: absolute;
+  top: var(--spacing);
+  left: var(--spacing);
+  right: var(--spacing);
+  bottom: var(--spacing);
+  background: var(--win95-gray);
+  border: 2px inset var(--win95-gray);
+}
+
+.profile {
+  max-width: 280px;
+  position: relative;
+  z-index: 3;
+  border: 4px outset var(--win95-gray);
+  filter: contrast(1.1) brightness(0.9);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Profile label like Windows 95 dialog */
+.profile-label {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  right: 0;
+  background: var(--win95-gray);
+  border: 2px outset var(--win95-gray);
+  padding: 4px 8px;
+  font-family: var(--font-system);
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 4;
+}
+
+.right {
+  padding: calc(var(--spacing) * 3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--win95-gray);
+  overflow: hidden;
+}
+
+h1 {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0 0 var(--spacing) 0;
+  color: var(--win95-black);
+  line-height: 1.2;
+  position: relative;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 var(--win95-white);
+  z-index: 3;
+}
+
+/* Windows 95 style underline */
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-black);
+  border-bottom: 1px solid var(--win95-white);
+}
+
+.bio {
+  font-size: 16px;
+  color: var(--win95-black);
+  margin-bottom: calc(var(--spacing) * 3);
+  font-weight: normal;
+  line-height: 1.4;
+  max-width: 90%;
+  position: relative;
+  padding: calc(var(--spacing) * 2);
+  background: var(--win95-white);
+  border: 2px inset var(--win95-gray);
+  z-index: 3;
+  font-family: var(--font-system);
+}
+
+/* Windows 95 dialog box style for bio */
+.bio::before {
+  content: "About";
+  position: absolute;
+  top: -20px;
+  left: 8px;
+  background: var(--win95-gray);
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px outset var(--win95-gray);
+}
+
+/* Classic Windows 95 grouped box for projects */
+.projects-container {
+  flex: 1;
+  position: relative;
+  border: 2px inset var(--win95-gray);
+  padding: calc(var(--spacing) * 2);
+  background: var(--win95-gray);
+}
+
+.projects-container::before {
+  content: "Projects";
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  background: var(--win95-gray);
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing);
+}
+
+li {
+  background: var(--win95-gray);
+  border: 2px outset var(--win95-gray);
+  transition: all 0.1s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+li:hover {
+  border: 2px inset var(--win95-gray);
+  background: var(--win95-light-gray);
+}
+
+li:active {
+  border: 2px inset var(--win95-gray);
+  background: var(--win95-dark-gray);
+}
+
+/* Windows 95 button icons */
+li:nth-child(1)::before {
+  content: "💼";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 20px;
+}
+
+li:nth-child(2)::before {
+  content: "⚖️";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 20px;
+}
+
+li:nth-child(3)::before {
+  content: "📺";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 20px;
+}
+
+li:nth-child(4)::before {
+  content: "🎓";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 20px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--win95-black);
+  display: block;
+  padding: calc(var(--spacing) * 2);
+  padding-left: calc(var(--spacing) * 5);
+  transition: color 0.1s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card-link:hover {
+  color: var(--win95-black);
+}
+
+.link-title {
+  font-family: var(--font-system);
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+  margin-bottom: var(--spacing);
+  color: var(--win95-black);
+  line-height: 1.2;
+}
+
+small {
+  display: block;
+  color: var(--win95-black);
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.3;
+  font-family: var(--font-system);
+}
+
+/* Windows 95 taskbar */
+footer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+  background: var(--win95-gray);
+  border-top: 2px outset var(--win95-gray);
+  color: var(--win95-black);
+  font-family: var(--font-system);
+  padding: 0 var(--spacing);
+}
+
+/* Start button */
+footer::before {
+  content: "Start";
+  background: var(--win95-gray);
+  border: 2px outset var(--win95-gray);
+  padding: 4px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* System tray clock */
+footer::after {
+  content: "3:17 PM";
+  background: var(--win95-gray);
+  border: 1px inset var(--win95-gray);
+  padding: 4px 8px;
+  font-size: 12px;
+  font-family: var(--font-system);
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+  margin: 0 var(--spacing);
+}
+
+footer a {
+  color: var(--win95-black);
+  text-decoration: none;
+  font-weight: normal;
+  transition: all 0.1s ease;
+  font-family: var(--font-system);
+  font-size: 12px;
+  background: var(--win95-gray);
+  border: 1px outset var(--win95-gray);
+  padding: 2px 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+footer a:hover {
+  border: 1px inset var(--win95-gray);
+  background: var(--win95-light-gray);
+}
+
+footer a.active {
+  border: 1px inset var(--win95-gray);
+  background: var(--win95-dark-gray);
+  color: var(--win95-white);
+}
+
+/* Windows 95 error dialog styling for mobile */
+@media (max-width: 768px) {
+  body {
+    background: var(--win95-gray);
+    background-image: none;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+    margin: var(--spacing);
+  }
+  
+  .left {
+    border-right: none;
+    border-bottom: 2px inset var(--win95-gray);
+    padding: calc(var(--spacing) * 2);
+  }
+  
+  .right {
+    padding: calc(var(--spacing) * 2);
+  }
+  
+  h1 {
+    font-size: 18px;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+  }
+
+  footer {
+    height: 32px;
+  }
+
+  footer a {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+
+  footer::before {
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+
+  footer::after {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+} 

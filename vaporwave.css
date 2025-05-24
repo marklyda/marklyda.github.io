@@ -38,7 +38,7 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   perspective: 1000px;
-  min-height: 85vh;
+  height: 90vh;
 }
 
 body::before {
@@ -78,7 +78,7 @@ body::after {
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 85vh;
+  height: calc(90vh - 60px);
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
@@ -305,6 +305,13 @@ footer a.active {
   color: var(--neon-pink);
   text-shadow: 0 0 8px var(--neon-pink);
   border-bottom: 1px solid var(--neon-pink);
+}
+
+footer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {

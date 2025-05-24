@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --concrete: #8B8680;
+  --dark-concrete: #6B645F;
+  --light-concrete: #A8A099;
+  --charcoal: #2C2C2C;
+  --black: #000000;
+  --white: #FFFFFF;
+  --spacing: 1.5rem;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-display);
+  background-color: var(--concrete);
+  color: var(--black);
+  line-height: 1.4;
+  overflow-x: hidden;
+  font-weight: 400;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(90vh - 60px);
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: var(--white);
+  border: 8px solid var(--black);
+  position: relative;
+}
+
+.left {
+  background-color: var(--dark-concrete);
+  padding: var(--spacing);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-right: 4px solid var(--black);
+}
+
+.left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: var(--black);
+}
+
+.left::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: var(--black);
+}
+
+.profile {
+  max-width: 300px;
+  border: 6px solid var(--black);
+  filter: grayscale(100%) contrast(1.2);
+  position: relative;
+  z-index: 2;
+}
+
+.right {
+  background-color: var(--white);
+  padding: var(--spacing);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  color: var(--black);
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  position: relative;
+  z-index: 3;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 120px;
+  height: 8px;
+  background-color: var(--black);
+}
+
+.bio {
+  font-size: 1rem;
+  color: var(--charcoal);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 85%;
+  background-color: var(--light-concrete);
+  padding: 1.5rem;
+  border: 3px solid var(--black);
+  font-family: var(--font-mono);
+  position: relative;
+  z-index: 3;
+}
+
+.bio::before {
+  content: "PROFILE.TXT";
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 5px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  flex: 1;
+  border: 3px solid var(--black);
+  position: relative;
+  z-index: 3;
+}
+
+li {
+  background-color: var(--white);
+  border: 2px solid var(--black);
+  border-collapse: collapse;
+  margin: -1px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+li:nth-child(1) {
+  border-right: none;
+  border-bottom: none;
+}
+
+li:nth-child(2) {
+  border-bottom: none;
+}
+
+li:nth-child(3) {
+  border-right: none;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--black);
+  transition: height 0.3s ease;
+  z-index: 1;
+}
+
+li:hover {
+  background-color: var(--concrete);
+  transform: none;
+}
+
+li:hover::before {
+  height: 6px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--black);
+  display: block;
+  padding: 2rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.card-link:hover {
+  color: var(--charcoal);
+}
+
+.link-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+small {
+  display: block;
+  color: var(--charcoal);
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: var(--font-mono);
+}
+
+/* Brutalist footer */
+footer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+footer a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+footer a:hover {
+  color: var(--concrete);
+  background-color: var(--white);
+  padding: 3px 6px;
+  margin: -3px -6px;
+}
+
+footer a.active {
+  color: var(--black);
+  background-color: var(--white);
+  padding: 3px 6px;
+}
+
+/* Grid overlay effect */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(var(--black) 1px, transparent 1px),
+    linear-gradient(90deg, var(--black) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Functional corner markers */
+.container::after {
+  content: "MARK_LYDA.SYSTEM";
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--charcoal);
+  letter-spacing: 1px;
+  z-index: 4;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+  
+  .left {
+    border-right: none;
+    border-bottom: 4px solid var(--black);
+    padding: 1.5rem;
+  }
+  
+  .right {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    letter-spacing: -1px;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  li {
+    border-right: none;
+    border-bottom: 2px solid var(--black);
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+  footer a {
+    font-size: 0.7rem;
+  }
+} 

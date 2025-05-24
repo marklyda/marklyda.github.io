@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --gray-100: #F8F9FA;
+  --gray-200: #E9ECEF;
+  --gray-300: #DEE2E6;
+  --gray-400: #CED4DA;
+  --gray-500: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
+  --red: #DC143C;
+  --grid-base: 8px;
+  --grid-unit: calc(var(--grid-base) * 3); /* 24px */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  background-color: var(--white);
+  color: var(--black);
+  line-height: 1.5;
+  overflow-x: hidden;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-size: 16px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  height: calc(90vh - 60px);
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: var(--grid-unit);
+  padding: var(--grid-unit);
+  position: relative;
+  background-color: var(--white);
+}
+
+/* Swiss grid overlay for precision */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(220, 20, 60, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220, 20, 60, 0.1) 1px, transparent 1px);
+  background-size: var(--grid-unit) var(--grid-unit);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.container:hover::before {
+  opacity: 1;
+}
+
+.left {
+  grid-column: 1 / 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  padding: calc(var(--grid-unit) * 2) 0;
+}
+
+.profile {
+  width: 100%;
+  max-width: calc(var(--grid-unit) * 16);
+  height: auto;
+  filter: grayscale(100%) contrast(1.1);
+  border: none;
+  position: relative;
+  z-index: 2;
+}
+
+.profile-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: calc(var(--grid-unit) / 2);
+  position: relative;
+}
+
+.profile-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(100% + var(--grid-unit));
+  width: calc(var(--grid-unit) * 3);
+  height: 1px;
+  background-color: var(--red);
+  transform: translateY(-50%);
+}
+
+.right {
+  grid-column: 6 / 13;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  padding: calc(var(--grid-unit) * 2) 0;
+}
+
+/* Swiss typographic hierarchy */
+h1 {
+  font-family: var(--font-primary);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 700;
+  margin: 0 0 calc(var(--grid-unit) * 1.5) 0;
+  color: var(--black);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+h1::before {
+  content: "01";
+  position: absolute;
+  top: -calc(var(--grid-unit) * 1.5);
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--red);
+  letter-spacing: 1px;
+}
+
+.bio {
+  font-size: 1rem;
+  color: var(--gray-700);
+  margin-bottom: calc(var(--grid-unit) * 3);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: calc(var(--grid-unit) * 20);
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+.bio::before {
+  content: "02";
+  position: absolute;
+  top: 0;
+  left: calc(var(--grid-unit) * -3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--red);
+  letter-spacing: 1px;
+}
+
+/* Swiss grid-based project layout */
+.projects-header {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--grid-unit);
+  position: relative;
+}
+
+.projects-header::before {
+  content: "03";
+  position: absolute;
+  left: calc(var(--grid-unit) * -3);
+  color: var(--red);
+}
+
+.projects-header::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(100% + var(--grid-unit));
+  width: calc(var(--grid-unit) * 6);
+  height: 1px;
+  background-color: var(--gray-300);
+  transform: translateY(-50%);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(var(--grid-unit) * 1.5);
+  flex: 1;
+}
+
+li {
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--red);
+  transition: width 0.3s ease;
+}
+
+li:nth-child(1)::after {
+  content: "A";
+  position: absolute;
+  top: var(--grid-unit);
+  right: var(--grid-unit);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-400);
+}
+
+li:nth-child(2)::after {
+  content: "B";
+  position: absolute;
+  top: var(--grid-unit);
+  right: var(--grid-unit);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-400);
+}
+
+li:nth-child(3)::after {
+  content: "C";
+  position: absolute;
+  top: var(--grid-unit);
+  right: var(--grid-unit);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-400);
+}
+
+li:nth-child(4)::after {
+  content: "D";
+  position: absolute;
+  top: var(--grid-unit);
+  right: var(--grid-unit);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-400);
+}
+
+li:hover {
+  border-color: var(--gray-300);
+  transform: none;
+}
+
+li:hover::before {
+  width: 100%;
+}
+
+li:hover::after {
+  color: var(--red);
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--black);
+  display: block;
+  padding: calc(var(--grid-unit) * 2);
+  transition: color 0.2s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card-link:hover {
+  color: var(--gray-800);
+}
+
+.link-title {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.125rem;
+  display: block;
+  margin-bottom: calc(var(--grid-unit) / 2);
+  color: var(--black);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+small {
+  display: block;
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* Swiss footer with precise typography */
+footer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background-color: var(--red);
+  transform: translateX(-50%);
+}
+
+footer a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+footer a::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--red);
+  transition: width 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--white);
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+footer a.active {
+  color: var(--red);
+}
+
+footer a.active::after {
+  width: 100%;
+}
+
+/* Responsive Swiss grid */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: calc(var(--grid-unit) * 2);
+    padding: var(--grid-unit);
+  }
+  
+  .left {
+    grid-column: 1;
+    align-items: center;
+    text-align: center;
+    padding-bottom: calc(var(--grid-unit) * 3);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .profile-label::after {
+    display: none;
+  }
+  
+  .right {
+    grid-column: 1;
+    padding-top: calc(var(--grid-unit) * 3);
+  }
+
+  .bio::before {
+    left: 0;
+    top: calc(var(--grid-unit) * -2);
+  }
+
+  .projects-header::before {
+    left: 0;
+    top: calc(var(--grid-unit) * -2);
+  }
+
+  .projects-header::after {
+    display: none;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: var(--grid-unit);
+  }
+
+  footer a {
+    font-size: 10px;
+  }
+} 

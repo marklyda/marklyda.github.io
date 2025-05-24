@@ -1,0 +1,662 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Creepster&family=Fredoka+One&family=Bungee&family=Righteous&family=Bangers&display=swap');
+
+:root {
+  --neon-pink: #FF00FF;
+  --electric-lime: #CCFF00;
+  --toxic-orange: #FF6600;
+  --cyber-blue: #00FFFF;
+  --warning-yellow: #FFFF00;
+  --angry-red: #FF0033;
+  --poison-green: #00FF00;
+  --chaos-purple: #9900FF;
+  --spacing-chaos: 1rem;
+}
+
+body {
+  margin: 0;
+  padding: 13px 7px 21px 11px; /* Intentionally random */
+  font-family: 'Comic Neue', cursive;
+  background: linear-gradient(
+    47deg, 
+    var(--neon-pink) 0%, 
+    var(--electric-lime) 17%, 
+    var(--toxic-orange) 31%, 
+    var(--cyber-blue) 48%, 
+    var(--warning-yellow) 64%, 
+    var(--angry-red) 79%, 
+    var(--poison-green) 94%
+  );
+  background-size: 400% 400%;
+  animation: chaosGradient 3s ease-in-out infinite;
+  color: var(--chaos-purple);
+  line-height: 1.7;
+  overflow-x: hidden;
+  font-size: 19px;
+  transform: rotate(0.3deg); /* Slightly tilted page */
+}
+
+@keyframes chaosGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ugly floating decorations */
+body::before {
+  content: "⚡💥🔥✨⭐💫⚡💥🔥✨⭐💫⚡💥🔥✨⭐💫⚡💥🔥✨⭐💫";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--warning-yellow);
+  border: 5px dotted var(--angry-red);
+  color: var(--neon-pink);
+  font-size: 24px;
+  padding: 8px;
+  text-align: center;
+  z-index: 100;
+  animation: scrollText 10s linear infinite;
+  box-shadow: 0 0 30px var(--toxic-orange);
+}
+
+@keyframes scrollText {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+body::after {
+  content: "🎪 WELCOME TO THE CHAOS ZONE 🎪";
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--cyber-blue);
+  color: var(--angry-red);
+  padding: 12px 20px;
+  border: 8px ridge var(--neon-pink);
+  font-family: 'Creepster', cursive;
+  font-size: 18px;
+  z-index: 100;
+  animation: bounce 2s ease-in-out infinite;
+  text-shadow: 3px 3px 0 var(--warning-yellow);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) rotate(-2deg) translateY(0); }
+  50% { transform: translateX(-50%) rotate(-2deg) translateY(-10px); }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 37% 63%; /* Ugly proportions */
+  max-width: 1400px;
+  margin: 80px auto 0;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  border: 12px solid var(--neon-pink);
+  border-style: dashed solid dotted ridge;
+  padding: 31px 17px 23px 29px; /* Random padding */
+  transform: skew(-1deg, 0.5deg);
+  box-shadow: 
+    15px 15px 0 var(--electric-lime),
+    30px 30px 0 var(--toxic-orange),
+    -10px -10px 0 var(--cyber-blue);
+}
+
+.container::before {
+  content: "⭐ MARK'S CHAOTIC PORTFOLIO ⭐";
+  position: absolute;
+  top: -45px;
+  left: 23px;
+  background: var(--warning-yellow);
+  color: var(--chaos-purple);
+  font-family: 'Bungee', cursive;
+  font-size: 16px;
+  padding: 8px 15px;
+  border: 4px double var(--angry-red);
+  transform: rotate(7deg);
+  z-index: 10;
+  animation: wiggle 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(7deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+.container::after {
+  content: "💼📋💻⚖️🎯🚀";
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  font-size: 28px;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 23px 11px 31px 19px; /* Chaotic padding */
+  background: linear-gradient(135deg, var(--poison-green), var(--cyber-blue));
+  border: 7px groove var(--neon-pink);
+  margin-right: 18px;
+  transform: rotate(-1deg);
+  overflow: hidden;
+}
+
+.left::before {
+  content: "★ LEADER ★";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(15deg);
+  background: var(--toxic-orange);
+  color: var(--warning-yellow);
+  font-family: 'Bangers', cursive;
+  font-size: 14px;
+  padding: 5px 12px;
+  border: 3px outset var(--angry-red);
+  z-index: 5;
+  text-shadow: 2px 2px 0 var(--chaos-purple);
+}
+
+.left::after {
+  content: "⚖️ ATTORNEY ⚖️";
+  position: absolute;
+  bottom: -5px;
+  right: -15px;
+  background: var(--warning-yellow);
+  color: var(--neon-pink);
+  font-family: 'Righteous', cursive;
+  font-size: 12px;
+  padding: 6px 10px;
+  border: 4px inset var(--electric-lime);
+  transform: rotate(-12deg);
+  z-index: 5;
+}
+
+.profile-label {
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  background: var(--angry-red);
+  color: var(--warning-yellow);
+  font-family: 'Fredoka One', cursive;
+  font-size: 11px;
+  padding: 4px 8px;
+  border: 2px solid var(--cyber-blue);
+  transform: rotate(23deg);
+  z-index: 6;
+}
+
+.profile {
+  max-width: 180px;
+  position: relative;
+  z-index: 3;
+  border: 8px solid var(--electric-lime);
+  border-style: ridge inset outset groove;
+  transform: rotate(3deg) scale(1.1);
+  filter: hue-rotate(180deg) saturate(2) contrast(1.5);
+  box-shadow: 
+    0 0 25px var(--neon-pink),
+    inset 0 0 25px rgba(255, 0, 255, 0.3);
+  animation: profileGlitch 2s ease-in-out infinite alternate;
+}
+
+@keyframes profileGlitch {
+  0% { 
+    filter: hue-rotate(180deg) saturate(2) contrast(1.5);
+    transform: rotate(3deg) scale(1.1);
+  }
+  100% { 
+    filter: hue-rotate(220deg) saturate(2.5) contrast(1.2);
+    transform: rotate(-2deg) scale(1.05);
+  }
+}
+
+.right {
+  padding: 19px 13px 27px 21px; /* More chaos */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: radial-gradient(circle at 30% 70%, var(--warning-yellow), var(--neon-pink));
+  border: 5px dashed var(--poison-green);
+  margin-left: -8px; /* Ugly overlap */
+  transform: rotate(0.8deg);
+  overflow: hidden;
+}
+
+.right::before {
+  content: "⚡ INFO ZONE ⚡";
+  position: absolute;
+  top: 5px;
+  right: 12px;
+  background: var(--cyber-blue);
+  color: var(--angry-red);
+  font-family: 'Creepster', cursive;
+  font-size: 11px;
+  padding: 4px 8px;
+  border: 3px dotted var(--toxic-orange);
+  transform: rotate(-18deg);
+  z-index: 5;
+}
+
+.right::after {
+  content: "~*~*~*~*~*~*~*~*~*~*~*~*~*~*~";
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  color: var(--electric-lime);
+  font-size: 16px;
+  text-align: center;
+  animation: textWave 3s ease-in-out infinite;
+}
+
+@keyframes textWave {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.2); }
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin: 15px 0 19px -7px; /* Ugly margins */
+  color: var(--angry-red);
+  line-height: 0.9;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  text-shadow: 
+    4px 4px 0 var(--warning-yellow),
+    8px 8px 0 var(--neon-pink),
+    12px 12px 0 var(--cyber-blue);
+  z-index: 3;
+  transform: rotate(-2deg) skew(5deg, -1deg);
+  animation: nameShake 1s ease-in-out infinite alternate;
+}
+
+@keyframes nameShake {
+  0% { transform: rotate(-2deg) skew(5deg, -1deg) translateX(0); }
+  100% { transform: rotate(-2deg) skew(5deg, -1deg) translateX(2px); }
+}
+
+h1::before {
+  content: "💥💥💥💥💥💥💥💥💥";
+  position: absolute;
+  top: -25px;
+  left: -20px;
+  font-size: 20px;
+  animation: explosions 0.8s ease-in-out infinite;
+}
+
+@keyframes explosions {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+h1::after {
+  content: "⭐⭐⭐⭐⭐⭐⭐⭐⭐";
+  position: absolute;
+  bottom: -25px;
+  right: -15px;
+  font-size: 18px;
+  color: var(--electric-lime);
+}
+
+.bio {
+  font-size: 1.1rem;
+  color: var(--chaos-purple);
+  margin: 11px 7px 23px 13px; /* Ugly margins */
+  font-weight: 400;
+  line-height: 1.3;
+  max-width: 85%;
+  position: relative;
+  padding: 17px 21px 19px 25px; /* Chaos padding */
+  background: linear-gradient(45deg, var(--electric-lime), var(--warning-yellow));
+  border: 6px ridge var(--toxic-orange);
+  z-index: 3;
+  font-family: 'Comic Neue', cursive;
+  transform: rotate(1deg);
+  text-align: justify;
+  box-shadow: inset 0 0 20px rgba(255, 0, 255, 0.4);
+}
+
+.bio::before {
+  content: "📋 BIO DATA 📋";
+  position: absolute;
+  top: -15px;
+  left: 12px;
+  background: var(--neon-pink);
+  color: var(--warning-yellow);
+  font-family: 'Bungee', cursive;
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 3px outset var(--cyber-blue);
+  transform: rotate(-8deg);
+}
+
+.bio::after {
+  content: "👤";
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+  font-size: 24px;
+  animation: bounceIcon 1.5s ease-in-out infinite;
+}
+
+@keyframes bounceIcon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.projects-container {
+  flex: 1;
+  margin-top: 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 47% 53%; /* Ugly proportions */
+  gap: 13px 19px; /* Uneven gaps */
+  position: relative;
+}
+
+li {
+  background: var(--warning-yellow);
+  border: 5px solid var(--neon-pink);
+  border-style: dotted ridge inset groove;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  transform: rotate(-1deg);
+}
+
+li:nth-child(1) {
+  transform: rotate(2deg) scale(1.05);
+  border-color: var(--angry-red);
+  background: var(--cyber-blue);
+}
+
+li:nth-child(2) {
+  transform: rotate(-3deg) scale(0.95);
+  border-color: var(--poison-green);
+  background: var(--toxic-orange);
+  margin-top: 12px;
+}
+
+li:nth-child(3) {
+  transform: rotate(1deg) scale(1.02);
+  border-color: var(--electric-lime);
+  background: var(--chaos-purple);
+  margin-left: -8px;
+}
+
+li:nth-child(4) {
+  transform: rotate(-2deg) scale(0.98);
+  border-color: var(--cyber-blue);
+  background: var(--neon-pink);
+  margin-top: -5px;
+}
+
+li::before {
+  content: "⚡";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  font-size: 16px;
+  z-index: 2;
+  animation: sparkle 1s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+li:nth-child(1)::before { content: "🎯"; }
+li:nth-child(2)::before { content: "⚖️"; }
+li:nth-child(3)::before { content: "📺"; }
+li:nth-child(4)::before { content: "🎓"; }
+
+li:hover {
+  background: var(--electric-lime);
+  border-color: var(--angry-red);
+  transform: rotate(5deg) scale(1.1);
+  box-shadow: 
+    0 0 25px var(--neon-pink),
+    inset 0 0 25px rgba(0, 255, 255, 0.3);
+  animation: cardChaos 0.5s ease-in-out infinite;
+}
+
+@keyframes cardChaos {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(180deg); }
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--chaos-purple);
+  display: block;
+  padding: 15px 12px 18px 25px; /* Chaotic padding */
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: 'Righteous', cursive;
+}
+
+.card-link:hover {
+  color: var(--angry-red);
+  text-shadow: 2px 2px 0 var(--warning-yellow);
+}
+
+.link-title {
+  font-family: 'Bangers', cursive;
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 8px;
+  color: inherit;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  transform: rotate(-1deg);
+}
+
+small {
+  display: block;
+  color: var(--chaos-purple);
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Comic Neue', cursive;
+  text-align: left;
+  margin-left: 5px;
+}
+
+/* Chaotic footer */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(90deg, var(--neon-pink), var(--electric-lime), var(--toxic-orange));
+  border: 8px ridge var(--cyber-blue);
+  color: var(--chaos-purple);
+  font-family: 'Fredoka One', cursive;
+  padding: 18px 12px 22px 16px; /* Chaos padding */
+  margin-top: 35px;
+  transform: skew(-2deg, 1deg);
+}
+
+footer::before {
+  content: "🎪 STYLE CIRCUS 🎪";
+  position: absolute;
+  left: 15px;
+  top: 5px;
+  color: var(--angry-red);
+  font-size: 14px;
+  background: var(--warning-yellow);
+  padding: 3px 8px;
+  border: 2px dashed var(--poison-green);
+  transform: rotate(12deg);
+}
+
+footer::after {
+  content: "🎨 CHAOS MODE ACTIVE 🎨";
+  position: absolute;
+  right: 10px;
+  bottom: 3px;
+  color: var(--cyber-blue);
+  font-size: 10px;
+  transform: rotate(-8deg);
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 6px 12px; /* Uneven gaps */
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 80px;
+}
+
+footer a {
+  color: var(--chaos-purple);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  font-family: 'Bungee', cursive;
+  font-size: 11px;
+  background: var(--warning-yellow);
+  border: 3px outset var(--neon-pink);
+  padding: 3px 6px 5px 8px; /* Uneven padding */
+  cursor: pointer;
+  text-transform: uppercase;
+  position: relative;
+  transform: rotate(-1deg);
+}
+
+footer a:nth-child(even) {
+  transform: rotate(2deg);
+  background: var(--electric-lime);
+  border-color: var(--angry-red);
+}
+
+footer a:nth-child(3n) {
+  transform: rotate(-3deg);
+  background: var(--cyber-blue);
+  border-color: var(--toxic-orange);
+}
+
+footer a:hover {
+  background: var(--neon-pink);
+  color: var(--warning-yellow);
+  transform: rotate(8deg) scale(1.1);
+  border-style: ridge;
+  animation: linkBounce 0.3s ease-in-out infinite;
+}
+
+@keyframes linkBounce {
+  0%, 100% { transform: rotate(8deg) scale(1.1); }
+  50% { transform: rotate(8deg) scale(1.15); }
+}
+
+footer a.active {
+  background: var(--angry-red);
+  color: var(--warning-yellow);
+  border: 4px inset var(--poison-green);
+  transform: rotate(0deg) scale(1.2);
+  animation: activeFlash 1s ease-in-out infinite alternate;
+}
+
+@keyframes activeFlash {
+  0% { box-shadow: 0 0 10px var(--electric-lime); }
+  100% { box-shadow: 0 0 20px var(--neon-pink); }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 8px 5px;
+    transform: rotate(0deg);
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin: 60px auto 0;
+    transform: skew(0deg);
+    padding: 15px;
+  }
+  
+  .left {
+    border-bottom: 5px groove var(--neon-pink);
+    margin-right: 0;
+    margin-bottom: 15px;
+    transform: rotate(0deg);
+  }
+  
+  .right {
+    margin-left: 0;
+    transform: rotate(0deg);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    transform: rotate(0deg) skew(0deg);
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  li {
+    transform: rotate(0deg) scale(1);
+    margin: 0;
+  }
+
+  .taskbar-links {
+    margin: 0 10px;
+  }
+
+  footer a {
+    font-size: 9px;
+    padding: 2px 4px;
+    transform: rotate(0deg);
+  }
+
+  footer::before,
+  footer::after {
+    display: none;
+  }
+}
+
+li:nth-child(3) .card-link {
+  color: var(--warning-yellow) !important;
+}
+
+li:nth-child(3) .link-title {
+  color: var(--warning-yellow) !important;
+}
+
+li:nth-child(3) small {
+  color: var(--electric-lime) !important;
+} 

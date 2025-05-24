@@ -1,0 +1,584 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+  --vscode-bg: #1e1e1e;
+  --vscode-sidebar: #252526;
+  --vscode-border: #3c3c3c;
+  --vscode-tab: #2d2d30;
+  --vscode-text: #cccccc;
+  --vscode-text-muted: #969696;
+  --vscode-blue: #569cd6;
+  --vscode-orange: #ce9178;
+  --vscode-green: #608b4e;
+  --vscode-purple: #c586c0;
+  --vscode-yellow: #dcdcaa;
+  --vscode-red: #f44747;
+  --vscode-cyan: #4ec9b0;
+  --vscode-selection: #264f78;
+  --vscode-hover: #2a2d2e;
+  --spacing: 1rem;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  background-color: var(--vscode-bg);
+  color: var(--vscode-text);
+  line-height: 1.4;
+  overflow-x: hidden;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: default;
+}
+
+/* VS Code title bar */
+body::before {
+  content: "Mark Lyda Portfolio - Visual Studio Code";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: var(--vscode-tab);
+  color: var(--vscode-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--vscode-border);
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+/* VS Code status bar */
+body::after {
+  content: "Ln 42, Col 16   Spaces: 2   UTF-8   JavaScript   ⚡ Live Server   🔌 Extensions";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background: var(--vscode-blue);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+  margin-top: 30px;
+  margin-bottom: 22px;
+  position: relative;
+  background: var(--vscode-bg);
+}
+
+/* Activity Bar */
+.container::before {
+  content: "📁\A🔍\A🌿\A🐛\A🧩\A⚙️";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  background: var(--vscode-sidebar);
+  border-right: 1px solid var(--vscode-border);
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  gap: 16px;
+  white-space: pre;
+  z-index: 10;
+}
+
+/* Sidebar */
+.left {
+  background: var(--vscode-sidebar);
+  border-right: 1px solid var(--vscode-border);
+  position: relative;
+  padding: 0;
+  margin-left: 48px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Explorer header */
+.left::before {
+  content: "EXPLORER";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35px;
+  background: var(--vscode-sidebar);
+  color: var(--vscode-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--vscode-border);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* File tree */
+.left::after {
+  content: "📁 PORTFOLIO\A  📄 index.html\A  📄 package.json\A  📁 src\A    📄 profile.js\A    📄 projects.js\A    📁 assets\A      🖼️ profile.png\A  📁 styles\A    📄 vscode.css\A  📄 README.md";
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--vscode-text);
+  white-space: pre;
+  padding: 8px 12px;
+  line-height: 1.6;
+}
+
+.profile-label {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--vscode-orange);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--vscode-selection);
+  padding: 4px 8px;
+  border-radius: 3px;
+  z-index: 5;
+}
+
+.profile {
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 180px;
+  border: 2px solid var(--vscode-border);
+  border-radius: 4px;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Main editor area */
+.right {
+  background: var(--vscode-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Tab bar */
+.right::before {
+  content: "profile.js × projects.js × README.md ×";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35px;
+  background: var(--vscode-tab);
+  color: var(--vscode-text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--vscode-border);
+  gap: 8px;
+}
+
+/* Breadcrumb */
+.right::after {
+  content: "📁 portfolio › 📄 profile.js › 🏷️ Mark Lyda";
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background: var(--vscode-bg);
+  color: var(--vscode-text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+h1 {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 80px 0 var(--spacing) 0;
+  color: var(--vscode-yellow);
+  line-height: 1.2;
+  position: relative;
+  z-index: 3;
+  padding: 0 20px;
+}
+
+h1::before {
+  content: "const developer = {";
+  position: absolute;
+  top: -25px;
+  left: 20px;
+  font-size: 14px;
+  color: var(--vscode-purple);
+  font-weight: 400;
+}
+
+h1::after {
+  content: ": ";
+  color: var(--vscode-text);
+}
+
+.bio {
+  font-size: 14px;
+  color: var(--vscode-text);
+  margin: 0 20px calc(var(--spacing) * 2) 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  position: relative;
+  padding: var(--spacing);
+  background: var(--vscode-bg);
+  border: 1px solid var(--vscode-border);
+  border-radius: 4px;
+  z-index: 3;
+  font-family: var(--font-mono);
+}
+
+.bio::before {
+  content: "// Professional Summary";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--vscode-green);
+  background: var(--vscode-bg);
+  padding: 0 8px;
+}
+
+.bio::after {
+  content: "},";
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--vscode-purple);
+}
+
+.projects-container {
+  flex: 1;
+  margin: 0 20px 20px 20px;
+  position: relative;
+}
+
+.projects-container::before {
+  content: "projects: [";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--vscode-yellow);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.projects-container::after {
+  content: "]";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--vscode-yellow);
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing);
+  position: relative;
+}
+
+li {
+  background: var(--vscode-bg);
+  border: 1px solid var(--vscode-border);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
+
+li::before {
+  content: "// Object";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--vscode-green);
+  z-index: 2;
+}
+
+li:nth-child(1)::before { content: "// Class"; }
+li:nth-child(2)::before { content: "// Function"; }
+li:nth-child(3)::before { content: "// Module"; }
+li:nth-child(4)::before { content: "// Interface"; }
+
+li::after {
+  content: "●";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 8px;
+  color: var(--vscode-orange);
+  z-index: 2;
+}
+
+li:hover {
+  background: var(--vscode-hover);
+  border-color: var(--vscode-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+li:hover::after {
+  color: var(--vscode-green);
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--vscode-text);
+  display: block;
+  padding: calc(var(--spacing) * 1.5);
+  padding-top: calc(var(--spacing) * 1.5 + 10px);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: var(--font-mono);
+}
+
+.card-link:hover {
+  color: var(--vscode-blue);
+}
+
+.card-link::before {
+  content: "{";
+  position: absolute;
+  top: calc(var(--spacing) * 1.5 + 10px);
+  left: calc(var(--spacing) * 1.5);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--vscode-purple);
+}
+
+.card-link::after {
+  content: "},";
+  position: absolute;
+  bottom: calc(var(--spacing) * 1.5);
+  left: calc(var(--spacing) * 1.5);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--vscode-purple);
+}
+
+.link-title {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 16px;
+  display: block;
+  margin-bottom: calc(var(--spacing) / 2);
+  margin-left: 20px;
+  color: var(--vscode-cyan);
+  line-height: 1.3;
+}
+
+.link-title::before {
+  content: "name: '";
+  color: var(--vscode-yellow);
+  font-size: 14px;
+}
+
+.link-title::after {
+  content: "',";
+  color: var(--vscode-orange);
+  font-size: 14px;
+}
+
+small {
+  display: block;
+  color: var(--vscode-orange);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: var(--font-mono);
+  margin-left: 20px;
+}
+
+small::before {
+  content: "description: '";
+  color: var(--vscode-yellow);
+  font-size: 13px;
+}
+
+small::after {
+  content: "'";
+  color: var(--vscode-orange);
+  font-size: 13px;
+}
+
+/* VS Code footer */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  background: var(--vscode-sidebar);
+  border-top: 1px solid var(--vscode-border);
+  color: var(--vscode-text);
+  font-family: var(--font-mono);
+  padding: 12px;
+  margin-bottom: 22px;
+}
+
+footer::before {
+  content: "// Theme Selector";
+  position: absolute;
+  left: 20px;
+  color: var(--vscode-green);
+  font-size: 12px;
+}
+
+footer::after {
+  content: "⚡ Extensions: 12 active";
+  position: absolute;
+  right: 20px;
+  color: var(--vscode-text-muted);
+  font-size: 11px;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 150px;
+}
+
+footer a {
+  color: var(--vscode-text);
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--vscode-bg);
+  border: 1px solid var(--vscode-border);
+  border-radius: 3px;
+  padding: 6px 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+footer a::before {
+  content: "📦 ";
+  font-size: 10px;
+}
+
+footer a:hover {
+  background: var(--vscode-hover);
+  border-color: var(--vscode-blue);
+  color: var(--vscode-blue);
+}
+
+footer a.active {
+  background: var(--vscode-blue);
+  color: white;
+  border-color: var(--vscode-blue);
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .container::before {
+    display: none;
+  }
+  
+  .left {
+    margin-left: 0;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid var(--vscode-border);
+  }
+  
+  .profile {
+    position: static;
+    transform: none;
+    margin: 50px auto 20px;
+    display: block;
+  }
+  
+  .profile-label {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin: 10px auto;
+    display: block;
+    width: fit-content;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin: 60px 0 var(--spacing) 0;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing) / 2);
+  }
+
+  .taskbar-links {
+    margin: 0 20px;
+    flex-wrap: wrap;
+  }
+
+  footer a {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  footer::before,
+  footer::after {
+    display: none;
+  }
+} 

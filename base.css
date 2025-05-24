@@ -1,0 +1,110 @@
+/* Base sizing and viewport rules for all themes */
+
+/* Universal sizing system - constrained content with natural footer flow */
+html {
+  height: 100% !important;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  position: relative !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  box-sizing: border-box !important;
+}
+
+/* Override any theme-specific body pseudo-elements that might affect layout */
+body::before,
+body::after {
+  position: absolute !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+.container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  height: 85vh !important;
+  max-height: 85vh !important;
+  min-height: 85vh !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Override any theme-specific container pseudo-elements */
+.container::before,
+.container::after {
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+.left,
+.right {
+  overflow-y: auto !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+  position: static !important;
+  height: auto !important;
+  min-height: 60px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+/* Add spacing between footer navigation links */
+footer a {
+  margin: 0 8px;
+}
+
+/* Mobile viewport stabilization */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Prevent mobile viewport jumping */
+* {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Mobile responsive base */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  .container {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .left,
+  .right {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
+} 
