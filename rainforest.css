@@ -1,0 +1,692 @@
+/* 🌧️ ALICE'S AMAZING RAINFOREST ADVENTURE! 🐒 */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Kalam:wght@400;700&family=Fredoka+One:wght@400&display=swap');
+
+:root {
+  --forest-dark-green: #0B4D2C;
+  --forest-green: #228B22;
+  --forest-light-green: #32CD32;
+  --forest-lime: #7CFC00;
+  --forest-yellow: #FFD700;
+  --forest-orange: #FF8C00;
+  --forest-brown: #8B4513;
+  --forest-dark-brown: #654321;
+  --forest-blue: #4169E1;
+  --forest-red: #DC143C;
+  --forest-purple: #8A2BE2;
+  --forest-white: #FFFFFF;
+  --forest-rain: #B0E0E6;
+  --forest-mist: #F0F8FF;
+  --font-jungle: 'Kalam', cursive;
+  --font-leaf: 'Nunito', sans-serif;
+  --font-tree: 'Fredoka One', cursive;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-jungle);
+  background: 
+    linear-gradient(180deg, 
+      var(--forest-blue) 0%, 
+      var(--forest-light-green) 30%, 
+      var(--forest-green) 60%,
+      var(--forest-dark-green) 100%
+    );
+  color: var(--forest-white);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  animation: jungle-breeze 8s ease-in-out infinite alternate;
+}
+
+/* Gentle jungle breeze */
+@keyframes jungle-breeze {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Falling raindrops */
+body::before {
+  content: "💧💧💧💧💧💧💧💧💧💧💧💧";
+  position: fixed;
+  top: -50px;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  animation: rain-fall 3s linear infinite;
+  z-index: 1000;
+  pointer-events: none;
+  text-align: center;
+  letter-spacing: 50px;
+}
+
+/* Swinging animals */
+body::after {
+  content: "🐒🦜🦥🐸🦋";
+  position: fixed;
+  top: 15%;
+  left: -150px;
+  font-size: 40px;
+  animation: animals-swing 14s linear infinite;
+  z-index: 999;
+  pointer-events: none;
+}
+
+@keyframes rain-fall {
+  0% { 
+    transform: translateY(-100px); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 1; 
+  }
+  90% { 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateY(100vh); 
+    opacity: 0; 
+  }
+}
+
+@keyframes animals-swing {
+  0% { 
+    transform: translateX(0px) translateY(0px) rotate(-5deg); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translateX(50vw) translateY(30px) rotate(5deg); 
+    opacity: 1; 
+  }
+  90% { 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateX(calc(100vw + 150px)) translateY(-20px) rotate(-5deg); 
+    opacity: 0; 
+  }
+}
+
+/* Tree canopy container */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  position: relative;
+  background: 
+    radial-gradient(circle at 20% 20%, 
+      rgba(124, 252, 0, 0.3) 0%, 
+      transparent 30%
+    ),
+    radial-gradient(circle at 80% 80%, 
+      rgba(34, 139, 34, 0.4) 0%, 
+      transparent 35%
+    ),
+    linear-gradient(135deg,
+      rgba(11, 77, 44, 0.9) 0%,
+      rgba(34, 139, 34, 0.8) 100%
+    );
+  border-radius: 25px;
+  box-shadow: 
+    0 0 60px rgba(124, 252, 0, 0.3),
+    inset 0 0 40px rgba(255, 255, 255, 0.1),
+    0 25px 50px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  animation: forest-pulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes forest-pulse {
+  0% { 
+    box-shadow: 0 0 60px rgba(124, 252, 0, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.1), 0 25px 50px rgba(0, 0, 0, 0.6);
+  }
+  100% { 
+    box-shadow: 0 0 80px rgba(34, 139, 34, 0.5), inset 0 0 60px rgba(255, 255, 255, 0.2), 0 35px 70px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Tree canopy at the top */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: 
+    linear-gradient(90deg,
+      transparent 0%,
+      var(--forest-lime) 15%,
+      var(--forest-light-green) 30%,
+      var(--forest-green) 45%,
+      var(--forest-light-green) 60%,
+      var(--forest-lime) 85%,
+      transparent 100%
+    );
+  box-shadow: 0 0 25px var(--forest-lime);
+  animation: canopy-sway 4s ease-in-out infinite;
+  z-index: 5;
+}
+
+@keyframes canopy-sway {
+  0%, 100% { 
+    opacity: 0.8; 
+    transform: scaleX(1) translateX(0px); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scaleX(1.05) translateX(5px); 
+  }
+}
+
+/* Jungle vine patterns */
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 90%, var(--forest-brown) 2px, transparent 2px),
+    radial-gradient(circle at 90% 10%, var(--forest-dark-brown) 3px, transparent 3px),
+    linear-gradient(45deg, transparent 45%, rgba(139, 69, 19, 0.2) 48%, rgba(139, 69, 19, 0.2) 52%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, rgba(101, 67, 33, 0.2) 48%, rgba(101, 67, 33, 0.2) 52%, transparent 55%);
+  background-size: 80px 80px, 60px 60px, 40px 40px, 35px 35px;
+  opacity: 0.4;
+  z-index: 1;
+  animation: vines-grow 10s ease-in-out infinite;
+}
+
+@keyframes vines-grow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-3px) scale(1.01); }
+}
+
+.left {
+  background: 
+    radial-gradient(circle at 50% 50%,
+      rgba(124, 252, 0, 0.4) 0%,
+      rgba(34, 139, 34, 0.7) 100%
+    );
+  border: 4px solid var(--forest-light-green);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: 
+    0 0 30px var(--forest-lime),
+    inset 0 0 25px rgba(124, 252, 0, 0.2);
+  animation: tree-house-sway 6s ease-in-out infinite;
+}
+
+@keyframes tree-house-sway {
+  0%, 100% { transform: translateX(0px) rotate(0deg) scale(1); }
+  25% { transform: translateX(3px) rotate(0.5deg) scale(1.01); }
+  75% { transform: translateX(-2px) rotate(-0.3deg) scale(1.01); }
+}
+
+/* Tree house label */
+.left::before {
+  content: "🌳 TREE HOUSE 🏠";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--forest-brown);
+  color: var(--forest-yellow);
+  font-family: var(--font-tree);
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 3px solid var(--forest-orange);
+  box-shadow: 0 0 15px var(--forest-brown);
+}
+
+/* Jungle mist */
+.left::after {
+  content: "🌿🌿🌿🌿🌿🌿🌿";
+  position: absolute;
+  top: -45px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 20px;
+  animation: mist-float 5s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes mist-float {
+  0% { 
+    transform: translateY(0px) scale(1); 
+    opacity: 0.7; 
+  }
+  50% { 
+    transform: translateY(-15px) scale(1.1); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateY(-30px) scale(1.2); 
+    opacity: 0.3; 
+  }
+}
+
+.profile {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border: 6px solid var(--forest-lime);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 50px var(--forest-light-green),
+    inset 0 0 25px rgba(124, 252, 0, 0.3);
+  margin: 30px auto;
+  display: block;
+  filter: 
+    contrast(1.2) 
+    brightness(1.1)
+    saturate(1.5)
+    hue-rotate(10deg);
+  animation: jungle-glow 4s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes jungle-glow {
+  0% { 
+    box-shadow: 0 0 50px var(--forest-light-green), inset 0 0 25px rgba(124, 252, 0, 0.3);
+    filter: contrast(1.2) brightness(1.1) saturate(1.5) hue-rotate(10deg);
+  }
+  100% { 
+    box-shadow: 0 0 70px var(--forest-lime), inset 0 0 35px rgba(124, 252, 0, 0.5);
+    filter: contrast(1.3) brightness(1.2) saturate(1.7) hue-rotate(15deg);
+  }
+}
+
+.right {
+  background: 
+    linear-gradient(135deg,
+      rgba(124, 252, 0, 0.2) 0%,
+      rgba(50, 205, 50, 0.3) 50%,
+      rgba(34, 139, 34, 0.4) 100%
+    );
+  border: 4px solid var(--forest-green);
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 
+    0 0 35px var(--forest-light-green),
+    inset 0 0 25px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+/* Jungle foliage effect */
+.right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(124, 252, 0, 0.1) 8px, transparent 8px),
+    radial-gradient(circle at 85% 75%, rgba(50, 205, 50, 0.1) 12px, transparent 12px),
+    radial-gradient(circle at 45% 15%, rgba(34, 139, 34, 0.1) 6px, transparent 6px),
+    radial-gradient(circle at 75% 85%, rgba(255, 215, 0, 0.1) 4px, transparent 4px);
+  background-size: 70px 70px, 90px 90px, 50px 50px, 60px 60px;
+  opacity: 0.7;
+  animation: foliage-dance 12s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes foliage-dance {
+  0%, 100% { transform: translateX(0px) scale(1) rotate(0deg); }
+  33% { transform: translateX(8px) scale(1.02) rotate(1deg); }
+  66% { transform: translateX(-5px) scale(0.98) rotate(-1deg); }
+}
+
+/* Wildlife expedition */
+.right::after {
+  content: "🔍 WILDLIFE ZONE 🦜";
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: var(--forest-yellow);
+  color: var(--forest-dark-green);
+  font-family: var(--font-tree);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 12px;
+  border: 2px solid var(--forest-orange);
+  animation: wildlife-beacon 2.5s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes wildlife-beacon {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+h1 {
+  font-family: var(--font-tree);
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: var(--forest-lime);
+  position: relative;
+  z-index: 3;
+  text-shadow: 
+    3px 3px 0px var(--forest-green),
+    6px 6px 10px rgba(0, 0, 0, 0.7);
+  animation: jungle-title-grow 5s ease-in-out infinite;
+}
+
+@keyframes jungle-title-grow {
+  0%, 100% { 
+    text-shadow: 3px 3px 0px var(--forest-green), 6px 6px 10px rgba(0, 0, 0, 0.7);
+    transform: translateY(0px) scale(1);
+  }
+  50% { 
+    text-shadow: 4px 4px 0px var(--forest-light-green), 8px 8px 15px rgba(34, 139, 34, 0.8);
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+.bio {
+  font-size: 16px;
+  color: var(--forest-dark-green);
+  margin-bottom: 30px;
+  font-weight: 600;
+  line-height: 1.7;
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-leaf);
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--forest-light-green);
+  border-radius: 18px;
+  box-shadow: 
+    0 0 30px var(--forest-lime),
+    inset 0 0 15px rgba(124, 252, 0, 0.2);
+}
+
+.projects-container {
+  position: relative;
+  z-index: 3;
+  margin-top: 30px;
+}
+
+.projects-container::before {
+  content: "🌧️ ALICE'S JUNGLE EXPEDITIONS! 🐒";
+  display: block;
+  font-family: var(--font-tree);
+  font-size: 20px;
+  color: var(--forest-white);
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 15px;
+  background: var(--forest-green);
+  border: 4px solid var(--forest-lime);
+  border-radius: 22px;
+  box-shadow: 0 0 35px var(--forest-green);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  animation: expedition-bounce 4s ease-in-out infinite alternate;
+}
+
+@keyframes expedition-bounce {
+  0% { transform: scale(1) translateY(0px); }
+  100% { transform: scale(1.03) translateY(-4px); }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  position: relative;
+}
+
+li {
+  background: 
+    linear-gradient(135deg,
+      var(--forest-lime) 0%,
+      var(--forest-light-green) 50%,
+      var(--forest-green) 100%
+    );
+  border: 4px solid var(--forest-brown);
+  border-radius: 22px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    0 0 30px var(--forest-light-green);
+  animation: jungle-creatures-move 7s ease-in-out infinite;
+}
+
+@keyframes jungle-creatures-move {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-6px) rotate(0.3deg); }
+  50% { transform: translateY(-2px) rotate(-0.2deg); }
+  75% { transform: translateY(-8px) rotate(0.4deg); }
+}
+
+li:nth-child(even) {
+  animation-delay: -3.5s;
+  animation-direction: reverse;
+}
+
+li:hover {
+  transform: translateY(-18px) scale(1.1);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 60px var(--forest-lime);
+  border-color: var(--forest-yellow);
+}
+
+/* Jungle animal emojis for each project */
+li::before {
+  content: "🐒";
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 32px;
+  animation: animal-swing 9s ease-in-out infinite;
+  z-index: 5;
+}
+
+li:nth-child(1)::before { content: "🦜"; }
+li:nth-child(2)::before { content: "⚖️"; }
+li:nth-child(3)::before { content: "📺"; }
+li:nth-child(4)::before { content: "🎓"; }
+
+@keyframes animal-swing {
+  0%, 100% { transform: translateX(0px) rotate(0deg); }
+  25% { transform: translateX(10px) rotate(8deg); }
+  75% { transform: translateX(-5px) rotate(-5deg); }
+}
+
+/* Tropical plant growth effect */
+li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: 
+    linear-gradient(90deg,
+      var(--forest-green) 0%,
+      var(--forest-lime) 50%,
+      var(--forest-green) 100%
+    );
+  border-radius: 0 0 18px 18px;
+  animation: plant-growth 5s ease-in-out infinite;
+}
+
+@keyframes plant-growth {
+  0%, 100% { height: 12px; opacity: 0.8; transform: scaleX(1); }
+  50% { height: 18px; opacity: 1; transform: scaleX(1.05); }
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--forest-dark-green);
+  display: block;
+  padding: 25px;
+  padding-top: 55px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: var(--font-leaf);
+}
+
+.card-link:hover {
+  color: var(--forest-dark-brown);
+}
+
+.link-title {
+  font-family: var(--font-tree);
+  font-weight: 400;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--forest-dark-green);
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(124, 252, 0, 0.3);
+}
+
+small {
+  display: block;
+  color: var(--forest-dark-brown);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  font-family: var(--font-leaf);
+}
+
+/* Rainforest floor footer */
+footer {
+  background: 
+    linear-gradient(180deg,
+      var(--forest-dark-brown) 0%,
+      var(--forest-brown) 40%,
+      var(--forest-dark-green) 100%
+    );
+  border-top: 5px solid var(--forest-light-green);
+  padding: 25px;
+  margin-top: 50px;
+  position: relative;
+  box-shadow: 
+    0 -20px 40px rgba(124, 252, 0, 0.2),
+    inset 0 0 35px rgba(255, 255, 255, 0.1);
+}
+
+footer::before {
+  content: "🌧️ CHOOSE YOUR JUNGLE! 🌿";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--forest-lime);
+  font-family: var(--font-tree);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+footer::after {
+  content: "🐒 ALICE & DAD'S RAINFOREST WORLD 🌳";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--forest-yellow);
+  font-family: var(--font-jungle);
+  font-size: 12px;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 300px;
+  flex-wrap: wrap;
+}
+
+footer a {
+  color: var(--forest-white);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  font-family: var(--font-jungle);
+  font-size: 12px;
+  background: var(--forest-dark-green);
+  border: 3px solid var(--forest-light-green);
+  padding: 8px 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 12px;
+  box-shadow: 0 0 18px var(--forest-light-green);
+}
+
+footer a:hover {
+  background: var(--forest-light-green);
+  color: var(--forest-dark-green);
+  border-color: var(--forest-lime);
+  box-shadow: 0 0 30px var(--forest-lime);
+  transform: scale(1.1) translateY(-3px);
+}
+
+footer a.active {
+  background: var(--forest-orange);
+  color: var(--forest-white);
+  border-color: var(--forest-yellow);
+  box-shadow: 0 0 35px var(--forest-orange);
+  animation: active-jungle 4s ease-in-out infinite;
+}
+
+@keyframes active-jungle {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50% { transform: scale(1.05) translateY(-2px); }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .taskbar-links {
+    margin: 0 20px;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  footer::before,
+  footer::after {
+    position: static;
+    display: block;
+    text-align: center;
+    margin: 5px 0;
+  }
+} 

@@ -43,7 +43,11 @@ body::after {
   grid-template-columns: 200px 1fr;
   max-width: 800px;
   margin: 60px auto 20px;
-  background: var(--white);
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    transparent 35px, 
+    var(--white) 35px, 
+    var(--white) 100%);
   border: 1px solid var(--border-gray);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   min-height: 500px;
@@ -52,9 +56,9 @@ body::after {
 
 /* Facebook Header spanning the container */
 .container::before {
-  content: "thefacebook";
+  content: "[ thefacebook ]";
   position: absolute;
-  top: -40px;
+  top: 0;
   left: 0;
   right: 0;
   height: 35px;
@@ -68,15 +72,13 @@ body::after {
   padding: 0 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid var(--facebook-dark-blue);
-  border-top: 1px solid var(--border-gray);
-  border-left: 1px solid var(--border-gray);
-  border-right: 1px solid var(--border-gray);
+  z-index: 10;
 }
 
 .left {
-  background: var(--white);
+  background: transparent;
   border-right: 1px solid var(--light-gray);
-  padding: 15px;
+  padding: 50px 15px 15px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,7 +91,7 @@ body::after {
 }
 
 .left::after {
-  content: "✨ poke mark ✨";
+  content: "Poke Mark";
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -99,6 +101,11 @@ body::after {
   color: var(--link-blue);
   text-align: center;
   cursor: pointer;
+  padding-left: 25px;
+  background-image: url('thefacebook/assets.png');
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
 .profile {
@@ -112,7 +119,7 @@ body::after {
 }
 
 .right {
-  padding: 20px;
+  padding: 55px 20px 20px 20px;
   background: var(--white);
   position: relative;
 }
@@ -165,13 +172,31 @@ h1 {
 }
 
 h1::before {
+  content: "Mark's profile";
+  position: absolute;
+  top: -65px;
+  left: -20px;
+  right: -20px;
+  height: 30px;
+  background: var(--facebook-light-blue);
+  color: var(--white);
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border: 1px solid var(--light-gray);
+}
+
+h1::after {
   content: "Mark Lyda is in your network.";
   position: absolute;
-  top: -25px;
   left: 0;
   font-size: 10px;
   color: #666;
   font-weight: normal;
+  margin-top: -20px;
 }
 
 .bio {

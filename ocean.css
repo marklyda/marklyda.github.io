@@ -1,0 +1,676 @@
+/* 🌊 ALICE'S AMAZING OCEAN ADVENTURE! 🐠 */
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Quicksand:wght@400;600&family=Fredoka+One:wght@400&display=swap');
+
+:root {
+  --ocean-deep-blue: #003366;
+  --ocean-blue: #0066CC;
+  --ocean-light-blue: #3399FF;
+  --ocean-turquoise: #00CCCC;
+  --ocean-aqua: #66FFFF;
+  --ocean-seafoam: #00FF99;
+  --ocean-coral: #FF6B6B;
+  --ocean-yellow: #FFD700;
+  --ocean-white: #FFFFFF;
+  --ocean-sand: #F4E4BC;
+  --ocean-seaweed: #228B22;
+  --ocean-purple: #9966CC;
+  --ocean-dark: #001122;
+  --font-ocean: 'Comfortaa', cursive;
+  --font-wave: 'Quicksand', sans-serif;
+  --font-bubble: 'Fredoka One', cursive;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-ocean);
+  background: 
+    linear-gradient(180deg, 
+      var(--ocean-light-blue) 0%, 
+      var(--ocean-blue) 20%, 
+      var(--ocean-deep-blue) 60%,
+      var(--ocean-dark) 100%
+    );
+  color: var(--ocean-white);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  animation: ocean-current 6s ease-in-out infinite alternate;
+}
+
+/* Ocean current gentle movement */
+@keyframes ocean-current {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Swimming fish across the screen */
+body::before {
+  content: "🐠🐟🐡🦈🐙";
+  position: fixed;
+  top: 20%;
+  left: -200px;
+  font-size: 35px;
+  animation: fish-swim 12s linear infinite;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+body::after {
+  content: "🐢🦑🐠🐟🦀";
+  position: fixed;
+  top: 60%;
+  right: -200px;
+  font-size: 30px;
+  animation: fish-swim-reverse 15s linear infinite;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+@keyframes fish-swim {
+  0% { 
+    transform: translateX(0px) translateY(0px); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 1; 
+  }
+  90% { 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateX(calc(100vw + 200px)) translateY(-50px); 
+    opacity: 0; 
+  }
+}
+
+@keyframes fish-swim-reverse {
+  0% { 
+    transform: translateX(0px) translateY(0px); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 1; 
+  }
+  90% { 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateX(calc(-100vw - 200px)) translateY(30px); 
+    opacity: 0; 
+  }
+}
+
+/* Floating bubbles everywhere! */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  position: relative;
+  background: 
+    radial-gradient(circle at 30% 30%, 
+      rgba(102, 255, 255, 0.3) 0%, 
+      transparent 30%
+    ),
+    radial-gradient(circle at 70% 70%, 
+      rgba(0, 204, 204, 0.2) 0%, 
+      transparent 25%
+    ),
+    linear-gradient(135deg,
+      rgba(0, 102, 204, 0.8) 0%,
+      rgba(0, 51, 102, 0.9) 100%
+    );
+  border-radius: 30px;
+  box-shadow: 
+    0 0 50px rgba(102, 255, 255, 0.4),
+    inset 0 0 30px rgba(255, 255, 255, 0.1),
+    0 20px 40px rgba(0, 17, 34, 0.6);
+  overflow: hidden;
+  animation: underwater-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes underwater-glow {
+  0% { 
+    box-shadow: 0 0 50px rgba(102, 255, 255, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.1), 0 20px 40px rgba(0, 17, 34, 0.6);
+  }
+  100% { 
+    box-shadow: 0 0 80px rgba(0, 204, 204, 0.6), inset 0 0 50px rgba(255, 255, 255, 0.2), 0 30px 60px rgba(0, 17, 34, 0.8);
+  }
+}
+
+/* Ocean waves at the top */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  background: 
+    linear-gradient(90deg,
+      transparent 0%,
+      var(--ocean-aqua) 20%,
+      var(--ocean-white) 40%,
+      var(--ocean-turquoise) 60%,
+      var(--ocean-aqua) 80%,
+      transparent 100%
+    );
+  box-shadow: 0 0 20px var(--ocean-aqua);
+  animation: ocean-waves 3s ease-in-out infinite;
+  z-index: 5;
+}
+
+@keyframes ocean-waves {
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: scaleX(1) translateY(0px); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scaleX(1.1) translateY(-3px); 
+  }
+}
+
+/* Coral reef texture */
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 85%, var(--ocean-coral) 3px, transparent 3px),
+    radial-gradient(circle at 85% 20%, var(--ocean-seafoam) 4px, transparent 4px),
+    radial-gradient(circle at 45% 60%, var(--ocean-purple) 2px, transparent 2px),
+    radial-gradient(circle at 75% 80%, var(--ocean-yellow) 3px, transparent 3px);
+  background-size: 60px 60px, 80px 80px, 40px 40px, 70px 70px;
+  opacity: 0.3;
+  z-index: 1;
+  animation: coral-sway 8s ease-in-out infinite;
+}
+
+@keyframes coral-sway {
+  0%, 100% { transform: translateX(0px) scale(1); }
+  50% { transform: translateX(5px) scale(1.02); }
+}
+
+.left {
+  background: 
+    radial-gradient(circle at 50% 50%,
+      rgba(0, 204, 204, 0.6) 0%,
+      rgba(0, 102, 204, 0.8) 100%
+    );
+  border: 4px solid var(--ocean-turquoise);
+  border-radius: 25px;
+  padding: 25px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: 
+    0 0 25px var(--ocean-aqua),
+    inset 0 0 20px rgba(102, 255, 255, 0.2);
+  animation: treasure-chest-bob 5s ease-in-out infinite;
+}
+
+@keyframes treasure-chest-bob {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.01); }
+}
+
+/* Treasure chest label */
+.left::before {
+  content: "🏴‍☠️ TREASURE CHEST 🏴‍☠️";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ocean-coral);
+  color: var(--ocean-white);
+  font-family: var(--font-bubble);
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 3px solid var(--ocean-yellow);
+  box-shadow: 0 0 15px var(--ocean-coral);
+}
+
+/* Floating bubbles */
+.left::after {
+  content: "🫧🫧🫧🫧🫧🫧🫧";
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 25px;
+  animation: bubbles-float 4s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes bubbles-float {
+  0% { 
+    transform: translateY(0px) scale(0.8); 
+    opacity: 0.8; 
+  }
+  50% { 
+    transform: translateY(-20px) scale(1); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateY(-40px) scale(1.2); 
+    opacity: 0; 
+  }
+}
+
+.profile {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border: 6px solid var(--ocean-aqua);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 40px var(--ocean-turquoise),
+    inset 0 0 20px rgba(102, 255, 255, 0.3);
+  margin: 30px auto;
+  display: block;
+  filter: 
+    contrast(1.1) 
+    brightness(1.2)
+    saturate(1.4)
+    hue-rotate(-10deg);
+  animation: underwater-shimmer 3s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes underwater-shimmer {
+  0% { 
+    box-shadow: 0 0 40px var(--ocean-turquoise), inset 0 0 20px rgba(102, 255, 255, 0.3);
+    filter: contrast(1.1) brightness(1.2) saturate(1.4) hue-rotate(-10deg);
+  }
+  100% { 
+    box-shadow: 0 0 60px var(--ocean-aqua), inset 0 0 30px rgba(102, 255, 255, 0.5);
+    filter: contrast(1.2) brightness(1.3) saturate(1.6) hue-rotate(-5deg);
+  }
+}
+
+.right {
+  background: 
+    linear-gradient(135deg,
+      rgba(102, 255, 255, 0.2) 0%,
+      rgba(0, 204, 204, 0.3) 50%,
+      rgba(0, 102, 204, 0.4) 100%
+    );
+  border: 4px solid var(--ocean-seafoam);
+  border-radius: 25px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 
+    0 0 30px var(--ocean-turquoise),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+/* Kelp forest effect */
+.right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 40%, rgba(34, 139, 34, 0.1) 45%, rgba(34, 139, 34, 0.1) 55%, transparent 60%),
+    linear-gradient(-45deg, transparent 30%, rgba(0, 255, 153, 0.1) 35%, rgba(0, 255, 153, 0.1) 45%, transparent 50%);
+  background-size: 30px 150px, 25px 120px;
+  opacity: 0.6;
+  animation: kelp-sway 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes kelp-sway {
+  0%, 100% { transform: translateX(0px) skew(0deg); }
+  50% { transform: translateX(10px) skew(2deg); }
+}
+
+/* Deep sea exploration */
+.right::after {
+  content: "🤿 DEEP SEA ZONE 🤿";
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: var(--ocean-yellow);
+  color: var(--ocean-deep-blue);
+  font-family: var(--font-bubble);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 12px;
+  border: 2px solid var(--ocean-turquoise);
+  animation: deep-sea-beacon 2s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes deep-sea-beacon {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+h1 {
+  font-family: var(--font-bubble);
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: var(--ocean-aqua);
+  position: relative;
+  z-index: 3;
+  text-shadow: 
+    2px 2px 0px var(--ocean-turquoise),
+    4px 4px 8px rgba(0, 0, 0, 0.6);
+  animation: ocean-title-flow 4s ease-in-out infinite;
+}
+
+@keyframes ocean-title-flow {
+  0%, 100% { 
+    text-shadow: 2px 2px 0px var(--ocean-turquoise), 4px 4px 8px rgba(0, 0, 0, 0.6);
+    transform: translateY(0px);
+  }
+  50% { 
+    text-shadow: 3px 3px 0px var(--ocean-seafoam), 6px 6px 12px rgba(0, 204, 204, 0.8);
+    transform: translateY(-5px);
+  }
+}
+
+.bio {
+  font-size: 16px;
+  color: var(--ocean-dark);
+  margin-bottom: 30px;
+  font-weight: 500;
+  line-height: 1.7;
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-wave);
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--ocean-turquoise);
+  border-radius: 20px;
+  box-shadow: 
+    0 0 25px var(--ocean-aqua),
+    inset 0 0 10px rgba(102, 255, 255, 0.2);
+}
+
+.projects-container {
+  position: relative;
+  z-index: 3;
+  margin-top: 30px;
+}
+
+.projects-container::before {
+  content: "🌊 ALICE'S OCEAN ADVENTURES! 🐠";
+  display: block;
+  font-family: var(--font-bubble);
+  font-size: 20px;
+  color: var(--ocean-white);
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 15px;
+  background: var(--ocean-turquoise);
+  border: 4px solid var(--ocean-aqua);
+  border-radius: 25px;
+  box-shadow: 0 0 30px var(--ocean-turquoise);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: ocean-projects-wave 3s ease-in-out infinite alternate;
+}
+
+@keyframes ocean-projects-wave {
+  0% { transform: scale(1) translateY(0px); }
+  100% { transform: scale(1.02) translateY(-3px); }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  position: relative;
+}
+
+li {
+  background: 
+    linear-gradient(135deg,
+      var(--ocean-aqua) 0%,
+      var(--ocean-turquoise) 50%,
+      var(--ocean-seafoam) 100%
+    );
+  border: 4px solid var(--ocean-coral);
+  border-radius: 25px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    0 0 25px var(--ocean-turquoise);
+  animation: sea-creature-float 6s ease-in-out infinite;
+}
+
+@keyframes sea-creature-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(0.5deg); }
+  75% { transform: translateY(-3px) rotate(-0.5deg); }
+}
+
+li:nth-child(even) {
+  animation-delay: -3s;
+  animation-direction: reverse;
+}
+
+li:hover {
+  transform: translateY(-15px) scale(1.08);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 50px var(--ocean-aqua);
+  border-color: var(--ocean-yellow);
+}
+
+/* Sea creature emojis for each project */
+li::before {
+  content: "🐠";
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 28px;
+  animation: sea-creature-swim 8s ease-in-out infinite;
+  z-index: 5;
+}
+
+li:nth-child(1)::before { content: "🦑"; }
+li:nth-child(2)::before { content: "⚖️"; }
+li:nth-child(3)::before { content: "📺"; }
+li:nth-child(4)::before { content: "🎓"; }
+
+@keyframes sea-creature-swim {
+  0%, 100% { transform: translateX(0px) rotate(0deg); }
+  50% { transform: translateX(8px) rotate(5deg); }
+}
+
+/* Ocean current effect */
+li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: 
+    linear-gradient(90deg,
+      var(--ocean-turquoise) 0%,
+      var(--ocean-aqua) 50%,
+      var(--ocean-turquoise) 100%
+    );
+  border-radius: 0 0 21px 21px;
+  animation: ocean-current-flow 4s ease-in-out infinite;
+}
+
+@keyframes ocean-current-flow {
+  0%, 100% { height: 10px; opacity: 0.7; transform: scaleX(1); }
+  50% { height: 15px; opacity: 1; transform: scaleX(1.05); }
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--ocean-dark);
+  display: block;
+  padding: 25px;
+  padding-top: 50px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: var(--font-wave);
+}
+
+.card-link:hover {
+  color: var(--ocean-deep-blue);
+}
+
+.link-title {
+  font-family: var(--font-bubble);
+  font-weight: 400;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--ocean-deep-blue);
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(102, 255, 255, 0.5);
+}
+
+small {
+  display: block;
+  color: var(--ocean-deep-blue);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  font-family: var(--font-wave);
+}
+
+/* Ocean depths footer */
+footer {
+  background: 
+    linear-gradient(180deg,
+      var(--ocean-dark) 0%,
+      var(--ocean-deep-blue) 50%,
+      var(--ocean-blue) 100%
+    );
+  border-top: 5px solid var(--ocean-turquoise);
+  padding: 25px;
+  margin-top: 50px;
+  position: relative;
+  box-shadow: 
+    0 -15px 30px rgba(0, 204, 204, 0.3),
+    inset 0 0 30px rgba(102, 255, 255, 0.1);
+}
+
+footer::before {
+  content: "🌊 CHOOSE YOUR OCEAN! 🐚";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ocean-aqua);
+  font-family: var(--font-bubble);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+footer::after {
+  content: "🐠 ALICE & DAD'S UNDERWATER WORLD 🌊";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ocean-seafoam);
+  font-family: var(--font-ocean);
+  font-size: 12px;
+}
+
+.taskbar-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 280px;
+  flex-wrap: wrap;
+}
+
+footer a {
+  color: var(--ocean-white);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  font-family: var(--font-ocean);
+  font-size: 12px;
+  background: var(--ocean-deep-blue);
+  border: 3px solid var(--ocean-turquoise);
+  padding: 8px 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 15px;
+  box-shadow: 0 0 15px var(--ocean-turquoise);
+}
+
+footer a:hover {
+  background: var(--ocean-turquoise);
+  color: var(--ocean-dark);
+  border-color: var(--ocean-aqua);
+  box-shadow: 0 0 25px var(--ocean-aqua);
+  transform: scale(1.1) translateY(-2px);
+}
+
+footer a.active {
+  background: var(--ocean-coral);
+  color: var(--ocean-white);
+  border-color: var(--ocean-yellow);
+  box-shadow: 0 0 30px var(--ocean-coral);
+  animation: active-ocean 3s ease-in-out infinite;
+}
+
+@keyframes active-ocean {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50% { transform: scale(1.05) translateY(-2px); }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+  }
+  
+  ul {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .taskbar-links {
+    margin: 0 20px;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  footer::before,
+  footer::after {
+    position: static;
+    display: block;
+    text-align: center;
+    margin: 5px 0;
+  }
+} 
