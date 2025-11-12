@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Release - Mark Lyda</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="../base.css" />
+  <link rel="stylesheet" href="../swiss.css" id="theme-stylesheet" />
+  <style>
+    /* Fix for VS Code theme: move navigation lower to avoid overlap with EXPLORER header and file tree */
+    body.theme-vscode .left .projects-container {
+      margin-top: 300px;
+    }
+    
+    /* Fix for thefacebook theme: add spacing between time and "Mark added a new link." text */
+    body.theme-thefacebook .link-title {
+      padding-right: 60px;
+    }
+    
+    /* Fix for thefacebook theme: hide "write something..." box on release page */
+    body.theme-thefacebook .right::after {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="projects-container">
+        <ul>
+          <li>
+            <a href="../" class="card-link">
+              <span class="link-title">← Back to Home</span>
+              <small>Return to the main page.</small>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="right">
+      <h1>Release</h1>
+      <p class="bio">Podcast Guest Release<br>
+        for "How to Start and Run a Law Firm with Mark Lyda"<br><br>
+        Thank you for joining me on the show! To keep everything simple and transparent, this release explains how we may use the recording. By checking "I agree" on your invitation or scheduling page, you agree to the following:<br><br>
+        <strong>1. Consent to Recording</strong><br>
+        I consent to being recorded in both audio and video formats during my participation in the podcast How to Start and Run a Law Firm with Mark Lyda (the "Program").<br><br>
+        <strong>2. Grant of Rights</strong><br>
+        I grant Mark Lyda, Lyda LLC, Practist, Inc., and their agents, successors, and assigns (collectively, the "Producers") the right to record, edit, use, reproduce, distribute, publicly perform, display, promote, and create derivative works from the Program or excerpts of it in any media now known or later developed.<br>
+        This includes—but is not limited to—podcasts, YouTube videos, social media posts, advertisements, reels, short-form clips, educational content, or other promotional uses.<br><br>
+        <strong>3. AI and Technology Use</strong><br>
+        I understand and consent that the recording may be processed using artificial intelligence or automated tools for transcription, summarization, captioning, or the creation of derivative content such as promotional snippets, quotes, or highlight clips.<br>
+        No synthetic or "deepfake" recreation of my likeness or voice will be used without additional consent.<br><br>
+        <strong>4. No Compensation or Approval Rights</strong><br>
+        I agree that my participation is voluntary and that I will receive no monetary compensation. I waive any right to review, approve, or restrict how the Producers edit or use the recording, provided it is not used in a deliberately false or defamatory manner.<br><br>
+        <strong>5. Release of Claims</strong><br>
+        I release and hold harmless the Producers from any and all claims, demands, or causes of action arising out of or related to the use of the recording, my name, likeness, or statements.<br><br>
+        <strong>6. Governing Law</strong><br>
+        This agreement is governed by the laws of the State of Colorado.<br><br>
+        <strong>7. Entire Agreement</strong><br>
+        This is the entire understanding between me and the Producers regarding the Program and supersedes any prior discussions or communications.<br><br>
+        By clicking "I agree" on my invitation or scheduling form, I acknowledge that I have read, understood, and consent to this release.</p>
+    </div>
+  </div>
+
+  <footer>
+    Choose Style:
+    <div class="taskbar-links">
+      <!-- <a href="#" data-style="editorial">Editorial</a> -->
+      <!-- <a href="#" data-style="constructivist">Constructivist</a> -->
+      <a href="#" class="active" data-style="swiss">Swiss</a>
+      <a href="#" data-style="brutalist">Brutalist</a>
+      <a href="#" data-style="destijl">De Stijl</a>
+      <a href="#" data-style="memphis">Memphis</a>
+      <a href="#" data-style="artdeco">Art Deco</a>
+      <a href="#" data-style="googie">Googie</a>
+      <a href="#" data-style="8bit">8-bit</a>
+      <a href="#" data-style="oregontrail">Oregon Trail</a>
+      <a href="#" data-style="windows95">Windows 3</a>
+      <a href="#" data-style="cdrom">CD-ROM</a>
+      <!-- <a href="#" data-style="liminal">Liminal</a> -->
+      <!-- <a href="#" data-style="chaos">Chaos</a> -->
+      <!-- <a href="#" data-style="terminal">Terminal</a> -->
+      <a href="#" data-style="vscode">VS Code</a>
+      <!-- <a href="#" data-style="manuscript">Manuscript</a> -->
+      <a href="#" data-style="geocities">GeoCities</a>
+      <a href="#" data-style="thefacebook">thefacebook</a>
+      <!-- <a href="#" data-style="zine">Zine</a> -->
+      <a href="#" data-style="vaporwave">Vaporwave</a>
+
+      <!-- Alice themes: -->
+      <!-- <a href="#" data-style="volcano">Volcano</a>
+      <a href="#" data-style="ocean">Ocean</a>
+      <a href="#" data-style="rainforest">Rainforest</a>
+      <a href="#" data-style="peacock">Peacock</a> -->
+    </div>
+  </footer>
+
+  <script>
+    // Wait for DOM to load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Style switcher functionality
+      const styleLinks = document.querySelectorAll('a[data-style]');
+      const stylesheet = document.getElementById('theme-stylesheet');
+      
+      // Load saved theme or default to swiss
+      const savedTheme = localStorage.getItem('selectedTheme') || 'swiss';
+      switchTheme(savedTheme);
+      
+      styleLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const selectedStyle = link.dataset.style;
+          switchTheme(selectedStyle);
+          localStorage.setItem('selectedTheme', selectedStyle);
+        });
+      });
+      
+      function switchTheme(themeName) {
+        // Update stylesheet - use relative path for release page
+        stylesheet.href = '../' + themeName + '.css';
+        
+        // Add/remove theme classes for theme-specific fixes
+        document.body.classList.remove('theme-vscode', 'theme-thefacebook');
+        if (themeName === 'vscode') {
+          document.body.classList.add('theme-vscode');
+        } else if (themeName === 'thefacebook') {
+          document.body.classList.add('theme-thefacebook');
+        }
+        
+        // Update active link - check if element exists first
+        const targetLink = document.querySelector(`a[data-style="${themeName}"]`);
+        if (targetLink) {
+          styleLinks.forEach(link => link.classList.remove('active'));
+          targetLink.classList.add('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+

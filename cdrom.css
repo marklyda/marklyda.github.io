@@ -163,7 +163,7 @@ body::after {
 }
 
 .left::after {
-  content: "🔍 QUICK FACTS\A• Born: Denver, CO\A• Education: Notre Dame\A• Profession: Attorney\A• Founded: Practist\A\A▶️ Click for Audio Bio\A📄 Print This Page\A💾 Save to Favorites";
+  content: "🔍 QUICK FACTS\A• Born: Denver, CO\A• Education: Notre Dame\A• Profession: Attorney\A• Co-Founded: Practist\A\A▶️ Click for Audio Bio\A📄 Print This Page\A💾 Save to Favorites";
   position: absolute;
   bottom: 15px;
   left: 15px;
