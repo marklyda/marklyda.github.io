@@ -22,6 +22,11 @@
     body.theme-thefacebook .right::after {
       display: none;
     }
+    
+    /* Fix for Swiss theme: make release text section 20% wider */
+    body.theme-swiss .bio {
+      max-width: calc(var(--grid-unit) * 24);
+    }
   </style>
 </head>
 <body>
@@ -121,11 +126,13 @@
         stylesheet.href = '../' + themeName + '.css';
         
         // Add/remove theme classes for theme-specific fixes
-        document.body.classList.remove('theme-vscode', 'theme-thefacebook');
+        document.body.classList.remove('theme-vscode', 'theme-thefacebook', 'theme-swiss');
         if (themeName === 'vscode') {
           document.body.classList.add('theme-vscode');
         } else if (themeName === 'thefacebook') {
           document.body.classList.add('theme-thefacebook');
+        } else if (themeName === 'swiss') {
+          document.body.classList.add('theme-swiss');
         }
         
         // Update active link - check if element exists first

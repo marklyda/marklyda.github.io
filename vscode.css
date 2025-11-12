@@ -265,7 +265,7 @@ h1::after {
 }
 
 .bio::before {
-  content: "// Professional Summary";
+  content: "// Release Notes";
   position: absolute;
   top: -15px;
   left: 0;
