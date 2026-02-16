@@ -54,9 +54,11 @@ body::after {
 
 footer {
   display: flex !important;
+  flex-wrap: wrap !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 1rem !important;
+  gap: 0.5rem 1rem !important;
+  padding: 1rem 0.75rem !important;
   position: static !important;
   height: auto !important;
   min-height: 60px !important;
@@ -65,9 +67,18 @@ footer {
   overflow: visible !important;
 }
 
-/* Add spacing between footer navigation links */
+/* Style picker links: wrap with even spacing so they're not smushed */
+.taskbar-links {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0.5rem 0.75rem !important;
+}
+
+/* Spacing between style links (gap on .taskbar-links does the rest) */
 footer a {
-  margin: 0 8px;
+  margin: 0 !important;
 }
 
 /* Disclaimer below main footer - all themes */
@@ -124,5 +135,21 @@ html {
     max-width: 120px !important;
     width: 120px !important;
     height: auto !important;
+  }
+
+  /* Style picker: label on top, links wrap in rows underneath */
+  footer {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    padding: 1rem 0.5rem !important;
+  }
+
+  footer a {
+    min-height: 2.25rem !important;
+    padding: 0.4rem 0.75rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
 } 
