@@ -107,4 +107,11 @@ html {
     max-height: none !important;
     overflow-y: visible !important;
   }
+
+  /* Smaller profile/headshot on mobile only */
+  .profile {
+    max-width: 120px !important;
+    width: 120px !important;
+    height: auto !important;
+  }
 } 
