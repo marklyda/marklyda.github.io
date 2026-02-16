@@ -500,6 +500,11 @@ footer a.active::before {
     height: auto;
   }
 
+  /* Keep sunburst fixed so it doesn't extend document and cause extra scroll */
+  body::before {
+    position: fixed !important;
+  }
+
   .container {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
