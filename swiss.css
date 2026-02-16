@@ -387,11 +387,11 @@ footer a.active::after {
   width: 100%;
 }
 
-/* Swiss desktop only: smaller profile, tight spacing (mobile unchanged) */
+/* Swiss desktop only: override base.css 1fr 1fr so left column is image width, not 50% */
 @media (min-width: 769px) {
   .container {
-    grid-template-columns: 180px 1fr;
-    gap: 0;
+    grid-template-columns: 180px 1fr !important;
+    gap: 0 !important;
   }
 
   .left {
