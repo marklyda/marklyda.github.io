@@ -34,7 +34,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto;
   height: calc(90vh - 60px);
   max-width: 1200px;
@@ -68,23 +68,25 @@ body {
 }
 
 .left {
-  grid-column: 1 / 6;
+  grid-column: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   position: relative;
   padding: calc(var(--grid-unit) * 2) 0;
+  min-width: 0;
 }
 
 .profile {
-  width: 100%;
-  max-width: calc(var(--grid-unit) * 20);
+  width: 320px;
+  max-width: 100%;
   height: auto;
   filter: grayscale(100%) contrast(1.1);
   border: none;
   position: relative;
   z-index: 2;
+  display: block;
 }
 
 .profile-label {
@@ -110,7 +112,7 @@ body {
 }
 
 .right {
-  grid-column: 6 / 13;
+  grid-column: 2;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
