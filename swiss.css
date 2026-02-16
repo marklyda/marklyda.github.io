@@ -79,7 +79,7 @@ body {
 
 .profile {
   width: 100%;
-  max-width: calc(var(--grid-unit) * 16);
+  max-width: calc(var(--grid-unit) * 20);
   height: auto;
   filter: grayscale(100%) contrast(1.1);
   border: none;
