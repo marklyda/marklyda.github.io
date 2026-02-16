@@ -39,7 +39,7 @@ body {
   height: calc(90vh - 60px);
   max-width: 1200px;
   margin: 0 auto;
-  gap: var(--grid-unit);
+  gap: calc(var(--grid-unit) / 2);
   padding: var(--grid-unit);
   position: relative;
   background-color: var(--white);
@@ -74,12 +74,12 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  padding: calc(var(--grid-unit) * 2) 0;
+  padding: calc(var(--grid-unit) * 1) 0;
   min-width: 0;
 }
 
 .profile {
-  width: 320px;
+  width: 200px;
   max-width: 100%;
   height: auto;
   filter: grayscale(100%) contrast(1.1);
@@ -117,7 +117,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
-  padding: calc(var(--grid-unit) * 2) 0;
+  padding: calc(var(--grid-unit) * 1) 0;
 }
 
 /* Swiss typographic hierarchy */
