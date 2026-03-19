@@ -145,21 +145,7 @@ body::after {
 
 /* Wall Footer */
 .right::after {
-  content: "write something...";
-  position: absolute;
-  bottom: 60px;
-  left: 20px;
-  right: 20px;
-  height: 20px;
-  background: var(--white);
-  border: 1px solid var(--border-gray);
-  color: #999;
-  font-family: var(--font-primary);
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  font-style: italic;
+  display: none;
 }
 
 h1 {

@@ -215,19 +215,7 @@ body::after {
 }
 
 .right::after {
-  content: "MILES TRAVELED: 1247 | NEXT LANDMARK: FORT LARAMIE";
-  position: absolute;
-  bottom: 40px;
-  left: 10px;
-  right: 10px;
-  font-family: var(--font-terminal);
-  font-size: 12px;
-  color: var(--dim-green);
-  text-align: center;
-  background: var(--terminal-black);
-  border: 1px solid var(--dim-green);
-  padding: 8px;
-  animation: trailStatus 3s ease-in-out infinite alternate;
+  display: none;
 }
 
 @keyframes logBlink {
