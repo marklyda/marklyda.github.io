@@ -208,7 +208,7 @@ html {
   }
 
   .social-links {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.4rem;
     margin-top: 0.4rem;
   }
@@ -216,6 +216,6 @@ html {
   .social-links a {
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
-    flex: 1 1 calc(33.333% - 0.4rem);
+    flex: 1 1 0;
   }
 } 
