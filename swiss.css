@@ -453,7 +453,10 @@ footer a.active::after {
 
   .bio::before {
     left: 0;
-    top: calc(var(--grid-unit) * -2);
+    top: -0.9rem;
+    font-size: 10px;
+    background-color: var(--white);
+    padding-right: 0.25rem;
   }
 
   .projects-header::before {
@@ -468,6 +471,15 @@ footer a.active::after {
   h1 {
     font-size: 2rem;
     margin-bottom: calc(var(--grid-unit) * 0.5);
+    padding-top: 0.75rem;
+  }
+
+  h1::before {
+    top: -0.9rem;
+    left: 0;
+    font-size: 10px;
+    background-color: var(--white);
+    padding-right: 0.25rem;
   }
   
   ul {

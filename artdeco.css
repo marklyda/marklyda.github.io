@@ -28,7 +28,7 @@ body {
 /* Art Deco sunburst background pattern */
 body::before {
   content: "";
-  position: fixed;
+  position: fixed !important;
   top: 50%;
   left: 50%;
   width: 200%;
