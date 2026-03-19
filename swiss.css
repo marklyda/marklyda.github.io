@@ -413,6 +413,28 @@ footer a.active::after {
     max-width: 180px !important;
     height: auto !important;
   }
+
+  /* Fit all cards without desktop scrolling */
+  .right {
+    padding-top: calc(var(--grid-unit) * 1) !important;
+    padding-bottom: 0 !important;
+  }
+
+  .bio {
+    margin-bottom: calc(var(--grid-unit) * 1.5) !important;
+  }
+
+  h1 {
+    margin-bottom: calc(var(--grid-unit) * 0.75) !important;
+  }
+
+  ul {
+    gap: calc(var(--grid-unit) * 0.75) !important;
+  }
+
+  .card-link {
+    padding: calc(var(--grid-unit) * 1.25) !important;
+  }
 }
 
 /* Responsive Swiss grid - tighter on mobile */
