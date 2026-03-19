@@ -302,4 +302,26 @@ footer {
   a {
     font-size: 10px;
   }
+
+  /* Keep all 3 social buttons visible on one row */
+  .social-links {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.25rem !important;
+    width: 100% !important;
+  }
+
+  .social-links a {
+    min-width: 0;
+    font-size: 0.58rem !important;
+    padding: 0.2rem 0.2rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  .social-links a .external-indicator {
+    margin-left: 0.2em;
+    font-size: 0.75em;
+  }
 }
