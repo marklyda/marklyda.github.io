@@ -467,6 +467,7 @@ footer a.active::after {
   
   h1 {
     font-size: 2rem;
+    margin-bottom: calc(var(--grid-unit) * 0.5);
   }
   
   ul {
