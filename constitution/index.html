@@ -34,6 +34,11 @@
       display: none;
     }
 
+    /* Known subscribers: hide the gate before first paint (no modal flash) */
+    .gate-suppressed .gate-overlay {
+      display: none !important;
+    }
+
     .gate-card {
       background: #ffffff;
       color: #111111;
@@ -127,6 +132,30 @@
       display: none;
     }
   </style>
+  <script>
+    // Runs BEFORE the page paints so confirmed subscribers never see a flash of
+    // the sign-up modal. A visitor is treated as subscribed if either:
+    //   (a) they arrive with ?subscribed=true (e.g. a link in the welcome email), or
+    //   (b) we previously remembered them in this browser (localStorage).
+    (function () {
+      var KEY = 'ml_substack_subscribed';
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('subscribed') === 'true') {
+          localStorage.setItem(KEY, 'true');
+          // Tidy ?subscribed=true out of the address bar so it isn't shared around.
+          params.delete('subscribed');
+          var q = params.toString();
+          window.history.replaceState({}, '', window.location.pathname + (q ? '?' + q : '') + window.location.hash);
+        }
+        if (localStorage.getItem(KEY) === 'true') {
+          document.documentElement.classList.add('gate-suppressed');
+        }
+      } catch (e) {
+        // localStorage can throw in private mode; failing open just shows the gate.
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="container">
@@ -195,8 +224,10 @@
       // Submitting the form posts the email to Substack (via the hidden iframe)
       // AND reveals the page content. The 'submit' event only fires after the
       // browser's built-in email validation passes, so invalid emails are blocked.
+      // We also remember the subscriber so they aren't re-prompted on return visits.
       if (form && gate) {
         form.addEventListener('submit', function() {
+          try { localStorage.setItem('ml_substack_subscribed', 'true'); } catch (e) {}
           gate.classList.add('gate-hidden');
         });
       }
