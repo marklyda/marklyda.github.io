@@ -7,6 +7,14 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="swiss.css" id="theme-stylesheet" />
+  <style>
+    /* Hide bio on mobile for a "link in bio" feel (homepage only) */
+    @media (max-width: 768px) {
+      .bio {
+        display: none !important;
+      }
+    }
+  </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED2333K33W"></script>
   <script>
@@ -64,6 +72,7 @@
               <small>National law firm serving startups, small businesses, nonprofits, and individuals.</small>
             </a>
           </li>
+          <!--
           <li>
             <a href="https://marklyda.kit.com" target="_blank" rel="noopener noreferrer" class="card-link">
               <span class="link-title">Ebook <span class="external-indicator" aria-hidden="true">↗</span></span>
@@ -76,6 +85,8 @@
               <small>Online course for pro-se litigants: How to Represent Yourself in Court.</small>
             </a>
           </li>
+          -->
+        </ul>
         </ul>
       </div>
     </div>
