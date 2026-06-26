@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Annotated Constitution - Mark Lyda</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="../base.css" />
+  <link rel="stylesheet" href="../swiss.css" id="theme-stylesheet" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED2333K33W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ED2333K33W');
+  </script>
+  <style>
+    /* Sign-up gate overlay (page-specific so it stays theme-agnostic) */
+    .gate-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.85);
+      overflow-y: auto;
+    }
+
+    .gate-overlay.gate-hidden {
+      display: none;
+    }
+
+    .gate-card {
+      background: #ffffff;
+      color: #111111;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 12px;
+      padding: 2rem 1.5rem 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .gate-card h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.4rem;
+      line-height: 1.25;
+      color: #111111;
+    }
+
+    .gate-card p {
+      margin: 0 0 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #444444;
+    }
+
+    .gate-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .gate-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.85rem 1rem;
+      /* 16px font size prevents iOS Safari from auto-zooming on focus */
+      font-size: 16px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      font-family: inherit;
+    }
+
+    .gate-input:focus {
+      outline: none;
+      border-color: #111111;
+    }
+
+    .gate-submit {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #111111;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .gate-submit:hover {
+      background: #333333;
+    }
+
+    .gate-dismiss {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: #666666;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .gate-dismiss:hover {
+      color: #111111;
+    }
+
+    .gate-fineprint {
+      margin: 1rem 0 0;
+      font-size: 0.75rem;
+      color: #999999;
+    }
+
+    /* Hidden iframe receives the Substack POST so the visitor never leaves the page */
+    .gate-hidden-frame {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="projects-container">
+        <ul>
+          <li>
+            <a href="../" class="card-link">
+              <span class="link-title">← Back to Home</span>
+              <small>Return to the main page.</small>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="right">
+      <h1>The Annotated Constitution</h1>
+      <p class="bio">Hello world.</p>
+    </div>
+  </div>
+
+  <!-- SIGN-UP GATE -->
+  <div class="gate-overlay" id="signup-gate">
+    <div class="gate-card">
+      <h2>Before you read&hellip;</h2>
+      <p>Get free updates as new constitutional violations are documented. Enter your email to subscribe and continue&mdash;or just keep reading.</p>
+      <form id="signup-form" class="gate-form"
+            action="https://marklyda.substack.com/api/v1/free?nojs=true"
+            method="post" target="ss-hidden-iframe">
+        <input type="email" name="email" class="gate-input" placeholder="Your email address" required autocomplete="email" />
+        <input type="hidden" name="source" value="constitution-gate" />
+        <button type="submit" class="gate-submit">Sign me up &amp; continue &rarr;</button>
+      </form>
+      <button type="button" class="gate-dismiss" id="gate-dismiss">No, thanks. I'm just visiting. &rarr;</button>
+      <p class="gate-fineprint">Free newsletter. Unsubscribe anytime.</p>
+    </div>
+  </div>
+  <iframe name="ss-hidden-iframe" class="gate-hidden-frame" title="Substack subscription handler"></iframe>
+
+  <footer>
+    Choose Style:
+    <div class="taskbar-links">
+      <a href="#" class="active" data-style="swiss">Swiss</a>
+      <a href="#" data-style="brutalist">Brutalist</a>
+      <a href="#" data-style="memphis">Memphis</a>
+      <a href="#" data-style="artdeco">Art Deco</a>
+      <a href="#" data-style="googie">Googie</a>
+      <a href="#" data-style="8bit">8-bit</a>
+      <a href="#" data-style="oregontrail">Oregon Trail</a>
+      <a href="#" data-style="windows95">Windows 3</a>
+      <a href="#" data-style="cdrom">CD-ROM</a>
+      <a href="#" data-style="vscode">VS Code</a>
+      <a href="#" data-style="geocities">GeoCities</a>
+      <a href="#" data-style="thefacebook">thefacebook</a>
+      <a href="#" data-style="vaporwave">Vaporwave</a>
+    </div>
+  </footer>
+  <div class="site-disclaimer">Copyright Lyda LLC 2026. Not legal advice. Any opinions expressed are solely those of the person making the statement.</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const gate = document.getElementById('signup-gate');
+      const form = document.getElementById('signup-form');
+      const dismissBtn = document.getElementById('gate-dismiss');
+
+      // Submitting the form posts the email to Substack (via the hidden iframe)
+      // AND reveals the page content. The 'submit' event only fires after the
+      // browser's built-in email validation passes, so invalid emails are blocked.
+      if (form && gate) {
+        form.addEventListener('submit', function() {
+          gate.classList.add('gate-hidden');
+        });
+      }
+
+      // "No thanks" just reveals the content without subscribing.
+      if (dismissBtn && gate) {
+        dismissBtn.addEventListener('click', function() {
+          gate.classList.add('gate-hidden');
+        });
+      }
+
+      // Style switcher functionality
+      const styleLinks = document.querySelectorAll('a[data-style]');
+      const stylesheet = document.getElementById('theme-stylesheet');
+
+      const savedTheme = localStorage.getItem('selectedTheme') || 'swiss';
+      switchTheme(savedTheme);
+
+      styleLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const selectedStyle = link.dataset.style;
+          switchTheme(selectedStyle);
+          localStorage.setItem('selectedTheme', selectedStyle);
+        });
+      });
+
+      function switchTheme(themeName) {
+        stylesheet.href = '../' + themeName + '.css';
+
+        document.body.classList.remove('theme-vscode', 'theme-thefacebook', 'theme-swiss');
+        if (themeName === 'vscode') {
+          document.body.classList.add('theme-vscode');
+        } else if (themeName === 'thefacebook') {
+          document.body.classList.add('theme-thefacebook');
+        } else if (themeName === 'swiss') {
+          document.body.classList.add('theme-swiss');
+        }
+
+        const targetLink = document.querySelector(`a[data-style="${themeName}"]`);
+        if (targetLink) {
+          styleLinks.forEach(link => link.classList.remove('active'));
+          targetLink.classList.add('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
