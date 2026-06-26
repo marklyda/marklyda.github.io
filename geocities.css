@@ -458,6 +458,15 @@ table {
     line-height: 1.4;
 }
 
+/* LINK CARDS - lighter purple so it's readable on the black background */
+.card-link,
+.card-link:link,
+.card-link:visited,
+.link-title,
+.card-link small {
+    color: #C8A2FF;
+}
+
 /* GENERAL STYLING */
 h1, h2, h3 {
     text-align: center;
