@@ -160,11 +160,9 @@ html {
     overflow-y: visible !important;
   }
 
-  /* Smaller profile/headshot on mobile only */
+  /* Hide profile/headshot on mobile for now */
   .profile {
-    max-width: 120px !important;
-    width: 120px !important;
-    height: auto !important;
+    display: none !important;
   }
 
   /* Style picker: label on top, links wrap in rows underneath */
