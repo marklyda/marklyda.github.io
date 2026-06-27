@@ -65,50 +65,20 @@
       color: #444444;
     }
 
-    .gate-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .gate-input {
+    /* Official Substack embed (runs inside substack.com, so it isn't blocked) */
+    .gate-embed {
+      display: block;
       width: 100%;
-      box-sizing: border-box;
-      padding: 0.85rem 1rem;
-      /* 16px font size prevents iOS Safari from auto-zooming on focus */
-      font-size: 16px;
-      border: 1px solid #cccccc;
-      border-radius: 8px;
-      font-family: inherit;
-    }
-
-    .gate-input:focus {
-      outline: none;
-      border-color: #111111;
-    }
-
-    .gate-submit {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 0.85rem 1rem;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #ffffff;
-      background: #111111;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .gate-submit:hover {
-      background: #333333;
+      max-width: 480px;
+      height: 320px;
+      margin: 0 auto;
+      border: 1px solid #eeeeee;
+      background: #ffffff;
     }
 
     .gate-dismiss {
       display: inline-block;
       margin-top: 1.25rem;
-      margin-bottom: 0.5rem;
       font-size: 0.9rem;
       color: #666666;
       text-decoration: underline;
@@ -120,17 +90,6 @@
 
     .gate-dismiss:hover {
       color: #111111;
-    }
-
-    .gate-fineprint {
-      margin: 1rem 0 0;
-      font-size: 0.75rem;
-      color: #999999;
-    }
-
-    /* Hidden iframe receives the Substack POST so the visitor never leaves the page */
-    .gate-hidden-frame {
-      display: none;
     }
   </style>
   <script>
@@ -204,19 +163,11 @@
   <div class="gate-overlay" id="signup-gate">
     <div class="gate-card">
       <h2>Before you read&hellip;</h2>
-      <p>Get free updates and commentaries by signing up for my Substack newsletter.</p>
-      <form id="signup-form" class="gate-form"
-            action="https://marklyda.substack.com/api/v1/free?nojs=true"
-            method="post" target="ss-hidden-iframe">
-        <input type="email" name="email" class="gate-input" placeholder="Your email address" required autocomplete="email" />
-        <input type="hidden" name="source" value="constitution-gate" />
-        <button type="submit" class="gate-submit">Sign me up &amp; continue &rarr;</button>
-      </form>
-      <button type="button" class="gate-dismiss" id="gate-dismiss">No, thanks. I'm just visiting. &rarr;</button>
-      <p class="gate-fineprint">Free newsletter. Unsubscribe anytime.</p>
+      <p>Consider signing up for my Substack newsletter.<br>The welcome email includes the links to the Annotated Constitution.</p>
+      <iframe class="gate-embed" src="https://marklyda.substack.com/embed" title="Subscribe to Mark Lyda on Substack" frameborder="0" scrolling="no"></iframe>
+      <button type="button" class="gate-dismiss" id="gate-dismiss">No, thanks. I'm just visiting.</button>
     </div>
   </div>
-  <iframe name="ss-hidden-iframe" class="gate-hidden-frame" title="Substack subscription handler"></iframe>
 
   <footer>
     Choose Style:
@@ -241,21 +192,13 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const gate = document.getElementById('signup-gate');
-      const form = document.getElementById('signup-form');
       const dismissBtn = document.getElementById('gate-dismiss');
 
-      // Submitting the form posts the email to Substack (via the hidden iframe)
-      // AND reveals the page content. The 'submit' event only fires after the
-      // browser's built-in email validation passes, so invalid emails are blocked.
-      // We also remember the subscriber so they aren't re-prompted on return visits.
-      if (form && gate) {
-        form.addEventListener('submit', function() {
-          try { localStorage.setItem('ml_substack_subscribed', 'true'); } catch (e) {}
-          gate.classList.add('gate-hidden');
-        });
-      }
-
-      // "No thanks" just reveals the content without subscribing.
+      // The official Substack embed handles the actual signup inside substack.com,
+      // so it isn't blocked by Cloudflare the way our custom form was. Subscribers
+      // reach the Annotated Constitution via the link in the welcome email (which
+      // uses ?subscribed=true to skip this gate via the head script above).
+      // Visitors who don't want to subscribe click "No, thanks" to reveal the page.
       if (dismissBtn && gate) {
         dismissBtn.addEventListener('click', function() {
           gate.classList.add('gate-hidden');
