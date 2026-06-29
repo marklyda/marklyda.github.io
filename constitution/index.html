@@ -149,10 +149,10 @@
             </a>
           </li>
           <li>
-            <div class="card-link social-card">
-              <span class="link-title">Buy the Pocket-Sized Hardcopy</span>
-              <small>Coming soon. Check back shortly!</small>
-            </div>
+            <a href="https://www.amazon.com/dp/B0H6XS89RZ" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">Buy the Pocket-Sized Hardcopy <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>Available now on Amazon.</small>
+            </a>
           </li>
         </ul>
       </div>
@@ -223,6 +223,20 @@
           }
         });
       });
+
+      // Track clicks on the "Buy the Pocket-Sized Hardcopy" Amazon link as a custom
+      // "hardcopy_purchase_click" event (see it under Reports > Engagement > Events).
+      var hardcopyLink = document.querySelector('a[href*="amazon.com"]');
+      if (hardcopyLink) {
+        hardcopyLink.addEventListener('click', function() {
+          if (typeof gtag === 'function') {
+            gtag('event', 'hardcopy_purchase_click', {
+              link_url: hardcopyLink.getAttribute('href'),
+              link_text: 'Buy the Pocket-Sized Hardcopy'
+            });
+          }
+        });
+      }
 
       // Style switcher functionality
       const styleLinks = document.querySelectorAll('a[data-style]');
