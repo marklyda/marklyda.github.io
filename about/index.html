@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>About - Mark Lyda</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="../base.css" />
+  <link rel="stylesheet" href="../swiss.css" id="theme-stylesheet" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED2333K33W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ED2333K33W');
+  </script>
+  <style>
+    /*
+      The bio grid. This is the ONLY layout rule you need:
+      it makes the cards flow into as many columns as fit, and reflow
+      automatically when you add or remove cards. To add a card, copy one
+      ".about-card" block below. To remove one, delete its block. To reorder,
+      move the block up or down. That's the whole game — no widths to fiddle.
+    */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Space between the first grid and the next section heading */
+    .about-section-heading {
+      margin-top: 2.5rem;
+    }
+
+    /*
+      Expandable topic accordion, built on native <details>/<summary> (no JS).
+      To add a topic, copy one <details> block. To remove one, delete its block.
+      Gray borders (with alpha) stay visible on both light and dark themes.
+    */
+    .about-accordion {
+      margin-top: 1.5rem;
+    }
+
+    .about-accordion details {
+      border-top: 1px solid rgba(127, 127, 127, 0.4);
+    }
+
+    .about-accordion details:last-child {
+      border-bottom: 1px solid rgba(127, 127, 127, 0.4);
+    }
+
+    .about-accordion summary {
+      cursor: pointer;
+      list-style: none; /* remove default disclosure triangle */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      font-weight: 700;
+    }
+
+    /* Hide the default marker in WebKit/Blink too */
+    .about-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Our own +/- indicator */
+    .about-accordion summary::after {
+      content: '+';
+      margin-left: 1rem;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+
+    .about-accordion details[open] summary::after {
+      content: '\2212'; /* minus sign */
+    }
+
+    .about-accordion .accordion-body {
+      padding: 0 0 1rem;
+      opacity: 0.85;
+    }
+
+    /*
+      Qualification list. Custom dot markers drawn with currentColor so they
+      inherit each theme's text color (readable on light and dark). Wraps
+      naturally on mobile; add/remove bullets by editing the <li> items.
+    */
+    .about-accordion .qual-list {
+      margin: 0;
+      padding: 0;
+    }
+
+    .about-accordion .qual-item {
+      position: relative;
+      padding-left: 1.35rem;
+      margin: 0.4rem 0;
+      line-height: 1.5;
+    }
+
+    .about-accordion .qual-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 6px;
+      height: 6px;
+      background: currentColor;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="projects-container">
+        <ul>
+          <li>
+            <a href="../" class="card-link">
+              <span class="link-title">← Back to Home</span>
+              <small>Return to the main page.</small>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="right">
+      <h1>About Mark</h1>
+      <p class="bio">Attorney, founder, Air Force JAG reservist, and Notre Dame Law grad. A few of the things I do:</p>
+
+      <div class="about-grid">
+        <!-- ===== Each .about-card below is one grid tile. Copy, delete, or reorder freely. ===== -->
+        <div class="card-link">
+          <span class="link-title">Attorney</span>
+          <small>Founder of Lyda Law Firm, serving startups, small businesses, nonprofits, and individuals.</small>
+        </div>
+        <div class="card-link">
+          <span class="link-title">Founder &amp; CEO</span>
+          <small>Practist — modern law firm software that does the grunt work for you.</small>
+        </div>
+        <div class="card-link">
+          <span class="link-title">Air Force JAG</span>
+          <small>Reservist in the U.S. Air Force Judge Advocate General's Corps.</small>
+        </div>
+        <div class="card-link">
+          <span class="link-title">Notre Dame Law</span>
+          <small>Juris Doctor, University of Notre Dame Law School.</small>
+        </div>
+        <div class="card-link">
+          <span class="link-title">Author</span>
+          <small>The Annotated Constitution, documenting the Trump administration's constitutional violations.</small>
+        </div>
+        <div class="card-link">
+          <span class="link-title">Writer</span>
+          <small>Notes on the Rule of Law — civic commentary on Substack.</small>
+        </div>
+        <!-- ===== End of cards ===== -->
+      </div>
+
+      <h2 class="about-section-heading">What I Like to Talk About</h2>
+      <p class="bio">In a democracy, there is no prerequisite to expressing your opinion. But given the amount of disinformation on the internet, I thought I'd let you know my experience behind each topic.</p>
+      <div class="about-accordion">
+        <!-- ===== Each <details> is one expandable topic. Copy, delete, or reorder freely.
+                  The text inside .accordion-body is your qualification for that topic. ===== -->
+        <details>
+          <summary>Constitutional Law</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Type your qualification here</div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Election Law</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Type your qualification here</div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>The Economy &amp; Small Business</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Type your qualification here</div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Good Government</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Type your qualification here</div>
+            </div>
+          </div>
+        </details>
+        <!-- ===== End of topics ===== -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Choose Style:
+    <div class="taskbar-links">
+      <a href="#" class="active" data-style="swiss">Swiss</a>
+      <a href="#" data-style="brutalist">Brutalist</a>
+      <a href="#" data-style="memphis">Memphis</a>
+      <a href="#" data-style="artdeco">Art Deco</a>
+      <a href="#" data-style="googie">Googie</a>
+      <a href="#" data-style="8bit">8-bit</a>
+      <a href="#" data-style="oregontrail">Oregon Trail</a>
+      <a href="#" data-style="windows95">Windows 3</a>
+      <a href="#" data-style="cdrom">CD-ROM</a>
+      <a href="#" data-style="vscode">VS Code</a>
+      <a href="#" data-style="geocities">GeoCities</a>
+      <a href="#" data-style="thefacebook">thefacebook</a>
+      <a href="#" data-style="vaporwave">Vaporwave</a>
+    </div>
+  </footer>
+  <div class="site-disclaimer">Copyright Lyda LLC 2026. Not legal advice. Any opinions expressed are solely those of the person making the statement.</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const styleLinks = document.querySelectorAll('a[data-style]');
+      const stylesheet = document.getElementById('theme-stylesheet');
+
+      const savedTheme = localStorage.getItem('selectedTheme') || 'swiss';
+      switchTheme(savedTheme);
+
+      styleLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const selectedStyle = link.dataset.style;
+          switchTheme(selectedStyle);
+          localStorage.setItem('selectedTheme', selectedStyle);
+        });
+      });
+
+      function switchTheme(themeName) {
+        stylesheet.href = '../' + themeName + '.css';
+
+        document.body.classList.remove('theme-vscode', 'theme-thefacebook', 'theme-swiss');
+        if (themeName === 'vscode') {
+          document.body.classList.add('theme-vscode');
+        } else if (themeName === 'thefacebook') {
+          document.body.classList.add('theme-thefacebook');
+        } else if (themeName === 'swiss') {
+          document.body.classList.add('theme-swiss');
+        }
+
+        const targetLink = document.querySelector(`a[data-style="${themeName}"]`);
+        if (targetLink) {
+          styleLinks.forEach(link => link.classList.remove('active'));
+          targetLink.classList.add('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

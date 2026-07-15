@@ -8,11 +8,17 @@
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="swiss.css" id="theme-stylesheet" />
   <style>
-    /* Hide bio on mobile for a "link in bio" feel (homepage only) */
-    @media (max-width: 768px) {
-      .bio {
-        display: none !important;
-      }
+    /* Small "Bio" link next to the name. Sized in em so it stays proportionally
+       small next to whatever size each theme makes the h1, and inherits the
+       theme's heading color automatically. */
+    /* Higher-specificity selector + !important so the link takes the heading's
+       color instead of each theme's default link color. */
+    h1 .bio-link {
+      font-size: 0.4em;
+      font-weight: 400;
+      vertical-align: middle;
+      white-space: nowrap;
+      color: inherit !important;
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -31,8 +37,7 @@
       <img src="MarkLydaHeadshot.png" alt="Mark Lyda" class="profile" />
     </div>
     <div class="right">
-      <h1>Mark Lyda</h1>
-      <p class="bio">Hello! I'm an attorney, founder, Air Force JAG reservist, and Notre Dame Law grad. Check out my projects below.</p>
+      <h1>Mark Lyda <!-- <a href="/about" class="bio-link">Bio</a> --></h1>
       <div class="projects-container">
         <ul>
           <li>

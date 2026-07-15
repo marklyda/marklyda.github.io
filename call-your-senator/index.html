@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Call Your Senator - Mark Lyda</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="../base.css" />
+  <link rel="stylesheet" href="../swiss.css" id="theme-stylesheet" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED2333K33W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ED2333K33W');
+  </script>
+  <style>
+    /* base.css sets `transform-style: preserve-3d` on every element (*), which
+       makes <body> the containing block for position:fixed descendants. That
+       breaks the full-screen gate on this long page (it anchors to the tall
+       document instead of the viewport). Reset it on html/body so `fixed`
+       pins to the screen again. Element selectors outrank the `*` rule. */
+    html, body {
+      -webkit-transform-style: flat !important;
+      transform-style: flat !important;
+      -webkit-backface-visibility: visible !important;
+      backface-visibility: visible !important;
+    }
+
+    /* ===== Page layout overrides ===== 
+       The shared .container locks content to a two-column, 85vh, internally
+       scrolling box. That's great for the short link-in-bio pages, but this
+       page is a long list, so we let it flow as a single, naturally scrolling
+       column instead. */
+    .senator-page {
+      display: block !important;
+      grid-template-columns: none !important;
+      height: auto !important;
+      max-height: none !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+    }
+    .senator-page .right {
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      width: 100%;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    /* Search box (theme-agnostic so it stays legible on every theme) */
+    .senator-search {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 0.5rem 0 1.5rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 1rem;
+      color: #111111;
+      background: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .senator-search:focus {
+      outline: 2px solid #1565c0;
+      outline-offset: 1px;
+    }
+
+    /* Responsive grid — add/remove senators in the JS array below and the
+       layout re-flows automatically. */
+    .senator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Cards carry their own colors (like the sign-up modal) so they're always
+       readable, even on the dark GeoCities / vaporwave themes. */
+    .senator-card {
+      background: #ffffff;
+      color: #111111;
+      border: 1px solid #e4e4e4;
+      border-left: 5px solid #888888;
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .senator-card.rep { border-left-color: #c62828; }
+    .senator-card.dem { border-left-color: #1565c0; }
+    .senator-card.ind { border-left-color: #6a1b9a; }
+
+    .senator-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #111111;
+    }
+    .senator-meta {
+      margin: 0.15rem 0 0.65rem;
+      font-size: 0.8rem;
+      color: #666666;
+    }
+    .party-pill {
+      display: inline-block;
+      padding: 0.05rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #ffffff;
+      vertical-align: middle;
+    }
+    .party-pill.rep { background: #c62828; }
+    .party-pill.dem { background: #1565c0; }
+    .party-pill.ind { background: #6a1b9a; }
+
+    /* Big, tappable call button */
+    .senator-call {
+      display: block;
+      text-align: center;
+      padding: 0.6rem 0.75rem;
+      background: #111111;
+      color: #ffffff !important;
+      border-radius: 8px;
+      text-decoration: none !important;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    .senator-call:hover { background: #333333; }
+
+    .senator-empty {
+      display: none;
+      color: inherit;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    /* ===== Sign-up gate overlay (page-specific, theme-agnostic) ===== */
+    .gate-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background: rgba(0, 0, 0, 0.85);
+      overflow-y: auto;
+    }
+    .gate-overlay.gate-hidden { display: none; }
+    /* Known subscribers: hide the gate before first paint (no modal flash) */
+    .gate-suppressed .gate-overlay { display: none !important; }
+
+    .gate-card {
+      background: #ffffff;
+      color: #111111;
+      width: 100%;
+      min-height: 100vh;
+      max-width: none;
+      border-radius: 0;
+      padding: 2rem 1.5rem;
+      box-shadow: none;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .gate-card h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.4rem;
+      line-height: 1.25;
+      color: #111111;
+    }
+    .gate-card p {
+      margin: 0 0 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #444444;
+    }
+    .gate-embed {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      height: 320px;
+      margin: 0 auto;
+      border: 1px solid #eeeeee;
+      background: #ffffff;
+    }
+    .gate-dismiss {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: #666666;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+    .gate-dismiss:hover { color: #111111; }
+  </style>
+  <script>
+    // Runs BEFORE the page paints so confirmed subscribers never see a flash of
+    // the sign-up modal. A visitor is treated as subscribed if either:
+    //   (a) they arrive with ?subscribed=true (e.g. a link in the welcome email), or
+    //   (b) we previously remembered them in this browser (localStorage).
+    // The key is shared with /constitution, so subscribing on either page skips
+    // the gate everywhere.
+    (function () {
+      var KEY = 'ml_substack_subscribed';
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('subscribed') === 'true') {
+          localStorage.setItem(KEY, 'true');
+          params.delete('subscribed');
+          var q = params.toString();
+          window.history.replaceState({}, '', window.location.pathname + (q ? '?' + q : '') + window.location.hash);
+        }
+        if (localStorage.getItem(KEY) === 'true') {
+          document.documentElement.classList.add('gate-suppressed');
+        }
+      } catch (e) {
+        // localStorage can throw in private mode; failing open just shows the gate.
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="container senator-page">
+    <div class="right">
+      <a href="../" class="back-home">&larr; Back to Home</a>
+      <h1>Call Your Senator</h1>
+      <p class="bio">Your two U.S. senators work for you. Find your state below and tap to call &mdash; a quick, polite call telling them where you stand carries real weight.</p>
+
+      <input type="text" class="senator-search" id="senator-search" placeholder="Search by name or state (e.g. Colorado or CO)" aria-label="Search senators by name or state" autocomplete="off" />
+
+      <div class="senator-grid" id="senator-grid"></div>
+      <p class="senator-empty" id="senator-empty">No senators match your search.</p>
+    </div>
+  </div>
+
+  <!-- SIGN-UP GATE -->
+  <div class="gate-overlay" id="signup-gate">
+    <div class="gate-card">
+      <h2>Before you start dialing&hellip;</h2>
+      <p>Consider signing up for my Substack newsletter for updates and commentary.</p>
+      <iframe class="gate-embed" src="https://marklyda.substack.com/embed" title="Subscribe to Mark Lyda on Substack" frameborder="0" scrolling="no"></iframe>
+      <button type="button" class="gate-dismiss" id="gate-dismiss">No, thanks. I'm just visiting.</button>
+    </div>
+  </div>
+
+  <footer>
+    Choose Style:
+    <div class="taskbar-links">
+      <a href="#" class="active" data-style="swiss">Swiss</a>
+      <a href="#" data-style="brutalist">Brutalist</a>
+      <a href="#" data-style="memphis">Memphis</a>
+      <a href="#" data-style="artdeco">Art Deco</a>
+      <a href="#" data-style="googie">Googie</a>
+      <a href="#" data-style="8bit">8-bit</a>
+      <a href="#" data-style="oregontrail">Oregon Trail</a>
+      <a href="#" data-style="windows95">Windows 3</a>
+      <a href="#" data-style="cdrom">CD-ROM</a>
+      <a href="#" data-style="vscode">VS Code</a>
+      <a href="#" data-style="geocities">GeoCities</a>
+      <a href="#" data-style="thefacebook">thefacebook</a>
+      <a href="#" data-style="vaporwave">Vaporwave</a>
+    </div>
+  </footer>
+  <div class="site-disclaimer">Copyright Lyda LLC 2026. Not legal advice. Any opinions expressed are solely those of the person making the statement.</div>
+
+  <script>
+    // ===== SENATOR DATA =====
+    // To edit: change/add/remove an object below and the page re-renders itself.
+    // Fields: name, st (2-letter state), phone (DC office), party.
+    var SENATORS = [
+      { name: "Lisa Murkowski", st: "AK", phone: "(202) 224-6665", party: "Republican" },
+      { name: "Dan Sullivan", st: "AK", phone: "(202) 224-3004", party: "Republican" },
+      { name: "Katie Britt", st: "AL", phone: "(202) 224-5744", party: "Republican" },
+      { name: "Tommy Tuberville", st: "AL", phone: "(202) 224-4124", party: "Republican" },
+      { name: "John Boozman", st: "AR", phone: "(202) 224-4843", party: "Republican" },
+      { name: "Tom Cotton", st: "AR", phone: "(202) 224-2353", party: "Republican" },
+      { name: "Ruben Gallego", st: "AZ", phone: "(202) 224-4521", party: "Democratic" },
+      { name: "Mark Kelly", st: "AZ", phone: "(202) 224-2235", party: "Democratic" },
+      { name: "Alex Padilla", st: "CA", phone: "(202) 224-3553", party: "Democratic" },
+      { name: "Adam Schiff", st: "CA", phone: "(202) 224-3841", party: "Democratic" },
+      { name: "Michael Bennet", st: "CO", phone: "(202) 224-5852", party: "Democratic" },
+      { name: "John Hickenlooper", st: "CO", phone: "(202) 224-5941", party: "Democratic" },
+      { name: "Richard Blumenthal", st: "CT", phone: "(202) 224-2823", party: "Democratic" },
+      { name: "Christopher Murphy", st: "CT", phone: "(202) 224-4041", party: "Democratic" },
+      { name: "Lisa Blunt Rochester", st: "DE", phone: "(202) 224-2441", party: "Democratic" },
+      { name: "Christopher Coons", st: "DE", phone: "(202) 224-5042", party: "Democratic" },
+      { name: "Ashley Moody", st: "FL", phone: "(202) 224-3041", party: "Republican" },
+      { name: "Rick Scott", st: "FL", phone: "(202) 224-5274", party: "Republican" },
+      { name: "Jon Ossoff", st: "GA", phone: "(202) 224-3521", party: "Democratic" },
+      { name: "Raphael Warnock", st: "GA", phone: "(202) 224-3643", party: "Democratic" },
+      { name: "Mazie Hirono", st: "HI", phone: "(202) 224-6361", party: "Democratic" },
+      { name: "Brian Schatz", st: "HI", phone: "(202) 224-3934", party: "Democratic" },
+      { name: "Joni Ernst", st: "IA", phone: "(202) 224-3254", party: "Republican" },
+      { name: "Chuck Grassley", st: "IA", phone: "(202) 224-3744", party: "Republican" },
+      { name: "Mike Crapo", st: "ID", phone: "(202) 224-6142", party: "Republican" },
+      { name: "James Risch", st: "ID", phone: "(202) 224-2752", party: "Republican" },
+      { name: "Tammy Duckworth", st: "IL", phone: "(202) 224-2854", party: "Democratic" },
+      { name: "Richard Durbin", st: "IL", phone: "(202) 224-2152", party: "Democratic" },
+      { name: "Jim Banks", st: "IN", phone: "(202) 224-4814", party: "Republican" },
+      { name: "Todd Young", st: "IN", phone: "(202) 224-5623", party: "Republican" },
+      { name: "Roger Marshall", st: "KS", phone: "(202) 224-4774", party: "Republican" },
+      { name: "Jerry Moran", st: "KS", phone: "(202) 224-6521", party: "Republican" },
+      { name: "Mitch McConnell", st: "KY", phone: "(202) 224-2541", party: "Republican" },
+      { name: "Rand Paul", st: "KY", phone: "(202) 224-4343", party: "Republican" },
+      { name: "Bill Cassidy", st: "LA", phone: "(202) 224-5824", party: "Republican" },
+      { name: "John Kennedy", st: "LA", phone: "(202) 224-4623", party: "Republican" },
+      { name: "Edward Markey", st: "MA", phone: "(202) 224-2742", party: "Democratic" },
+      { name: "Elizabeth Warren", st: "MA", phone: "(202) 224-4543", party: "Democratic" },
+      { name: "Angela Alsobrooks", st: "MD", phone: "(202) 224-4524", party: "Democratic" },
+      { name: "Chris Van Hollen", st: "MD", phone: "(202) 224-4654", party: "Democratic" },
+      { name: "Susan Collins", st: "ME", phone: "(202) 224-2523", party: "Republican" },
+      { name: "Angus King", st: "ME", phone: "(202) 224-5344", party: "Independent" },
+      { name: "Gary Peters", st: "MI", phone: "(202) 224-6221", party: "Democratic" },
+      { name: "Elissa Slotkin", st: "MI", phone: "(202) 224-4822", party: "Democratic" },
+      { name: "Amy Klobuchar", st: "MN", phone: "(202) 224-3244", party: "Democratic" },
+      { name: "Tina Smith", st: "MN", phone: "(202) 224-5641", party: "Democratic" },
+      { name: "Josh Hawley", st: "MO", phone: "(202) 224-6154", party: "Republican" },
+      { name: "Eric Schmitt", st: "MO", phone: "(202) 224-5721", party: "Republican" },
+      { name: "Cindy Hyde-Smith", st: "MS", phone: "(202) 224-5054", party: "Republican" },
+      { name: "Roger Wicker", st: "MS", phone: "(202) 224-6253", party: "Republican" },
+      { name: "Steve Daines", st: "MT", phone: "(202) 224-2651", party: "Republican" },
+      { name: "Tim Sheehy", st: "MT", phone: "(202) 224-2644", party: "Republican" },
+      { name: "Ted Budd", st: "NC", phone: "(202) 224-3154", party: "Republican" },
+      { name: "Thomas Tillis", st: "NC", phone: "(202) 224-6342", party: "Republican" },
+      { name: "Kevin Cramer", st: "ND", phone: "(202) 224-2043", party: "Republican" },
+      { name: "John Hoeven", st: "ND", phone: "(202) 224-2551", party: "Republican" },
+      { name: "Deb Fischer", st: "NE", phone: "(202) 224-6551", party: "Republican" },
+      { name: "Pete Ricketts", st: "NE", phone: "(202) 224-4224", party: "Republican" },
+      { name: "Maggie Hassan", st: "NH", phone: "(202) 224-3324", party: "Democratic" },
+      { name: "Jeanne Shaheen", st: "NH", phone: "(202) 224-2841", party: "Democratic" },
+      { name: "Cory Booker", st: "NJ", phone: "(202) 224-3224", party: "Democratic" },
+      { name: "Andy Kim", st: "NJ", phone: "(202) 224-4744", party: "Democratic" },
+      { name: "Martin Heinrich", st: "NM", phone: "(202) 224-5521", party: "Democratic" },
+      { name: "Ben Ray Luján", st: "NM", phone: "(202) 224-6621", party: "Democratic" },
+      { name: "Catherine Cortez Masto", st: "NV", phone: "(202) 224-3542", party: "Democratic" },
+      { name: "Jacky Rosen", st: "NV", phone: "(202) 224-6244", party: "Democratic" },
+      { name: "Kirsten Gillibrand", st: "NY", phone: "(202) 224-4451", party: "Democratic" },
+      { name: "Charles Schumer", st: "NY", phone: "(202) 224-6542", party: "Democratic" },
+      { name: "Jon Husted", st: "OH", phone: "(202) 224-3353", party: "Republican" },
+      { name: "Bernie Moreno", st: "OH", phone: "(202) 224-2315", party: "Republican" },
+      { name: "James Lankford", st: "OK", phone: "(202) 224-5754", party: "Republican" },
+      { name: "Alan Armstrong", st: "OK", phone: "(202) 224-4721", party: "Republican" },
+      { name: "Jeff Merkley", st: "OR", phone: "(202) 224-3753", party: "Democratic" },
+      { name: "Ron Wyden", st: "OR", phone: "(202) 224-5244", party: "Democratic" },
+      { name: "John Fetterman", st: "PA", phone: "(202) 224-4254", party: "Democratic" },
+      { name: "David McCormick", st: "PA", phone: "(202) 224-6324", party: "Republican" },
+      { name: "Jack Reed", st: "RI", phone: "(202) 224-4642", party: "Democratic" },
+      { name: "Sheldon Whitehouse", st: "RI", phone: "(202) 224-2921", party: "Democratic" },
+      { name: "Darline Graham Nordone", st: "SC", phone: "(202) 224-5972", party: "Republican" },
+      { name: "Tim Scott", st: "SC", phone: "(202) 224-6121", party: "Republican" },
+      { name: "Mike Rounds", st: "SD", phone: "(202) 224-5842", party: "Republican" },
+      { name: "John Thune", st: "SD", phone: "(202) 224-2321", party: "Republican" },
+      { name: "Marsha Blackburn", st: "TN", phone: "(202) 224-3344", party: "Republican" },
+      { name: "Bill Hagerty", st: "TN", phone: "(202) 224-4944", party: "Republican" },
+      { name: "John Cornyn", st: "TX", phone: "(202) 224-2934", party: "Republican" },
+      { name: "Ted Cruz", st: "TX", phone: "(202) 224-5922", party: "Republican" },
+      { name: "John Curtis", st: "UT", phone: "(202) 224-5251", party: "Republican" },
+      { name: "Mike Lee", st: "UT", phone: "(202) 224-5444", party: "Republican" },
+      { name: "Timothy Kaine", st: "VA", phone: "(202) 224-4024", party: "Democratic" },
+      { name: "Mark Warner", st: "VA", phone: "(202) 224-2023", party: "Democratic" },
+      { name: "Bernie Sanders", st: "VT", phone: "(202) 224-5141", party: "Independent" },
+      { name: "Peter Welch", st: "VT", phone: "(202) 224-4242", party: "Democratic" },
+      { name: "Maria Cantwell", st: "WA", phone: "(202) 224-3441", party: "Democratic" },
+      { name: "Patty Murray", st: "WA", phone: "(202) 224-2621", party: "Democratic" },
+      { name: "Tammy Baldwin", st: "WI", phone: "(202) 224-5653", party: "Democratic" },
+      { name: "Ron Johnson", st: "WI", phone: "(202) 224-5323", party: "Republican" },
+      { name: "Shelley Capito", st: "WV", phone: "(202) 224-6472", party: "Republican" },
+      { name: "James Justice", st: "WV", phone: "(202) 224-3954", party: "Republican" },
+      { name: "John Barrasso", st: "WY", phone: "(202) 224-6441", party: "Republican" },
+      { name: "Cynthia Lummis", st: "WY", phone: "(202) 224-3424", party: "Republican" }
+    ];
+
+    var STATE_NAMES = {
+      AK: "Alaska", AL: "Alabama", AR: "Arkansas", AZ: "Arizona", CA: "California",
+      CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
+      HI: "Hawaii", IA: "Iowa", ID: "Idaho", IL: "Illinois", IN: "Indiana",
+      KS: "Kansas", KY: "Kentucky", LA: "Louisiana", MA: "Massachusetts", MD: "Maryland",
+      ME: "Maine", MI: "Michigan", MN: "Minnesota", MO: "Missouri", MS: "Mississippi",
+      MT: "Montana", NC: "North Carolina", ND: "North Dakota", NE: "Nebraska", NH: "New Hampshire",
+      NJ: "New Jersey", NM: "New Mexico", NV: "Nevada", NY: "New York", OH: "Ohio",
+      OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+      SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VA: "Virginia",
+      VT: "Vermont", WA: "Washington", WI: "Wisconsin", WV: "West Virginia", WY: "Wyoming"
+    };
+
+    function partyClass(party) {
+      if (party === "Republican") return "rep";
+      if (party === "Democratic") return "dem";
+      return "ind";
+    }
+
+    // Turn "(202) 224-6665" into a dialable tel: link ("tel:+12022246665").
+    function telHref(phone) {
+      return "tel:+1" + phone.replace(/\D/g, "");
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var grid = document.getElementById('senator-grid');
+      var emptyMsg = document.getElementById('senator-empty');
+      var search = document.getElementById('senator-search');
+
+      // Sort by state, then last name, so both of a state's senators sit together.
+      var sorted = SENATORS.slice().sort(function(a, b) {
+        if (a.st !== b.st) return a.st < b.st ? -1 : 1;
+        return a.name < b.name ? -1 : 1;
+      });
+
+      // Build each card once. We stash the searchable text on a data attribute
+      // so filtering is just a substring check (no re-rendering).
+      sorted.forEach(function(sen) {
+        var stateName = STATE_NAMES[sen.st] || sen.st;
+        var pc = partyClass(sen.party);
+
+        var card = document.createElement('div');
+        card.className = 'senator-card ' + pc;
+        card.setAttribute('data-search', (sen.name + ' ' + sen.st + ' ' + stateName + ' ' + sen.party).toLowerCase());
+
+        var name = document.createElement('div');
+        name.className = 'senator-name';
+        name.textContent = sen.name;
+
+        var meta = document.createElement('div');
+        meta.className = 'senator-meta';
+        meta.textContent = stateName + ' \u00b7 ';
+        var pill = document.createElement('span');
+        pill.className = 'party-pill ' + pc;
+        pill.textContent = sen.party;
+        meta.appendChild(pill);
+
+        var call = document.createElement('a');
+        call.className = 'senator-call';
+        call.href = telHref(sen.phone);
+        call.textContent = 'Call ' + sen.phone;
+        call.addEventListener('click', function() {
+          if (typeof gtag === 'function') {
+            gtag('event', 'senator_call_click', {
+              senator_name: sen.name,
+              senator_state: sen.st,
+              senator_party: sen.party
+            });
+          }
+        });
+
+        card.appendChild(name);
+        card.appendChild(meta);
+        card.appendChild(call);
+        grid.appendChild(card);
+      });
+
+      // Live search: show only cards whose data-search contains the query.
+      search.addEventListener('input', function() {
+        var q = search.value.trim().toLowerCase();
+        var visible = 0;
+        var cards = grid.querySelectorAll('.senator-card');
+        cards.forEach(function(card) {
+          var match = !q || card.getAttribute('data-search').indexOf(q) !== -1;
+          card.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+      });
+
+      // ===== Sign-up gate =====
+      var gate = document.getElementById('signup-gate');
+      var dismissBtn = document.getElementById('gate-dismiss');
+      if (dismissBtn && gate) {
+        dismissBtn.addEventListener('click', function() {
+          gate.classList.add('gate-hidden');
+        });
+      }
+
+      // ===== Style switcher =====
+      var styleLinks = document.querySelectorAll('a[data-style]');
+      var stylesheet = document.getElementById('theme-stylesheet');
+
+      var savedTheme = localStorage.getItem('selectedTheme') || 'swiss';
+      switchTheme(savedTheme);
+
+      styleLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var selectedStyle = link.dataset.style;
+          switchTheme(selectedStyle);
+          localStorage.setItem('selectedTheme', selectedStyle);
+        });
+      });
+
+      function switchTheme(themeName) {
+        stylesheet.href = '../' + themeName + '.css';
+
+        document.body.classList.remove('theme-vscode', 'theme-thefacebook', 'theme-swiss');
+        if (themeName === 'vscode') {
+          document.body.classList.add('theme-vscode');
+        } else if (themeName === 'thefacebook') {
+          document.body.classList.add('theme-thefacebook');
+        } else if (themeName === 'swiss') {
+          document.body.classList.add('theme-swiss');
+        }
+
+        var targetLink = document.querySelector('a[data-style="' + themeName + '"]');
+        if (targetLink) {
+          styleLinks.forEach(function(link) { link.classList.remove('active'); });
+          targetLink.classList.add('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
