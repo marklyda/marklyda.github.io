@@ -130,35 +130,88 @@
     </div>
     <div class="right">
       <h1>About Mark</h1>
-      <p class="bio">Attorney, founder, Air Force JAG reservist, and Notre Dame Law grad. A few of the things I do:</p>
+      <p class="bio">Attorney, founder, Air Force JAG reservist, and Notre Dame Law grad.</p>
 
-      <div class="about-grid">
-        <!-- ===== Each .about-card below is one grid tile. Copy, delete, or reorder freely. ===== -->
-        <div class="card-link">
-          <span class="link-title">Attorney</span>
-          <small>Founder of Lyda Law Firm, serving startups, small businesses, nonprofits, and individuals.</small>
-        </div>
-        <div class="card-link">
-          <span class="link-title">Founder &amp; CEO</span>
-          <small>Practist — modern law firm software that does the grunt work for you.</small>
-        </div>
-        <div class="card-link">
-          <span class="link-title">Air Force JAG</span>
-          <small>Reservist in the U.S. Air Force Judge Advocate General's Corps.</small>
-        </div>
-        <div class="card-link">
-          <span class="link-title">Notre Dame Law</span>
-          <small>Juris Doctor, University of Notre Dame Law School.</small>
-        </div>
-        <div class="card-link">
-          <span class="link-title">Author</span>
-          <small>The Annotated Constitution, documenting the Trump administration's constitutional violations.</small>
-        </div>
-        <div class="card-link">
-          <span class="link-title">Writer</span>
-          <small>Notes on the Rule of Law — civic commentary on Substack.</small>
-        </div>
-        <!-- ===== End of cards ===== -->
+      <!-- ===== RESUME SECTIONS =====
+           Each section below is a heading + an .about-accordion. Inside, every
+           <details> is one entry (a position or a school): the <summary> is its
+           title, and the bullets inside .qual-list explain it further.
+             • Add an entry:  copy a whole <details> ... </details> block.
+             • Add a bullet:  copy one <div class="qual-item"> line.
+             • Reorder:       move blocks up or down.
+           These reuse the same accordion styles as the topics section below, so
+           they stay readable on every theme with no extra CSS. ===== -->
+
+      <h2 class="about-section-heading">Professional Experience</h2>
+      <div class="about-accordion">
+        <details>
+          <summary>Lyda Law Firm — Founder &amp; Attorney</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">National law firm serving startups, small businesses, nonprofits, and individuals</div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>U.S. Air Force JAG Corps — Reservist</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Reservist in the Judge Advocate General's Corps</div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <h2 class="about-section-heading">Education</h2>
+      <div class="about-accordion">
+        <details>
+          <summary>University of Notre Dame Law School</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Juris Doctor</div>
+              <div class="qual-item" role="listitem">Fellowship recipient</div>
+              <div class="qual-item" role="listitem">International Academy of Trial Lawyers Award</div>
+              <div class="qual-item" role="listitem">Dean's List</div>
+              <div class="qual-item" role="listitem">Notre Dame Boxing</div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>University of Kansas</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Dual degrees in Music (Theory) and English (Literature)</div>
+              <div class="qual-item" role="listitem">Honors graduate</div>
+              <div class="qual-item" role="listitem">National Merit Scholar</div>
+              <div class="qual-item" role="listitem">Chancellor's Student Award</div>
+              <div class="qual-item" role="listitem">University Daily Kansan editorial board</div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Northwestern University</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Certificate in Mediation Skills from the School of Professional Studies</div>
+            </div>
+          </div>
+        </details>
+        <!-- Add another school by copying a <details> block above. -->
+      </div>
+
+      <h2 class="about-section-heading">Community</h2>
+      <div class="about-accordion">
+        <details>
+          <summary>Past/Present Involvement</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Chair, Colorado Council of Advisors on Consumer Credit</div>
+              <div class="qual-item" role="listitem">Big Brothers/Big Sisters</div>
+              <div class="qual-item" role="listitem">Mile High United Way Emerging Leaders Council</div>
+              <div class="qual-item" role="listitem">Colorado Bar Association Civil Rights Committee</div>
+            </div>
+          </div>
+        </details>
       </div>
 
       <h2 class="about-section-heading">What I Like to Talk About</h2>
@@ -170,7 +223,7 @@
           <summary>Constitutional Law</summary>
           <div class="accordion-body">
             <div class="qual-list" role="list">
-              <div class="qual-item" role="listitem">Type your qualification here</div>
+              <div class="qual-item" role="listitem">Qualifications coming soon</div>
             </div>
           </div>
         </details>
@@ -178,7 +231,7 @@
           <summary>Election Law</summary>
           <div class="accordion-body">
             <div class="qual-list" role="list">
-              <div class="qual-item" role="listitem">Type your qualification here</div>
+              <div class="qual-item" role="listitem">Qualifications coming soon</div>
             </div>
           </div>
         </details>
@@ -186,7 +239,7 @@
           <summary>The Economy &amp; Small Business</summary>
           <div class="accordion-body">
             <div class="qual-list" role="list">
-              <div class="qual-item" role="listitem">Type your qualification here</div>
+              <div class="qual-item" role="listitem">Qualifications coming soon</div>
             </div>
           </div>
         </details>
@@ -194,7 +247,15 @@
           <summary>Good Government</summary>
           <div class="accordion-body">
             <div class="qual-list" role="list">
-              <div class="qual-item" role="listitem">Type your qualification here</div>
+              <div class="qual-item" role="listitem">Qualifications coming soon</div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Political Strategy</summary>
+          <div class="accordion-body">
+            <div class="qual-list" role="list">
+              <div class="qual-item" role="listitem">Qualifications coming soon</div>
             </div>
           </div>
         </details>
