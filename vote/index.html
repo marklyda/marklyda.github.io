@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Annotated Constitution - Mark Lyda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Make a Plan to Vote - Mark Lyda</title>
   <link rel="icon" type="image/png" href="../favicon.png" />
   <link rel="stylesheet" href="../base.css" />
   <link rel="stylesheet" href="../swiss.css" id="theme-stylesheet" />
@@ -17,7 +17,49 @@
     gtag('config', 'G-ED2333K33W');
   </script>
   <style>
-    /* Sign-up gate overlay (page-specific so it stays theme-agnostic) */
+    /* base.css sets `transform-style: preserve-3d` on every element (*), which
+       makes <body> the containing block for position:fixed descendants. That
+       breaks the fixed sign-up gate on a long page (it anchors to the tall
+       document instead of the viewport). Reset it on html/body so `fixed` pins
+       to the screen again. Element selectors outrank the `*` rule. */
+    html, body {
+      -webkit-transform-style: flat !important;
+      transform-style: flat !important;
+      -webkit-backface-visibility: visible !important;
+      backface-visibility: visible !important;
+    }
+
+    /* ===== Page layout overrides =====
+       The shared .container locks content to a two-column, 85vh, internally
+       scrolling box. This page is a longer list of resources, so let it flow as
+       a single, naturally scrolling column instead. */
+    .vote-page {
+      display: block !important;
+      grid-template-columns: none !important;
+      height: auto !important;
+      max-height: none !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+    }
+    .vote-page .right {
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      width: 100%;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    /* Spacing above each resource section heading */
+    .section-heading {
+      margin-top: 2.5rem;
+    }
+
+    /* ===== Sign-up gate overlay (page-specific, theme-agnostic) ===== */
     .gate-overlay {
       position: fixed;
       inset: 0;
@@ -29,15 +71,9 @@
       background: rgba(0, 0, 0, 0.85);
       overflow-y: auto;
     }
-
-    .gate-overlay.gate-hidden {
-      display: none;
-    }
-
+    .gate-overlay.gate-hidden { display: none; }
     /* Known subscribers: hide the gate before first paint (no modal flash) */
-    .gate-suppressed .gate-overlay {
-      display: none !important;
-    }
+    .gate-suppressed .gate-overlay { display: none !important; }
 
     .gate-card {
       background: #ffffff;
@@ -50,22 +86,18 @@
       text-align: center;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-
     .gate-card h2 {
       margin: 0 0 0.5rem;
       font-size: 1.4rem;
       line-height: 1.25;
       color: #111111;
     }
-
     .gate-card p {
       margin: 0 0 1.25rem;
       font-size: 0.95rem;
       line-height: 1.5;
       color: #444444;
     }
-
-    /* Official Substack embed (runs inside substack.com, so it isn't blocked) */
     .gate-embed {
       display: block;
       width: 100%;
@@ -75,7 +107,6 @@
       border: 1px solid #eeeeee;
       background: #ffffff;
     }
-
     .gate-dismiss {
       display: inline-block;
       margin-top: 1.25rem;
@@ -87,23 +118,21 @@
       border: none;
       font-family: inherit;
     }
-
-    .gate-dismiss:hover {
-      color: #111111;
-    }
+    .gate-dismiss:hover { color: #111111; }
   </style>
   <script>
     // Runs BEFORE the page paints so confirmed subscribers never see a flash of
     // the sign-up modal. A visitor is treated as subscribed if either:
     //   (a) they arrive with ?subscribed=true (e.g. a link in the welcome email), or
     //   (b) we previously remembered them in this browser (localStorage).
+    // The key is shared across /constitution, /call-your-senator, and /vote, so
+    // subscribing on any page skips the gate everywhere.
     (function () {
       var KEY = 'ml_substack_subscribed';
       try {
         var params = new URLSearchParams(window.location.search);
         if (params.get('subscribed') === 'true') {
           localStorage.setItem(KEY, 'true');
-          // Tidy ?subscribed=true out of the address bar so it isn't shared around.
           params.delete('subscribed');
           var q = params.toString();
           window.history.replaceState({}, '', window.location.pathname + (q ? '?' + q : '') + window.location.hash);
@@ -136,41 +165,68 @@
   </script>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
+  <div class="container vote-page">
+    <div class="right">
+      <a href="../" class="back-home">&larr; Back to Home</a>
+      <h1>Make a Plan to Vote</h1>
+      <p class="bio">Voters who make a concrete plan are far more likely to actually cast a ballot. Take five minutes to make yours below, and then help three other people make theirs. Every resource here is free and nonpartisan.</p>
+
+      <h2 class="section-heading">Make Your Plan</h2>
       <div class="projects-container">
         <ul>
           <li>
-            <a href="../" class="card-link">
-              <span class="link-title">← Back to Home</span>
-              <small>Return to the main page.</small>
+            <a href="https://vote.gov" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">Register or Check Your Registration <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>The official U.S. government portal. Register or confirm you're registered for your state.</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.vote.org" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">Deadlines, Early Voting &amp; Mail Ballots <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>Look up your state's key dates and every way you can cast a ballot.</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.vote.org/polling-place-locator/" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">Find Your Polling Place <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>Know exactly where to go before Election Day.</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ballotready.org" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">See What's on Your Ballot <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>Research the candidates and measures so you're ready before you go.</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://866ourvote.org" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">Questions or Problems? Call 866-OUR-VOTE <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>Free, nonpartisan Election Protection hotline (866-687-8683) for any voting issue.</small>
             </a>
           </li>
         </ul>
       </div>
-    </div>
-    <div class="right">
-      <h1>The Annotated Constitution</h1>
-      <p class="bio">An annotated edition of the U.S. Constitution documenting the Trump administration's constitutional violations. Download it below, or grab a pocket-sized hardcopy.</p>
+
+      <h2 class="section-heading">Help Others Vote</h2>
       <div class="projects-container">
         <ul>
           <li>
-            <a href="annotated-constitution.pdf" class="card-link" download>
-              <span class="link-title">Download PDF</span>
-              <small>The full annotated edition, ready to read or print.</small>
+            <a href="https://www.powerthepolls.org" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">Become a Poll Worker <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>Polls can't open without workers. It's often paid, and it keeps democracy running.</small>
             </a>
           </li>
           <li>
-            <a href="annotated-constitution.epub" class="card-link" download>
-              <span class="link-title">Download EPUB</span>
-              <small>For Kindle, Apple Books, and other e-readers.</small>
+            <a href="https://protectthevote.net" target="_blank" rel="noopener noreferrer" class="card-link">
+              <span class="link-title">Volunteer to Protect the Vote <span class="external-indicator" aria-hidden="true">↗</span></span>
+              <small>Join nonpartisan Election Protection and help voters navigate problems at the polls.</small>
             </a>
           </li>
           <li>
-            <a href="https://www.amazon.com/dp/B0H6XS89RZ" target="_blank" rel="noopener noreferrer" class="card-link">
-              <span class="link-title">Buy the Pocket-Sized Hardcopy <span class="external-indicator" aria-hidden="true">↗</span></span>
-              <small>Available now on Amazon.</small>
-            </a>
+            <div class="card-link">
+              <span class="link-title">Bring Someone With You</span>
+              <small>Text three friends or family members: check their registration together, share the deadlines above, and offer a ride. A plan shared is a plan doubled.</small>
+            </div>
           </li>
         </ul>
       </div>
@@ -180,8 +236,8 @@
   <!-- SIGN-UP GATE -->
   <div class="gate-overlay" id="signup-gate">
     <div class="gate-card">
-      <h2>Before you read&hellip;</h2>
-      <p>Consider signing up for my Substack newsletter.<br>The welcome email includes the links to the Annotated Constitution.</p>
+      <h2>Before you make your plan&hellip;</h2>
+      <p>Consider signing up for my Substack newsletter for updates and commentary.</p>
       <iframe class="gate-embed" src="https://marklyda.substack.com/embed" title="Subscribe to Mark Lyda on Substack" frameborder="0" scrolling="no"></iframe>
       <button type="button" class="gate-dismiss" id="gate-dismiss">No, thanks. I'm just visiting.</button>
     </div>
@@ -209,64 +265,26 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const gate = document.getElementById('signup-gate');
-      const dismissBtn = document.getElementById('gate-dismiss');
-
-      // The official Substack embed handles the actual signup inside substack.com,
-      // so it isn't blocked by Cloudflare the way our custom form was. Subscribers
-      // reach the Annotated Constitution via the link in the welcome email (which
-      // uses ?subscribed=true to skip this gate via the head script above).
-      // Visitors who don't want to subscribe click "No, thanks" to reveal the page.
+      // ===== Sign-up gate =====
+      var gate = document.getElementById('signup-gate');
+      var dismissBtn = document.getElementById('gate-dismiss');
       if (dismissBtn && gate) {
         dismissBtn.addEventListener('click', function() {
           gate.classList.add('gate-hidden');
         });
       }
 
-      // Track ebook downloads in Google Analytics. Each click on a download link
-      // sends a custom "ebook_download" event so you can see counts (PDF vs EPUB)
-      // under Reports > Engagement > Events. We use a custom name (not the built-in
-      // "file_download") to avoid double-counting PDFs, which GA4's Enhanced
-      // Measurement already auto-tracks.
-      document.querySelectorAll('a[download]').forEach(function(link) {
-        link.addEventListener('click', function() {
-          if (typeof gtag === 'function') {
-            var href = link.getAttribute('href') || '';
-            var titleEl = link.querySelector('.link-title');
-            gtag('event', 'ebook_download', {
-              file_name: href,
-              file_extension: href.split('.').pop(),
-              link_text: titleEl ? titleEl.textContent.trim() : href
-            });
-          }
-        });
-      });
+      // ===== Style switcher =====
+      var styleLinks = document.querySelectorAll('a[data-style]');
+      var stylesheet = document.getElementById('theme-stylesheet');
 
-      // Track clicks on the "Buy the Pocket-Sized Hardcopy" Amazon link as a custom
-      // "hardcopy_purchase_click" event (see it under Reports > Engagement > Events).
-      var hardcopyLink = document.querySelector('a[href*="amazon.com"]');
-      if (hardcopyLink) {
-        hardcopyLink.addEventListener('click', function() {
-          if (typeof gtag === 'function') {
-            gtag('event', 'hardcopy_purchase_click', {
-              link_url: hardcopyLink.getAttribute('href'),
-              link_text: 'Buy the Pocket-Sized Hardcopy'
-            });
-          }
-        });
-      }
-
-      // Style switcher functionality
-      const styleLinks = document.querySelectorAll('a[data-style]');
-      const stylesheet = document.getElementById('theme-stylesheet');
-
-      const savedTheme = localStorage.getItem('selectedTheme') || 'swiss';
+      var savedTheme = localStorage.getItem('selectedTheme') || 'swiss';
       switchTheme(savedTheme);
 
-      styleLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+      styleLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
           e.preventDefault();
-          const selectedStyle = link.dataset.style;
+          var selectedStyle = link.dataset.style;
           switchTheme(selectedStyle);
           localStorage.setItem('selectedTheme', selectedStyle);
         });
@@ -284,9 +302,9 @@
           document.body.classList.add('theme-swiss');
         }
 
-        const targetLink = document.querySelector(`a[data-style="${themeName}"]`);
+        var targetLink = document.querySelector('a[data-style="' + themeName + '"]');
         if (targetLink) {
-          styleLinks.forEach(link => link.classList.remove('active'));
+          styleLinks.forEach(function(link) { link.classList.remove('active'); });
           targetLink.classList.add('active');
         }
       }

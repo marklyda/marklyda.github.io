@@ -229,7 +229,25 @@
           var q = params.toString();
           window.history.replaceState({}, '', window.location.pathname + (q ? '?' + q : '') + window.location.hash);
         }
+        var suppress = false;
+
+        // Confirmed subscribers never see the gate.
         if (localStorage.getItem(KEY) === 'true') {
+          suppress = true;
+        }
+
+        // Internal navigation: if they arrived from another page on this same
+        // site, don't prompt again. The gate is only meant to greet visitors who
+        // land here from an external link (a shared link, search, social, etc.).
+        if (!suppress && document.referrer) {
+          try {
+            if (new URL(document.referrer).hostname === window.location.hostname) {
+              suppress = true;
+            }
+          } catch (e2) {}
+        }
+
+        if (suppress) {
           document.documentElement.classList.add('gate-suppressed');
         }
       } catch (e) {
@@ -273,7 +291,7 @@
       <a href="#" data-style="8bit">8-bit</a>
       <a href="#" data-style="oregontrail">Oregon Trail</a>
       <a href="#" data-style="windows95">Windows 3</a>
-      <a href="#" data-style="cdrom">CD-ROM</a>
+<!-- <a href="#" data-style="cdrom">CD-ROM</a> -->
 <!-- <a href="#" data-style="vscode">VS Code</a> -->
       <a href="#" data-style="geocities">GeoCities</a>
       <a href="#" data-style="thefacebook">thefacebook</a>
