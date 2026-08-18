@@ -145,6 +145,22 @@
   <script>
     // Wait for DOM to load
     document.addEventListener('DOMContentLoaded', function() {
+      // Track clicks on the Merch Shop link as a custom "merch_shop_click" event
+      // (see it under Reports > Engagement > Events). GA4's Enhanced Measurement
+      // also auto-logs this as a generic outbound "click", but a dedicated named
+      // event makes merch clicks easy to find without filtering by URL.
+      const merchLink = document.querySelector('a[href*="fourthwall.com"]');
+      if (merchLink) {
+        merchLink.addEventListener('click', function() {
+          if (typeof gtag === 'function') {
+            gtag('event', 'merch_shop_click', {
+              link_url: merchLink.getAttribute('href'),
+              link_text: 'Merch Shop'
+            });
+          }
+        });
+      }
+
       // Style switcher functionality
       const styleLinks = document.querySelectorAll('a[data-style]');
       const stylesheet = document.getElementById('theme-stylesheet');
